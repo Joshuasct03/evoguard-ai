@@ -1,0 +1,1 @@
+The old_function API has been deprecated since version 1.8 and will be removed in 2.0. Use new_function instead.
