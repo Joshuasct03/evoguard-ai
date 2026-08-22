@@ -4,28 +4,34 @@ from langchain_google_genai import GoogleGenerativeAIEmbeddings, ChatGoogleGener
 from langchain_community.vectorstores import FAISS
 from langchain.chains.question_answering import load_qa_chain
 
-# 1. Load the secret API key
 load_dotenv()
 
-def retrieve_and_answer(query):
-    print(f"Query: {query}")
+def retrieve_and_answer(query, target_version):
+    print(f"\nQuery: {query}")
+    print(f"Target Version: {target_version}")
     
-    # 2. Load the Embeddings and Vector Store
-    # We set allow_dangerous_deserialization=True because we trust the local file we just created.
+    # 1. Load the Embeddings and Vector Store
     embeddings = GoogleGenerativeAIEmbeddings(model="models/gemini-embedding-001")
     vector_store = FAISS.load_local("faiss_index", embeddings, allow_dangerous_deserialization=True)
     
-    # 3. Retrieve relevant chunks (Vector Search)
-    print("Searching vector store for relevant documents...")
-    docs = vector_store.similarity_search(query, k=1)
-    print(f"Retrieved {len(docs)} document(s).")
+    # 2. Version-Aware Retrieval (The Brain of EvoGuard)
+    # We pass a metadata filter to FAISS. It will ONLY return chunks matching this version.
+    print("Searching vector store with strict version filtering...")
+    docs = vector_store.similarity_search(
+        query, 
+        k=1, 
+        filter={"version": target_version}
+    )
     
-    # 4. Initialize the LLM (Gemini)
-    # We use temperature=0 for deterministic, factual reasoning.
+    print(f"Retrieved {len(docs)} document(s) for version {target_version}.")
+    if len(docs) > 0:
+        print(f"Context snippet: {docs[0].page_content[:50]}...")
+    
+    # 3. Initialize the LLM (Gemini)
     print("Sending context and query to Gemini...")
-    llm = ChatGoogleGenerativeAI(model="gemini-3.6-flash", temperature=0)
+    llm = ChatGoogleGenerativeAI(model="models/gemini-3.6-flash", temperature=0)
     
-    # 5. Create a basic QA chain and run it
+    # 4. Create a basic QA chain and run it
     chain = load_qa_chain(llm, chain_type="stuff")
     response = chain.invoke({"input_documents": docs, "question": query}, return_only_outputs=True)
     
@@ -33,6 +39,15 @@ def retrieve_and_answer(query):
     print(response["output_text"].strip())
 
 if __name__ == "__main__":
-    # A test query simulating a developer upgrading their code
-    test_query = "What happened to the old_function API and what should I use instead?"
-    retrieve_and_answer(test_query)
+    # We ask the exact same question, but explicitly filter for different versions
+    test_query = "Is the old_function API safe to use?"
+    
+    print("\n=============================================")
+    print("TEST 1: Querying the library at Version 1.5")
+    print("=============================================")
+    retrieve_and_answer(test_query, target_version="1.5")
+    
+    print("\n=============================================")
+    print("TEST 2: Querying the library at Version 1.8")
+    print("=============================================")
+    retrieve_and_answer(test_query, target_version="1.8")
