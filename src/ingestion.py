@@ -1,40 +1,43 @@
 import os
+import json
 from dotenv import load_dotenv
-from langchain_community.document_loaders import TextLoader
-from langchain_text_splitters import RecursiveCharacterTextSplitter
+from langchain_core.documents import Document
 from langchain_google_genai import GoogleGenerativeAIEmbeddings
 from langchain_community.vectorstores import FAISS
 
-# 1. Load the secret API key from our .env file
 load_dotenv()
 
-def ingest_and_store(file_path):
-    print(f"Loading document from: {file_path}")
+def build_knowledge_base(data_file_path: str = "../data/api_docs.json", index_output_path: str = "faiss_index"):
+    print(f"Loading official API evolution data from: {data_file_path}")
     
-    # 2. Ingest: Load the text file into memory
-    loader = TextLoader(file_path)
-    documents = loader.load()
-
-    # 3. Chunk: Break the document into manageable pieces.
-    # We use a slight overlap so we don't cut a sentence in half and lose its context.
-    print("Chunking text...")
-    text_splitter = RecursiveCharacterTextSplitter(
-        chunk_size=200, 
-        chunk_overlap=20
-    )
-    chunks = text_splitter.split_documents(documents)
-    print(f"-> Created {len(chunks)} chunk(s).")
-
-    # 4. Embed & Store: Convert text to numerical vectors using Gemini and save to FAISS
-    print("Generating embeddings and building FAISS vector store...")
+    if not os.path.exists(data_file_path):
+        raise FileNotFoundError(f"Dataset file not found: {data_file_path}")
+        
+    with open(data_file_path, "r", encoding="utf-8") as f:
+        raw_entries = json.load(f)
+        
+    documents = []
+    for entry in raw_entries:
+        doc = Document(
+            page_content=entry["content"],
+            metadata={
+                "library": entry["library"].lower(),
+                "version": str(entry["version"]),
+                "doc_type": entry.get("doc_type", "release_notes"),
+                "api": entry["api"]
+            }
+        )
+        documents.append(doc)
+        
+    print(f"-> Parsed {len(documents)} documentation entries across libraries: "
+          f"{set(d.metadata['library'] for d in documents)}")
+    
+    print("Generating embeddings using Google Gemini...")
     embeddings = GoogleGenerativeAIEmbeddings(model="models/gemini-embedding-001")
-    vector_store = FAISS.from_documents(chunks, embeddings)
+    vector_store = FAISS.from_documents(documents, embeddings)
     
-    # 5. Save the database locally so we can search it later
-    vector_store.save_local("faiss_index")
-    print("Success! Vector store saved to the 'faiss_index' directory.")
+    vector_store.save_local(index_output_path)
+    print(f"Success: Real API evolution vector store saved to '{index_output_path}'.")
 
 if __name__ == "__main__":
-    # Point the script to our dummy data file
-    target_file = "../data/sample_doc.txt"
-    ingest_and_store(target_file)
+    build_knowledge_base()

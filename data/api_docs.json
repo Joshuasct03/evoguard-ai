@@ -1,0 +1,79 @@
+[
+  {
+    "library": "torch",
+    "version": "1.9.0",
+    "doc_type": "release_notes",
+    "api": "torch.lstsq",
+    "content": "torch.lstsq is deprecated in favor of torch.linalg.lstsq and will be removed in a future PyTorch release (v2.0.0). torch.linalg.lstsq has a different signature and returns a namedtuple (solution, residuals, rank, singular_values)."
+  },
+  {
+    "library": "torch",
+    "version": "2.0.0",
+    "doc_type": "release_notes",
+    "api": "torch.lstsq",
+    "content": "torch.lstsq has been removed from PyTorch 2.0.0. Use torch.linalg.lstsq instead for solving linear least squares problems."
+  },
+  {
+    "library": "torch",
+    "version": "1.9.0",
+    "doc_type": "api_reference",
+    "api": "torch.linalg.lstsq",
+    "content": "torch.linalg.lstsq(A, B, rcond=None, driver=None) computes the least squares solutions to a linear matrix equation. Introduced as the standard replacement for torch.lstsq."
+  },
+  {
+    "library": "numpy",
+    "version": "1.20.0",
+    "doc_type": "release_notes",
+    "api": "numpy.float",
+    "content": "numpy.float was deprecated in NumPy 1.20.0 and removed in NumPy 1.24.0. Use the standard Python float built-in or numpy.float64 instead."
+  },
+  {
+    "library": "numpy",
+    "version": "1.24.0",
+    "doc_type": "release_notes",
+    "api": "numpy.float",
+    "content": "numpy.float has been removed in NumPy 1.24.0. Using np.float will raise an AttributeError. Use float or np.float64."
+  },
+  {
+    "library": "numpy",
+    "version": "2.0.0",
+    "doc_type": "release_notes",
+    "api": "numpy.unique_values",
+    "content": "numpy.unique_values(x) is newly added in NumPy 2.0.0 as part of the Python Array API standard support. It returns unique values without inverse indices."
+  },
+  {
+    "library": "scipy",
+    "version": "1.12.0",
+    "doc_type": "release_notes",
+    "api": "scipy.histogram",
+    "content": "scipy.histogram is deprecated and removed from SciPy's main namespace as of 1.12.0. Use numpy.histogram directly."
+  },
+  {
+    "library": "scipy",
+    "version": "1.3.0",
+    "doc_type": "release_notes",
+    "api": "scipy.misc.comb",
+    "content": "scipy.misc.comb is deprecated in SciPy 1.3.0 and removed in SciPy 1.4.0. Use scipy.special.comb instead."
+  },
+  {
+    "library": "scipy",
+    "version": "1.4.0",
+    "doc_type": "release_notes",
+    "api": "scipy.misc.comb",
+    "content": "scipy.misc.comb has been removed in SciPy 1.4.0. All combinatorial functions are now housed under scipy.special.comb."
+  },
+  {
+    "library": "pandas",
+    "version": "1.4.0",
+    "doc_type": "release_notes",
+    "api": "pandas.DataFrame.append",
+    "content": "DataFrame.append is deprecated since version 1.4.0 and removed in version 2.0.0. Use pandas.concat instead to concatenate multiple DataFrames."
+  },
+  {
+    "library": "pandas",
+    "version": "2.0.0",
+    "doc_type": "release_notes",
+    "api": "pandas.DataFrame.append",
+    "content": "DataFrame.append has been removed in Pandas 2.0.0. Calling df.append() raises AttributeError. Use pandas.concat."
+  }
+]
