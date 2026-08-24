@@ -1,0 +1,20 @@
+[
+  {
+    "version": "2.2.0",
+    "function_name": "pandas.Series.case_when",
+    "function_description": "Replaces values in the Series based on specified conditions and their corresponding replacements.",
+    "code_example": "import pandas as pd\n\n# Example data\nc = pd.Series([6,7,8,9], name='c')\na = pd.Series([0,0,1,2])\nb = pd.Series([0,3,4,5])\n\n# Using case_when\nresult = c.case_when(caselist=[(a.gt(0), a), (b.gt(0), b)])",
+    "parameters": [
+      "caselist: A list of tuples of conditions and expected replacements. Each tuple takes the form (condition, replacement). Conditions can be boolean array-like or callable, and replacements can be array-like, scalar, or callable."
+    ],
+    "return type": "Series",
+    "note": "Added in version 2.2.0."
+  },
+  {
+    "version": "2.2.0",
+    "function_name": "pandas.Series.struct.explode",
+    "function_description": "Extracts all child fields of a struct Series into a DataFrame.",
+    "code_example": "import pandas as pd\nimport pyarrow as pa\n\ns = pd.Series([\n    {'version': 1, 'project': 'pandas'},\n    {'version': 2, 'project': 'pandas'},\n    {'version': 1, 'project': 'numpy'}\n], dtype=pd.ArrowDtype(pa.struct([\n    pa.field('version', pa.int64()),\n    pa.field('project', pa.string())\n])))\n\nresult = s.struct.explode()\nprint(result)",
+    "return_type": "pandas.DataFrame"
+  }
+]

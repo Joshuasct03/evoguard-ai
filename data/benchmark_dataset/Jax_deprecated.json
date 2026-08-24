@@ -1,0 +1,155 @@
+[
+  {
+    "version": "0.6.0",
+    "old_name": "jax.tree_util.build_tree",
+    "new_name": "jax.tree.unflatten",
+    "has_alternative": "Yes",
+    "update_info": "replaced by",
+    "update_description": "jax.tree_util.build_tree() is deprecated. Use jax.tree.unflatten() instead.",
+    "code_example": "jax.tree.unflatten((f, tree), leaves)"
+  },
+  {
+    "version": "0.4.36",
+    "old_name": "jax.lib.xla_extension.ArrayImpl",
+    "new_name": "jax.Array",
+    "has_alternative": "Yes",
+    "update_info": "deprecated, use jax.Array instead",
+    "update_description": "jax.lib.xla_extension.ArrayImpl is deprecated; use jax.Array instead.",
+    "code_example": "import jax\njax.Array(...)"
+  },
+  {
+    "version": "0.4.36",
+    "old_name": "jax.lib.xla_extension.XlaRuntimeError",
+    "new_name": "jax.errors.JaxRuntimeError",
+    "has_alternative": "Yes",
+    "update_info": "deprecated, use jax.errors.JaxRuntimeError instead",
+    "update_description": "jax.lib.xla_extension.XlaRuntimeError is deprecated; use jax.errors.JaxRuntimeError instead.",
+    "code_example": "from jax.errors import JaxRuntimeError"
+  },
+  {
+    "version": "0.4.34",
+    "old_name": "jax.lib.xla_client.Device",
+    "new_name": "jax.Device",
+    "has_alternative": "Yes",
+    "update_info": "deprecated, use jax.Device instead",
+    "update_description": "jax.lib.xla_client.Device is deprecated; use jax.Device instead.",
+    "code_example": "import jax\njax.Device(...)"
+  },
+  {
+    "version": "0.4.34",
+    "old_name": "jax.lib.xla_client.XlaRuntimeError",
+    "new_name": "jax.errors.JaxRuntimeError",
+    "has_alternative": "Yes",
+    "update_info": "deprecated, use jax.errors.JaxRuntimeError instead",
+    "update_description": "jax.lib.xla_client.XlaRuntimeError is deprecated; use jax.errors.JaxRuntimeError instead.",
+    "code_example": "from jax.errors import JaxRuntimeError"
+  },
+  {
+    "version": "0.4.35",
+    "old_name": "jax.lib.xla_client.FftType",
+    "new_name": "",
+    "has_alternative": "Yes",
+    "update_info": "deprecated",
+    "update_description": "jax.lib.xla_client.FftType is deprecated. Use the public name jax.lax.FftType instead.",
+    "code_example": "import jax.lax\njax.lax.FftType(...)"
+  },
+  {
+    "version": "0.4.35",
+    "old_name": "jax.lib.xla_client.register_custom_call_target",
+    "new_name": "",
+    "has_alternative": "Yes",
+    "update_info": "deprecated",
+    "update_description": "jax.lib.xla_client.register_custom_call_target is deprecated. Use the JAX FFI instead.",
+    "code_example": ""
+  },
+  {
+    "version": "0.4.35",
+    "old_name": "jax.lib.xla_client.dtype_to_etype",
+    "new_name": "",
+    "has_alternative": "Yes",
+    "update_info": "deprecated",
+    "update_description": "jax.lib.xla_client.dtype_to_etype is deprecated. Use StableHLO instead.",
+    "code_example": ""
+  },
+  {
+    "version": "0.4.35",
+    "old_name": "jax.lib.xla_client.ops",
+    "new_name": "",
+    "has_alternative": "Yes",
+    "update_info": "deprecated",
+    "update_description": "jax.lib.xla_client.ops is deprecated. Use StableHLO instead.",
+    "code_example": ""
+  },
+  {
+    "version": "0.4.35",
+    "old_name": "jax.lib.xla_client.shape_from_pyval",
+    "new_name": "",
+    "has_alternative": "Yes",
+    "update_info": "deprecated",
+    "update_description": "jax.lib.xla_client.shape_from_pyval is deprecated. Use StableHLO instead.",
+    "code_example": ""
+  },
+  {
+    "version": "0.4.35",
+    "old_name": "jax.lib.xla_client.PrimitiveType",
+    "new_name": "",
+    "has_alternative": "Yes",
+    "update_info": "deprecated",
+    "update_description": "jax.lib.xla_client.PrimitiveType is deprecated. Use StableHLO instead.",
+    "code_example": ""
+  },
+  {
+    "version": "0.4.35",
+    "old_name": "jax.lib.xla_client.Shape",
+    "new_name": "",
+    "has_alternative": "Yes",
+    "update_info": "deprecated",
+    "update_description": "jax.lib.xla_client.Shape is deprecated. Use StableHLO instead.",
+    "code_example": ""
+  },
+  {
+    "version": "0.4.35",
+    "old_name": "jax.lib.xla_client.XlaBuilder",
+    "new_name": "",
+    "has_alternative": "Yes",
+    "update_info": "deprecated",
+    "update_description": "jax.lib.xla_client.XlaBuilder is deprecated. Use StableHLO instead.",
+    "code_example": ""
+  },
+  {
+    "version": "0.4.35",
+    "old_name": "jax.lib.xla_client.XlaComputation",
+    "new_name": "",
+    "has_alternative": "Yes",
+    "update_info": "deprecated",
+    "update_description": "jax.lib.xla_client.XlaComputation is deprecated. Use StableHLO instead.",
+    "code_example": ""
+  },
+  {
+    "version": "0.4.26",
+    "old_name": "jax.experimental.host_callback",
+    "new_name": "",
+    "has_alternative": "Yes",
+    "update_info": "deprecated",
+    "update_description": "jax.experimental.host_callback is deprecated. Use the new JAX external callbacks instead.",
+    "code_example": ""
+  },
+  {
+    "version": "0.4.29",
+    "old_name": "jax.config",
+    "new_name": "",
+    "has_alternative": "Yes",
+    "update_info": "deprecated submodule",
+    "update_description": "The deprecated config submodule has been removed. To configure JAX, use import jax and then reference the config object via jax.config.",
+    "code_example": "import jax\njax.config.update('jax_enable_jit', True)"
+  },
+  {
+    "version": "0.4.31",
+    "old_name": "jax.random.shuffle",
+    "new_name": "jax.random.permutation",
+    "has_alternative": "Yes",
+    "update_info": "replaced by",
+    "update_description": "jax.random.shuffle has been removed; instead use jax.random.permutation with independent=True.",
+    "code_example": "jax.random.permutation(key, x, independent=True)"
+  }
+]

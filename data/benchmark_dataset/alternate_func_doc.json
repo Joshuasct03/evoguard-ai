@@ -1,0 +1,842 @@
+[
+  {
+    "function_name": "np.asmatrix",
+    "function_description": "Interprets the input as a matrix without making a copy if the input is already a matrix or ndarray.",
+    "code_example": "import numpy as np\nx = np.array([[1, 2], [3, 4]])\nm = np.asmatrix(x)",
+    "parameters": [
+      "data (array_like): Input data.",
+      "dtype (data-type): Data-type of the output matrix."
+    ],
+    "return type": "matrix",
+    "note": "Equivalent to matrix(data, copy=False)."
+  },
+  {
+    "function_name": "np.asarray",
+    "function_description": "Convert the input to an array.",
+    "code_example": "import numpy as np\na = [1, 2]\nnp.asarray(a)",
+    "parameters": [
+      "a",
+      "dtype",
+      "order",
+      "device",
+      "copy",
+      "like"
+    ],
+    "return_type": "ndarray",
+    "note": "Device must be 'cpu' if passed. New in version 2.0.0. If False, raises ValueError if a copy cannot be avoided. Default is None. Also, the 'like' parameter is new in version 1.20.0."
+  },
+  {
+    "function_name": "np.genfromtxt",
+    "function_description": "Load data from a text file, with missing values handled as specified.",
+    "code_example": "from io import StringIO\nimport numpy as np\ns = StringIO(\"1,1.3,abcde\")\ndata = np.genfromtxt(s, dtype=[('myint', 'i8'), ('myfloat', 'f8'), ('mystring', 'S5')], delimiter=\",\")",
+    "parameters": [
+      "fname",
+      "dtype",
+      "comments",
+      "delimiter",
+      "skip_header",
+      "skip_footer",
+      "converters",
+      "missing_values",
+      "filling_values",
+      "usecols",
+      "names",
+      "excludelist",
+      "deletechars",
+      "replace_space",
+      "autostrip",
+      "case_sensitive",
+      "defaultfmt",
+      "unpack",
+      "usemask",
+      "loose",
+      "invalid_raise",
+      "max_rows",
+      "encoding",
+      "ndmin",
+      "like"
+    ],
+    "return type": "ndarray",
+    "note": "When spaces are used as delimiters, there should not be any missing data between two fields. When variables are named, there must not be any header in the file. Individual values are not stripped of spaces by default."
+  },
+  {
+    "function_name": "np.genfromtxt",
+    "function_description": "Load data from a text file, with missing values handled as specified.",
+    "code_example": "import numpy as np\nfrom io import StringIO\ns = StringIO('1,1.3,abcde')\ndata = np.genfromtxt(s, dtype=[('myint', 'i8'), ('myfloat', 'f8'), ('mystring', 'S5')], delimiter=\",\")",
+    "parameters": [
+      "fname",
+      "dtype",
+      "comments",
+      "delimiter",
+      "skip_header",
+      "skip_footer",
+      "converters",
+      "missing_values",
+      "filling_values",
+      "usecols",
+      "names",
+      "excludelist",
+      "deletechars",
+      "replace_space",
+      "autostrip",
+      "case_sensitive",
+      "defaultfmt",
+      "unpack",
+      "usemask",
+      "loose",
+      "invalid_raise",
+      "max_rows",
+      "encoding",
+      "ndmin",
+      "like"
+    ],
+    "return_type": "ndarray",
+    "note": "When spaces are used as delimiters, or when no delimiter has been given as input, there should not be any missing data between two fields. When variables are named (either by a flexible dtype or with a names sequence), there must not be any header in the file (else a ValueError exception is raised)."
+  },
+  {
+    "function_name": "np.errstate",
+    "function_description": "A context manager for setting and restoring floating-point error handling settings during code execution.",
+    "code_example": "import numpy as np\nwith np.errstate(divide='ignore'):\n    np.arange(3)/0.",
+    "parameters": [
+      {
+        "name": "divide",
+        "description": "Possible values: 'ignore', 'warn', 'raise', 'call', 'print', 'log'"
+      },
+      {
+        "name": "over",
+        "description": "Possible values: 'ignore', 'warn', 'raise', 'call', 'print', 'log'"
+      },
+      {
+        "name": "under",
+        "description": "Possible values: 'ignore', 'warn', 'raise', 'call', 'print', 'log'"
+      },
+      {
+        "name": "invalid",
+        "description": "Possible values: 'ignore', 'warn', 'raise', 'call', 'print', 'log'"
+      }
+    ],
+    "note": "Concurrency note: see Floating point error handling. It is not safe to decorate async functions using errstate."
+  },
+  {
+    "function_name": "np.errstate",
+    "function_description": "A context manager for setting and managing floating-point error handling behavior during specific code blocks.",
+    "code_example": "import numpy as np\nwith np.errstate(divide='ignore'):\n    np.arange(3)/0.",
+    "parameters": [
+      "divide",
+      "over",
+      "under",
+      "invalid"
+    ],
+    "note": "Concurrency note: see Floating point error handling. It is not safe to decorate async functions using errstate."
+  },
+  {
+    "function_name": "np.asarray",
+    "function_description": "Convert the input to an array.",
+    "code_example": "import numpy as np\na = [1, 2]\nnp.asarray(a)",
+    "parameters": [
+      {
+        "name": "a",
+        "description": "array_like: Input data, in any form that can be converted to an array. This includes lists, lists of tuples, tuples, tuples of tuples, tuples of lists and ndarrays."
+      },
+      {
+        "name": "dtype",
+        "description": "data-type, optional: By default, the data-type is inferred from the input data."
+      },
+      {
+        "name": "order",
+        "description": "'{C, F, A, K}', optional: Memory layout. 'C' row-major (C-style), 'F' column-major (Fortran-style) memory representation. 'A' (any) means 'F' if a is Fortran contiguous, 'C' otherwise. 'K' (keep) preserve input order. Defaults to 'K'."
+      },
+      {
+        "name": "device",
+        "description": "str, optional: The device on which to place the created array. Default: None. For Array-API interoperability only, so must be 'cpu' if passed. New in version 2.0.0."
+      },
+      {
+        "name": "copy",
+        "description": "bool, optional: If True, then the object is copied. If None then the object is copied only if needed, i.e. if __array__ returns a copy, if obj is a nested sequence, or if a copy is needed to satisfy any of the other requirements (dtype, order, etc.). For False it raises a ValueError if a copy cannot be avoided. Default: None. New in version 2.0.0."
+      },
+      {
+        "name": "like",
+        "description": "array_like, optional: Reference object to allow the creation of arrays which are not NumPy arrays. If an array-like passed in as like supports the __array_function__ protocol, the result will be defined by it. In this case, it ensures the creation of an array object compatible with that passed in via this argument. New in version 1.20.0."
+      }
+    ],
+    "return_type": "ndarray"
+  },
+  {
+    "function_name": "np.set_printoptions",
+    "function_description": "Sets printing options for controlling the display of floating-point numbers, arrays, and other NumPy objects.",
+    "code_example": "import numpy as np\nnp.set_printoptions(precision=4)\nnp.array([1.123456789])",
+    "parameters": [
+      "precision",
+      "threshold",
+      "edgeitems",
+      "linewidth",
+      "suppress",
+      "nanstr",
+      "infstr",
+      "formatter",
+      "sign",
+      "floatmode",
+      "legacy",
+      "override_repr"
+    ],
+    "note": "formatter is always reset with a call to set_printoptions. Use printoptions as a context manager to set the values temporarily."
+  },
+  {
+    "function_name": "np.trapezoid",
+    "function_description": "Integrates along the given axis using the composite trapezoidal rule to approximate the definite integral of y(x).",
+    "code_example": "import numpy as np\nnp.trapezoid([1, 2, 3])",
+    "parameters": [
+      "y: array_like, Input array to integrate.",
+      "x: array_like, optional, The sample points corresponding to the y values. If x is None, the sample points are assumed to be evenly spaced dx apart. The default is None.",
+      "dx: scalar, optional, The spacing between sample points when x is None. The default is 1.",
+      "axis: int, optional, The axis along which to integrate."
+    ],
+    "return type": "float or ndarray",
+    "note": "Image [2] illustrates trapezoidal rule \u2013 y-axis locations of points will be taken from y array, by default x-axis distances between points will be 1.0, alternatively they can be provided with x array or with dx scalar. Return value will be equal to combined area under the red lines."
+  },
+  {
+    "function_name": "np.isin",
+    "function_description": "Checks if elements of the input array are present in the test elements array, returning a boolean array.",
+    "code_example": "import numpy as np\nelement = 2 * np.arange(4).reshape((2, 2))\ntest_elements = [1, 2, 4, 8]\nmask = np.isin(element, test_elements)",
+    "parameters": [
+      "element",
+      "test_elements",
+      "assume_unique",
+      "invert",
+      "kind"
+    ],
+    "return_type": "ndarray, bool",
+    "note": "Using a set for test_elements converts it to an object array with one element. Use a list instead. The kind parameter affects speed and memory; default is 'table' if memory allows, else 'sort'."
+  },
+  {
+    "function_name": "np.vstack",
+    "function_description": "Stack arrays in sequence vertically (row wise).",
+    "code_example": "import numpy as np\na = np.array([1, 2, 3])\nb = np.array([4, 5, 6])\nnp.vstack((a, b))",
+    "parameters": [
+      "tup",
+      "dtype",
+      "casting"
+    ],
+    "return type": "ndarray",
+    "note": "Equivalent to concatenation along the first axis after reshaping 1-D arrays to (1,N). Most suitable for arrays with up to 3 dimensions."
+  },
+  {
+    "function_name": "np.promote_types",
+    "function_description": "Returns the smallest data type that can safely cast both input types, ensuring canonical representation.",
+    "code_example": "import numpy as np\nnp.promote_types('f4', 'f8')",
+    "parameters": [
+      "type1: dtype or dtype specifier",
+      "type2: dtype or dtype specifier"
+    ],
+    "return type": "dtype",
+    "note": "The function is symmetric but not associative. Starting in NumPy 1.9, it returns valid string lengths for mixed integer/float and string dtypes. NumPy 1.23.0 supports promotion for structured dtypes with padding removal."
+  },
+  {
+    "function_name": "np.round",
+    "function_description": "Evenly round to the given number of decimals.",
+    "code_example": "import numpy as np\nnp.round([0.37, 1.64])",
+    "parameters": [
+      "a (array_like): Input data.",
+      "decimals (int, optional): Number of decimal places to round to (default: 0). If decimals is negative, it specifies the number of positions to the left of the decimal point.",
+      "out (ndarray, optional): Alternative output array in which to place the result."
+    ],
+    "return_type": "ndarray",
+    "note": "For values exactly halfway between rounded decimal values, NumPy rounds to the nearest even value. The float printing routines use an accurate but computationally demanding algorithm to compute the number of digits after the decimal point. Python\u2019s builtin round function uses a more accurate but slower algorithm for 64-bit floating point values."
+  },
+  {
+    "function_name": "np.dtype(<dtype>).itemsize",
+    "function_description": "Returns the size of each element in the data-type object in bytes.",
+    "code_example": "import numpy as np\narr = np.array([[1, 2], [3, 4]])\nprint(arr.dtype.itemsize)",
+    "return type": "int",
+    "note": "For flexible data-types, this value can vary depending on the data."
+  },
+  {
+    "function_name": "np.char.compare_chararrays",
+    "function_description": "Performs element-wise comparison of two string arrays using the comparison operator specified by cmp.",
+    "code_example": "import numpy as np\na = np.array([\"a\", \"b\", \"cde\"])\nb = np.array([\"a\", \"a\", \"dec\"])\nnp.char.compare_chararrays(a, b, \">\", True)",
+    "parameters": [
+      "a1",
+      "a2",
+      "cmp",
+      "rstrip"
+    ],
+    "return type": "ndarray"
+  },
+  {
+    "function_name": "np.rec.format_parser",
+    "function_description": "Converts format, names, and titles descriptions into a NumPy data type (dtype).",
+    "code_example": "import numpy as np\nnp.rec.format_parser(['<f8', '<i4'], ['col1', 'col2'], ['T1', 'T2']).dtype",
+    "parameters": [
+      {
+        "name": "formats",
+        "type": "str or list of str",
+        "description": "The format description, either specified as a string with comma-separated format descriptions or a list of format description strings."
+      },
+      {
+        "name": "names",
+        "type": "str or list/tuple of str",
+        "description": "The field names, either specified as a comma-separated string or as a list/tuple of strings. Default field names ('f0', 'f1', ...) are used if empty."
+      },
+      {
+        "name": "titles",
+        "type": "sequence",
+        "description": "Sequence of title strings. An empty list leaves titles out."
+      },
+      {
+        "name": "aligned",
+        "type": "bool",
+        "description": "If True, align the fields by padding as the C-compiler would. Default is False."
+      },
+      {
+        "name": "byteorder",
+        "type": "str",
+        "description": "If specified, all fields use the provided byte-order. Default is None."
+      }
+    ],
+    "return_type": "numpy.dtype",
+    "note": "Names and/or titles can be empty lists. If titles is empty, they are omitted. If names is empty, default field names ('f0', 'f1', ...) are used. Aligned defaults to False, byteorder defaults to None."
+  },
+  {
+    "function_name": "np.sort(a, axis=0)",
+    "function_description": "Return a sorted copy of an array.",
+    "code_example": "import numpy as np\na = np.array([[1,4],[3,1]])\nnp.sort(a)",
+    "parameters": [
+      "a",
+      "axis",
+      "kind",
+      "order",
+      "stable"
+    ],
+    "return type": "ndarray",
+    "note": "The various sorting algorithms are characterized by their average speed, worst case performance, work space size, and whether they are stable. A stable sort keeps items with the same key in the same relative order. The four algorithms implemented in NumPy have the following properties: kind speed worst case work space stable 'quicksort' 1 O(n^2) 0 no 'heapsort' 3 O(n*log(n)) 0 no 'mergesort' 2 O(n*log(n)) ~n/2 yes 'timsort' 2 O(n*log(n)) ~n/2 yes Note The datatype determines which of 'mergesort' or 'timsort' is actually used, even if 'mergesort' is specified. User selection at a finer scale is not currently available. For performance, sort makes a temporary copy if needed to make the data contiguous in memory along the sort axis. For even better performance and reduced memory consumption, ensure that the array is already contiguous along the sort axis. The sort order for complex numbers is lexicographic. If both the real and imaginary parts are non-nan then the order is determined by the real parts except when they are equal, in which case the order is determined by the imaginary parts. Previous to numpy 1.4.0 sorting real and complex arrays containing nan values led to undefined behaviour. In numpy versions >= 1.4.0 nan values are sorted to the end. The extended sort order is: Real: [R, nan] Complex: [R + Rj, R + nanj, nan + Rj, nan + nanj] where R is a non-nan real value. Complex values with the same nan placements are sorted according to the non-nan part if it exists. Non-nan values are sorted as before. quicksort has been changed to: introsort. When sorting does not make enough progress it switches to heapsort. This implementation makes quicksort O(n*log(n)) in the worst case. 'stable' automatically chooses the best stable sorting algorithm for the data type being sorted. It, along with 'mergesort' is currently mapped to timsort or radix sort depending on the data type. API forward compatibility currently limits the ability to select the implementation and it is hardwired for the different data types. Timsort is added for better performance on already or nearly sorted data. On random data timsort is almost identical to mergesort. It is now used for stable sort while quicksort is still the default sort if none is chosen. For timsort details, refer to CPython listsort.txt 'mergesort' and 'stable' are mapped to radix sort for integer data types. Radix sort is an O(n) sort instead of O(n log n). NaT now sorts to the end of arrays for consistency with NaN."
+  },
+  {
+    "function_name": "np.logaddexp",
+    "function_description": "Calculates the logarithm of the sum of exponentials of the inputs, useful for avoiding underflow in probability calculations.",
+    "code_example": "import numpy as np\nprob1 = np.log(1e-50)\nprob2 = np.log(2.5e-50)\nprob12 = np.logaddexp(prob1, prob2)\nprint(prob12)",
+    "parameters": [
+      "x1, x2 (array_like): Input values.",
+      "out (ndarray, None, or tuple of ndarray and None, optional): A location into which the result is stored.",
+      "where (array_like, optional): Condition broadcast over the input.",
+      "casting (str, optional): Controls how to handle casting between data types.",
+      "order (str, optional): Specifies the memory layout of the output array.",
+      "dtype (data-type, optional): Overrides the data type of the result.",
+      "subok (bool, optional): If True, sub-classes are passed through.",
+      "signature (str, optional): The signature for the ufunc."
+    ],
+    "return_type": "ndarray",
+    "note": "New in version 1.3.0."
+  },
+  {
+    "function_name": "jax.tree.unflatten",
+    "function_description": "Reconstructs a pytree from the treedef and the leaves.",
+    "code_example": "import jax\nvals, treedef = jax.tree.flatten([1, (2, 3), [4, 5]])\nnewvals = [100, 200, 300, 400, 500]\njax.tree.unflatten(treedef, newvals)",
+    "parameters": [
+      "treedef (tree_util.PyTreeDef): the treedef to reconstruct",
+      "leaves (Iterable[tree_util.Leaf]): the iterable of leaves to use for reconstruction. The iterable must match the leaves of the treedef."
+    ],
+    "return_type": "Any: The reconstructed pytree, containing the leaves placed in the structure described by treedef"
+  },
+  {
+    "function_name": "jax.Array",
+    "function_description": "The base class for JAX arrays and tracers, providing instance checks and type annotations for array operations.",
+    "code_example": "import jax\nimport jax.numpy as jnp\nx = jnp.arange(5)\nprint(isinstance(x, jax.Array))",
+    "parameters": [],
+    "return_type": "jax.Array",
+    "note": "Direct instantiation of jax.Array is not recommended; use jax.numpy functions for array creation."
+  },
+  {
+    "function_name": "jax.Device",
+    "function_description": "Initializes a device descriptor with optional arguments.",
+    "code_example": "device = jax.Device()",
+    "parameters": [
+      "*args",
+      "**kwargs"
+    ],
+    "return type": "jax.Device",
+    "note": "Subclasses may have additional properties specific to that device type."
+  },
+  {
+    "function_name": "jax.random.permutation",
+    "function_description": "Returns a randomly permuted array or range based on the provided PRNG key.",
+    "code_example": "import jax; import jax.numpy as jnp; key = jax.random.PRNGKey(0); shuffled = jax.random.permutation(key, jnp.arange(10)); print(shuffled)",
+    "parameters": [
+      "key",
+      "x",
+      "axis",
+      "independent",
+      "out_sharding"
+    ],
+    "return_type": "Array"
+  },
+  {
+    "function_name": "scipy.signal.ShortTimeFFT.stft",
+    "function_description": "Perform the short-time Fourier transform.",
+    "code_example": "import numpy as np\nfrom scipy.signal import stft\nx = np.sin(2 * np.pi * 0.1 * np.arange(1000))\nS = stft(x)",
+    "parameters": [
+      "x",
+      "p0",
+      "p1",
+      "k_offset",
+      "padding",
+      "axis"
+    ],
+    "return type": "np.ndarray",
+    "note": "For complex values of x, the fft_mode must be set to 'twosided' or 'centered'."
+  },
+  {
+    "function_name": "scipy.signal.ShortTimeFFT.istft",
+    "function_description": "Inverse short-time Fourier transform.",
+    "code_example": "from scipy.signal import ShortTimeFFT\nS = ...  # STFT data\nsignal = ShortTimeFFT.istft(S)",
+    "parameters": [
+      "S",
+      "k0",
+      "k1",
+      "f_axis",
+      "t_axis"
+    ],
+    "note": "It is required that S has f_pts entries along the f_axis. For the t_axis it is assumed that the first entry corresponds to p_min * delta_t (being <= 0). The length of t_axis needs to be compatible with k1. I.e., S.shape[t_axis] >= self.p_max(k1) must hold, if k1 is not None. Else k1 is set to k_max with: q_max = S.shape[t_range] + self.p_min, k_max = (q_max - 1) * self.hop + self.m_num - self.m_num_mid. The Short-Time Fourier Transform section of the SciPy User Guide discussed the slicing behavior by means of an example."
+  },
+  {
+    "function_name": "scipy.signal.ShortTimeFFT.spectrogram",
+    "function_description": "Calculate spectrogram or cross-spectrogram using short-time Fourier transform.",
+    "code_example": "from scipy.signal import ShortTimeFFT, spectrogram\nx = np.random.randn(1000)\nsft = ShortTimeFFT()\nresult = sft.spectrogram(x)",
+    "parameters": [
+      {
+        "name": "x",
+        "description": "The input signal as real or complex valued array. For complex values, the fft_mode must be set to 'twosided' or 'centered'."
+      },
+      {
+        "name": "y",
+        "description": "The second input signal of the same shape as x. If None, it is assumed to be x. For complex values, the fft_mode must be set to 'twosided' or 'centered'."
+      },
+      {
+        "name": "detr",
+        "description": "'linear' | 'constant' | Callable[[np.ndarray], np.ndarray] | None. If 'constant', the mean is subtracted; if 'linear', the linear trend is removed from each segment. This is achieved by calling detrend. If detr is a function with one parameter, detr is applied to each segment. For None (default), no trends are removed."
+      },
+      {
+        "name": "p0",
+        "description": "int | None. The first element of the range of slices to calculate. If None, then it is set to p_min, which is the smallest possible slice."
+      },
+      {
+        "name": "p1",
+        "description": "int | None. The end of the array. If None, then p_max(n) is used."
+      },
+      {
+        "name": "k_offset",
+        "description": "int. Index of first sample (t = 0) in x."
+      },
+      {
+        "name": "padding",
+        "description": "'zeros' | 'edge' | 'even' | 'odd'. Kind of values which are added, when the sliding window sticks out on either the lower or upper end of the input x. Zeros are added if the default 'zeros' is set. For 'edge' either the first or the last value of x is used. 'even' pads by reflecting the signal on the first or last sample and 'odd' additionally multiplies it with -1."
+      },
+      {
+        "name": "axis",
+        "description": "int. The axis of x over which to compute the STFT. If not given, the last axis is used."
+      }
+    ],
+    "return_type": "np.ndarray",
+    "note": "The cross-spectrogram may be interpreted as the time-frequency analogon of the cross-spectral density. The absolute square of a cross-spectrogram divided by the spectrograms can be interpreted as a coherence spectrogram."
+  },
+  {
+    "function_name": "scipy.stats.sampling.RatioUniforms",
+    "function_description": "Generates random samples from a probability density function using the ratio-of-uniforms method.",
+    "code_example": "import numpy as np\nfrom scipy import stats\nfrom scipy.stats.sampling import RatioUniforms\nrng = np.random.default_rng()\nf = lambda x: np.exp(-x**2/2)\numax = np.sqrt(f(0))\ngen = RatioUniforms(f, umax=umax, vmin=-v, vmax=v, random_state=rng)\nr = gen.rvs(size=2500)",
+    "parameters": [
+      {
+        "name": "pdf",
+        "type": "callable",
+        "description": "A function with signature pdf(x) that is proportional to the probability density function of the distribution."
+      },
+      {
+        "name": "umax",
+        "type": "float",
+        "description": "The upper bound of the bounding rectangle in the u-direction."
+      },
+      {
+        "name": "vmin",
+        "type": "float",
+        "description": "The lower bound of the bounding rectangle in the v-direction."
+      },
+      {
+        "name": "vmax",
+        "type": "float",
+        "description": "The upper bound of the bounding rectangle in the v-direction."
+      },
+      {
+        "name": "c",
+        "type": "float",
+        "description": "Shift parameter of ratio-of-uniforms method. Default is 0."
+      },
+      {
+        "name": "random_state",
+        "type": "{None, int, numpy.random.Generator, numpy.random.RandomState}",
+        "description": "If seed is None (or np.random), the numpy.random.RandomState singleton is used. If seed is an int, a new RandomState instance is used, seeded with seed. If seed is already a Generator or RandomState instance then that instance is used."
+      }
+    ],
+    "note": "If the bounding rectangle is not correctly specified (i.e. if it does not contain A), the algorithm samples from a distribution different from the one given by pdf. It is therefore recommended to perform a test such as kstest as a check."
+  },
+  {
+    "function_name": "scipy.integrate.quad",
+    "function_description": "Compute a definite integral.",
+    "code_example": "from scipy import integrate\nimport numpy as np\nx2 = lambda x: x**2\nintegrate.quad(x2, 0, 4)",
+    "parameters": [
+      "func",
+      "a",
+      "b",
+      "args",
+      "full_output",
+      "epsabs",
+      "epsrel",
+      "limit",
+      "points",
+      "weight",
+      "wvar",
+      "wopts",
+      "maxp1",
+      "limlst",
+      "complex_func"
+    ],
+    "return type": [
+      "float",
+      "float",
+      "dict",
+      "str",
+      "str"
+    ],
+    "note": "For valid results, the integral must converge; behavior for divergent integrals is not guaranteed."
+  },
+  {
+    "function_name": "scipy.integrate.quad",
+    "function_description": "Compute a definite integral.",
+    "code_example": "from scipy import integrate; import numpy as np; x2 = lambda x: x ** 2; integrate.quad(x2, 0, 4)",
+    "parameters": [
+      "func",
+      "a",
+      "b",
+      "args",
+      "full_output",
+      "epsabs",
+      "epsrel",
+      "limit",
+      "points",
+      "weight",
+      "wvar",
+      "wopts",
+      "maxp1",
+      "limlst",
+      "complex_func"
+    ],
+    "return type": "tuple of (float, float)",
+    "note": "For valid results, the integral must converge; behavior for divergent integrals is not guaranteed."
+  },
+  {
+    "function_name": "scipy.integrate.simpson",
+    "function_description": "Integrates y(x) using samples along the given axis with the composite Simpson's rule.",
+    "code_example": "from scipy import integrate\nimport numpy as np\nx = np.arange(0, 10)\ny = np.arange(0, 10)\nintegrate.simpson(y, x=x)",
+    "parameters": [
+      "y",
+      "x",
+      "dx",
+      "axis"
+    ],
+    "return_type": "float",
+    "note": "For an odd number of samples that are equally spaced the result is exact if the function is a polynomial of order 3 or less. If the samples are not equally spaced, then the result is exact only if the function is a polynomial of order 2 or less. Array API Standard Support simpson has experimental support for Python Array API Standard compatible backends in addition to NumPy. Please consider testing these features by setting an environment variable SCIPY_ARRAY_API=1 and providing CuPy, PyTorch, JAX, or Dask arrays as array arguments. The following combinations of backend and device (or other capability) are supported."
+  },
+  {
+    "function_name": "scipy.stats.binomtest",
+    "function_description": "Performs a binomial test to determine if the probability of success in a Bernoulli experiment is equal to a specified value p.",
+    "code_example": "from scipy.stats import binomtest\nresult = binomtest(3, n=15, p=0.1, alternative='greater')",
+    "parameters": [
+      {
+        "name": "k",
+        "type": "int",
+        "description": "The number of successes."
+      },
+      {
+        "name": "n",
+        "type": "int",
+        "description": "The number of trials."
+      },
+      {
+        "name": "p",
+        "type": "float, optional",
+        "description": "The hypothesized probability of success, i.e. the expected proportion of successes. The value must be in the interval 0 <= p <= 1. The default value is p=0.5."
+      },
+      {
+        "name": "alternative",
+        "type": "{\u2018two-sided\u2019, \u2018greater\u2019, \u2018less\u2019}, optional",
+        "description": "Indicates the alternative hypothesis. The default value is \u2018two-sided\u2019."
+      }
+    ],
+    "return type": "BinomTestResult",
+    "note": "Added in version 1.7.0. Experimental support for Python Array API Standard compatible backends (e.g., CuPy, PyTorch, JAX, Dask) is available by setting SCIPY_ARRAY_API=1 and using compatible arrays."
+  },
+  {
+    "function_name": "numpy.histogram",
+    "function_description": "Computes the histogram of a dataset, returning the counts or density values and bin edges.",
+    "code_example": "import numpy as np\nnp.histogram([1, 2, 1], bins=[0, 1, 2, 3])",
+    "parameters": [
+      "a (array_like): Input data. The histogram is computed over the flattened array.",
+      "bins (int or sequence of scalars or str, optional): Defines the number of bins, bin edges, or the method to calculate optimal bin width.",
+      "range ((float, float), optional): The range of the bins. Defaults to the min and max of the input data.",
+      "density (bool, optional): If True, the histogram is normalized so the integral over the range is 1.",
+      "weights (array_like, optional): Weights for each element in the input data."
+    ],
+    "return_type": "tuple of arrays (hist, bin_edges)",
+    "note": "All but the last bin is half-open. The last bin includes its upper edge. When density is True, the histogram values are normalized so the integral over the range is 1, but the sum of the values may not equal 1 unless bins have unity width."
+  },
+  {
+    "function_name": "scipy.integrate.trapezoid",
+    "function_description": "Integrate along the given axis using the composite trapezoidal rule.",
+    "code_example": "import numpy as np\nfrom scipy import integrate\nintegrate.trapezoid([1, 2, 3])",
+    "parameters": [
+      "y (array_like): Input array to integrate.",
+      "x (array_like, optional): The sample points corresponding to the y values. If x is None, the sample points are assumed to be evenly spaced dx apart.",
+      "dx (scalar, optional): The spacing between sample points when x is None. The default is 1.0.",
+      "axis (int, optional): The axis along which to integrate. The default is the last axis."
+    ],
+    "return type": "float or ndarray",
+    "note": "trapezoid has experimental support for Python Array API Standard compatible backends in addition to NumPy. Please consider testing these features by setting an environment variable SCIPY_ARRAY_API=1 and providing CuPy, PyTorch, JAX, or Dask arrays as array arguments."
+  },
+  {
+    "function_name": "scipy.integrate.cumulative_trapezoid",
+    "function_description": "Cumulatively integrates y(x) using the composite trapezoidal rule.",
+    "code_example": "from scipy import integrate\nimport numpy as np\nx = np.linspace(-2, 2, num=20)\ny = x\nintegrate.cumulative_trapezoid(y, x, initial=0)",
+    "parameters": [
+      "y",
+      "x",
+      "dx",
+      "axis",
+      "initial"
+    ],
+    "return type": "ndarray",
+    "note": "cumulative_trapezoid has experimental support for Python Array API Standard compatible backends in addition to NumPy. Please consider testing these features by setting an environment variable SCIPY_ARRAY_API=1 and providing CuPy, PyTorch, JAX, or Dask arrays as array arguments."
+  },
+  {
+    "function_name": "numpy.unique",
+    "function_description": "Returns the sorted unique elements of an array.",
+    "code_example": "import numpy as np; np.unique([1, 1, 2, 2, 3, 3])",
+    "parameters": [
+      "ar",
+      "return_index",
+      "return_inverse",
+      "return_counts",
+      "axis",
+      "equal_nan",
+      "sorted"
+    ],
+    "return type": "ndarray",
+    "note": "When an axis is specified the subarrays indexed by the axis are sorted. This is done by making the specified axis the first dimension of the array (move the axis to the first dimension to keep the order of the other axes) and then flattening the subarrays in C order. The flattened subarrays are then viewed as a structured type with each element given a label, with the effect that we end up with a 1-D array of structured types that can be treated in the same way as any other 1-D array. The result is that the flattened subarrays are sorted in lexicographic order starting with the first element. Changed in version 1.21: Like np.sort, NaN will sort to the end of the values. For complex arrays all NaN values are considered equivalent (no matter whether the NaN is in the real or imaginary part). As the representant for the returned array the smallest one in the lexicographical order is chosen - see np.sort for how the lexicographical order is defined for complex arrays. Changed in version 2.0: For multi-dimensional inputs, unique_inverse is reshaped such that the input can be reconstructed using np.take(unique, unique_inverse, axis=axis). The result is now not 1-dimensional when axis=None. Note that in NumPy 2.0.0 a higher dimensional array was returned also when axis was not None. This was reverted, but inverse.reshape(-1) can be used to ensure compatibility with both versions."
+  },
+  {
+    "function_name": "numpy.kron",
+    "function_description": "Computes the Kronecker product of two arrays, creating a composite array made of blocks of the second array scaled by the first.",
+    "code_example": "import numpy as np\nnp.kron([1, 10, 100], [5, 6, 7])",
+    "parameters": [
+      "a",
+      "b"
+    ],
+    "return_type": "ndarray",
+    "note": "The function assumes that the number of dimensions of a and b are the same, if necessary prepending the smallest with ones. The output shape is the product of each dimension of a and b."
+  },
+  {
+    "function_name": "scipy.stats.trapezoid",
+    "function_description": "Represents a trapezoidal distribution with specified shape parameters c and d, defining a probability density function with a flat top between c and d.",
+    "code_example": "import numpy as np; from scipy.stats import trapezoid; trapezoid.pdf(np.linspace(0, 1, 100), 0.2, 0.8)",
+    "parameters": [
+      "c",
+      "d",
+      "loc",
+      "scale"
+    ],
+    "note": "When c=d, this is equivalent to triang with the same values for loc, scale, and c. The method of [1] is used for computing moments."
+  },
+  {
+    "function_name": "scipy.special.legendre_p_all",
+    "function_description": "Returns all Legendre polynomials of the first kind up to degree n and their derivatives up to order diff_n.",
+    "code_example": "import scipy.special\nresult = scipy.special.legendre_p_all(n=3, z=0.5, diff_n=1)",
+    "parameters": [
+      {
+        "name": "n",
+        "type": "int",
+        "description": "Maximum degree of the Legendre polynomials."
+      },
+      {
+        "name": "z",
+        "type": "array-like",
+        "description": "Points at which to evaluate the polynomials."
+      },
+      {
+        "name": "diff_n",
+        "type": "int",
+        "description": "Order of derivatives to compute (default 0)."
+      }
+    ],
+    "return type": "<scipy.special._multiufuncs.MultiUFunc object>",
+    "note": "Output shape is (diff_n+1, n+1, ...). The entry at (i,j) corresponds to the i-th derivative and degree j for all 0 <= i <= diff_n and 0 <= j <= n. This function returns a multi-output object."
+  },
+  {
+    "function_name": "scipy.special.assoc_legendre_p_all",
+    "function_description": "Computes all associated Legendre polynomials of the first kind up to a given degree, order, and derivatives.",
+    "code_example": "from scipy.special import assoc_legendre_p_all\nresult = assoc_legendre_p_all(2, 1, 0.5, diff_n=0)",
+    "parameters": [
+      {
+        "name": "n",
+        "description": "Degree of the associated Legendre polynomial."
+      },
+      {
+        "name": "m",
+        "description": "Order of the associated Legendre polynomial."
+      },
+      {
+        "name": "z",
+        "description": "Point at which to evaluate the polynomials."
+      },
+      {
+        "name": "branch_cut",
+        "description": "Branch cut for the associated Legendre functions, default is 2."
+      },
+      {
+        "name": "norm",
+        "description": "Normalize the associated Legendre polynomials, default is False."
+      },
+      {
+        "name": "diff_n",
+        "description": "Maximum derivative order to compute, default is 0."
+      }
+    ],
+    "return_type": "<scipy.special._multiufuncs.MultiUFunc object>",
+    "note": "Output shape is (diff_n +1, n+1, 2*m +1, ...). The entry at (i,j,k) corresponds to the i-th derivative, degree j, and order k for all 0<=i<=diff_n, 0<=j<=n, and -m <=k <=m."
+  },
+  {
+    "function_name": "scipy.special.assoc_legendre_p_all",
+    "function_description": "Returns all associated Legendre polynomials of the first kind up to the specified degree, order, and derivatives.",
+    "code_example": "from scipy.special import assoc_legendre_p_all\nresult = assoc_legendre_p_all(2, 1, 0.5)",
+    "parameters": [
+      "n",
+      "m",
+      "z",
+      "branch_cut",
+      "norm",
+      "diff_n"
+    ],
+    "return_type": "scipy.special._multiufuncs.MultiUFunc",
+    "note": "Output shape is (diff_n + 1, n + 1, 2*m + 1, ...). The entry at (i, j, k) corresponds to the i-th derivative, degree j, and order k for all 0 <= i <= diff_n, 0 <= j <= n, and -m <= k <= m."
+  },
+  {
+    "function_name": "scipy.special.sph_harm_y",
+    "function_description": "Computes the spherical harmonics Y_n^m(theta, phi) with the given parameters.",
+    "code_example": "from scipy.special import sph_harm_y\nresult = sph_harm_y(0, 0, 0, 0)",
+    "parameters": [
+      {
+        "name": "n",
+        "type": "ArrayLike[int]"
+      },
+      {
+        "name": "m",
+        "type": "ArrayLike[int]"
+      },
+      {
+        "name": "theta",
+        "type": "ArrayLike[float]"
+      },
+      {
+        "name": "phi",
+        "type": "ArrayLike[float]"
+      },
+      {
+        "name": "diff_n",
+        "type": "Optional[int]"
+      }
+    ],
+    "return_type": "ndarray[complex] or tuple[ndarray[complex]]",
+    "note": "SciPy uses theta as the polar angle and phi as the azimuthal angle, opposite to some conventions. The Condon-Shortley phase is included."
+  },
+  {
+    "function_name": "scipy.signal.freqz_sos",
+    "function_description": "Computes the frequency response of a digital filter represented in second-order sections (SOS) format.",
+    "code_example": "from scipy import signal\nimport numpy as np\nsos = signal.ellip(15, 0.5, 60, (0.2, 0.4), btype='bandpass', output='sos')\nw, h = signal.freqz_sos(sos, worN=1500)",
+    "parameters": [
+      "sos: array_like, shape (n_sections, 6). Each row corresponds to a second-order section, with the first three columns providing the numerator coefficients and the last three providing the denominator coefficients.",
+      "worN: {None, int, array_like}, optional. If a single integer, compute at that many frequencies (default is N=512). Using a number that is fast for FFT computations can result in faster computations (see Notes of freqz).",
+      "whole: bool, optional. Normally, frequencies are computed from 0 to the Nyquist frequency, fs/2 (upper-half of unit-circle). If whole is True, compute frequencies from 0 to fs.",
+      "fs: float, optional. The sampling frequency of the digital system. Defaults to 2*pi radians/sample (so w is from 0 to pi)."
+    ],
+    "return_type": "tuple of ndarrays (w, h)",
+    "note": "This function was previously called sosfreqz in older versions (\u2265 0.19.0) and was added in version 1.15.0. It has experimental support for Python Array API Standard compatible backends in addition to NumPy."
+  },
+  {
+    "function_name": "DataFrameGroupBy.ffill()",
+    "function_description": "Forward fills missing values within each group along columns.",
+    "code_example": "import pandas as pd\nimport numpy as np\ndf = pd.DataFrame({'key': [0,0,1,1,1], 'A': [np.nan, 2, np.nan, 3, np.nan], 'B': [2,3,np.nan,np.nan,np.nan], 'C': [np.nan,np.nan,2,np.nan,np.nan]})\nresult = df.groupby('key').ffill()",
+    "parameters": [
+      {
+        "name": "limit",
+        "type": "int",
+        "optional": true
+      }
+    ],
+    "return_type": "Series or DataFrame"
+  },
+  {
+    "function_name": "PeriodIndex.from_ordinals()",
+    "function_description": "Constructs a PeriodIndex from ordinals, which are period offsets from the proleptic Gregorian epoch.",
+    "code_example": "idx = pd.PeriodIndex.from_ordinals([-1, 0, 1], freq=\"Q\")",
+    "parameters": [
+      "ordinals (array-like of int)",
+      "freq (str or period object)",
+      "name (str, default None)"
+    ],
+    "return_type": "PeriodIndex"
+  },
+  {
+    "function_name": "pandas.to_timedelta",
+    "function_description": "Convert argument to timedelta, representing absolute differences in time with specified units.",
+    "code_example": "import pandas as pd\npd.to_timedelta(\"1 days 06:05:01.00003\")",
+    "parameters": [
+      "arg: str, timedelta, list-like or Series",
+      "unit: str, optional (default: 'ns')",
+      "errors: {'raise', 'coerce'}, default 'raise'"
+    ],
+    "return type": "Timedelta, TimedeltaIndex, or Series of timedelta64 dtype",
+    "note": "Precision higher than nanoseconds is truncated for string inputs."
+  },
+  {
+    "function_name": "torch.onnx.export",
+    "function_description": "Exports a model into ONNX format.",
+    "code_example": "import torch\n\nclass MyModel(torch.nn.Module):\n    def __init__(self):\n        super(MyModel, self).__init__()\n        self.conv1 = torch.nn.Conv2d(1, 128, 5)\n    def forward(self, x):\n        return torch.relu(self.conv1(x))\n\ninput_tensor = torch.rand((1, 1, 128, 128), dtype=torch.float32)\nmodel = MyModel()\n\ntorch.onnx.export(\n    model,\n    (input_tensor,),\n    \"my_model.onnx\",\n    input_names=[\"input\"],\n    dynamo=True\n)",
+    "parameters": [
+      "model",
+      "args",
+      "f",
+      "kwargs",
+      "verbose",
+      "input_names",
+      "output_names",
+      "opset_version",
+      "dynamo",
+      "external_data",
+      "dynamic_shapes",
+      "custom_translation_table",
+      "report",
+      "optimize",
+      "verify",
+      "profile",
+      "dump_exported_program",
+      "artifacts_dir",
+      "fallback",
+      "export_params",
+      "keep_initializers_as_inputs",
+      "dynamic_axes",
+      "training",
+      "operator_export_type",
+      "do_constant_folding",
+      "custom_opsets",
+      "export_modules_as_functions",
+      "autograd_inlining"
+    ],
+    "return_type": "torch.onnx.ONNXProgram | None",
+    "note": "The torch.export-based ONNX exporter is the newest exporter for PyTorch 2.6 and newer. dynamo=True is the recommended default. Some parameters are deprecated and will be removed in future versions."
+  }
+]

@@ -1,0 +1,76 @@
+[
+  {
+    "version": "1.5",
+    "function_name": "sklearn.model_selection.FixedThresholdClassifier",
+    "function_description": "A binary classifier that allows setting a fixed decision threshold for converting posterior probabilities or decision scores into class labels.",
+    "code_example": "from sklearn.model_selection import FixedThresholdClassifier\nfrom sklearn.linear_model import LogisticRegression\n\n# Assume X_train, y_train are defined\nclassifier = LogisticRegression()\nfixed_classifier = FixedThresholdClassifier(classifier, threshold=0.1)\nfixed_classifier.fit(X_train, y_train)",
+    "parameters": [
+      {
+        "name": "estimator",
+        "type": "estimator instance"
+      },
+      {
+        "name": "threshold",
+        "type": "{\"auto\"} or float, default=\"auto\""
+      },
+      {
+        "name": "pos_label",
+        "type": "int, float, bool or str, default=None"
+      },
+      {
+        "name": "response_method",
+        "type": "{\"auto\", \"decision_function\", \"predict_proba\"}, default=\"auto\""
+      }
+    ],
+    "return type": "FixedThresholdClassifier",
+    "note": "When threshold is \"auto\", it is set to 0.5 for predict_proba and 0 for decision_function. pos_label is used to determine the positive class, defaulting to 1 if y_true is in {0,1} or {-1,1}."
+  },
+  {
+    "version": "1.5",
+    "function_name": "sklearn.metrics.d2_log_loss_score",
+    "function_description": "Calculates the D\u00b2 score, which represents the fraction of log loss explained by the model, with a best possible score of 1.0.",
+    "code_example": "from sklearn.metrics import d2_log_loss_score\nfrom sklearn.datasets import make_classification\nfrom sklearn.linear_model import LogisticRegression\n\nX, y = make_classification(n_samples=100, n_features=20, random_state=42)\nclf = LogisticRegression().fit(X, y)\ny_pred = clf.predict_proba(X)[:, 1]\nprint(d2_log_loss_score(y, y_pred))",
+    "parameters": [
+      "y_true",
+      "y_pred",
+      "sample_weight",
+      "labels"
+    ],
+    "return type": "float or ndarray of floats",
+    "note": "The score may be negative. It is not symmetric. Returns NaN if n_samples is less than two."
+  },
+  {
+    "version": "1.5",
+    "function_name": "sklearn.model_selection.TunedThresholdClassifierCV",
+    "function_description": "Classifier that post-tunes the decision threshold using cross-validation to optimize a binary metric for better classification performance.",
+    "code_example": "from sklearn.model_selection import TunedThresholdClassifierCV, train_test_split\nfrom sklearn.ensemble import RandomForestClassifier\n\nX, y = make_classification(...)\nX_train, X_test, y_train, y_test = train_test_split(...)\n\nclassifier = RandomForestClassifier(random_state=0).fit(X_train, y_train)\n\nclassifier_tuned = TunedThresholdClassifierCV(classifier, scoring='balanced_accuracy').fit(X_train, y_train)\nprint(f'Cut-off point found at {classifier_tuned.best_threshold_:.3f}')",
+    "parameters": [
+      "estimator",
+      "scoring",
+      "response_method",
+      "thresholds",
+      "cv",
+      "refit",
+      "n_jobs",
+      "random_state",
+      "store_cv_results"
+    ],
+    "return type": "Classifier instance with optimized decision threshold",
+    "note": "Using cv='prefit' with the same dataset for fitting and threshold tuning may cause overfitting. refit=False is not allowed with cross-validation splits. store_cv_results=True stores all cross-validation scores and thresholds."
+  },
+  {
+    "version": "1.6",
+    "function_name": "sklearn.base.is_clusterer",
+    "function_description": "Checks if the given estimator is a clusterer.",
+    "code_example": "from sklearn.base import is_clusterer\nfrom sklearn.cluster import KMeans\nkmeans = KMeans()\nprint(is_clusterer(kmeans))",
+    "parameters": [
+      {
+        "name": "estimator",
+        "type": "object",
+        "description": "Estimator object to test."
+      }
+    ],
+    "return type": "bool",
+    "note": "Added in version 1.6."
+  }
+]

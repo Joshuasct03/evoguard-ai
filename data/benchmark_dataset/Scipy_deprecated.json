@@ -1,0 +1,182 @@
+[
+  {
+    "version": "1.12.0",
+    "old_name": "scipy.signal.stft",
+    "new_name": "scipy.signal.ShortTimeFFT.stft",
+    "has_alternative": "Yes",
+    "update_info": "deprecated, replaced by ShortTimeFFT class",
+    "update_description": "The scipy.signal.stft function is deprecated in favor of the ShortTimeFFT class, which provides a more versatile implementation with improved algorithmic control.",
+    "code_example": "from scipy.signal import ShortTimeFFT\nstft = ShortTimeFFT()\nresult = stft.stft(signal, fs=fs)"
+  },
+  {
+    "version": "1.12.0",
+    "old_name": "scipy.signal.istft",
+    "new_name": "scipy.signal.ShortTimeFFT.istft",
+    "has_alternative": "Yes",
+    "update_info": "deprecated, replaced by ShortTimeFFT class",
+    "update_description": "The scipy.signal.istft function has been deprecated as part of the transition to the ShortTimeFFT class for more flexible short-time Fourier transform operations.",
+    "code_example": "from scipy.signal import ShortTimeFFT\nstft = ShortTimeFFT()\nreconstructed = stft.istft(stft_result, fs=fs)"
+  },
+  {
+    "version": "1.12.0",
+    "old_name": "scipy.signal.spectrogram",
+    "new_name": "scipy.signal.ShortTimeFFT.spectrogram",
+    "has_alternative": "Yes",
+    "update_info": "deprecated, replaced by ShortTimeFFT class",
+    "update_description": "The scipy.signal.spectrogram function is deprecated and replaced by the ShortTimeFFT class for enhanced control over short-time Fourier transform parameters.",
+    "code_example": "from scipy.signal import ShortTimeFFT\nstft = ShortTimeFFT()\nspectrogram_data = stft.spectrogram(signal, fs=fs)"
+  },
+  {
+    "version": "1.12.0",
+    "old_name": "scipy.stats.rvs_ratio_uniforms",
+    "new_name": "scipy.stats.sampling.RatioUniforms",
+    "has_alternative": "Yes",
+    "update_info": "deprecated in favor of scipy.stats.sampling.RatioUniforms",
+    "update_description": "The function scipy.stats.rvs_ratio_uniforms is deprecated in favor of scipy.stats.sampling.RatioUniforms.",
+    "code_example": "from scipy.stats.sampling import RatioUniforms\n# usage example"
+  },
+  {
+    "version": "1.12.0",
+    "old_name": "scipy.integrate.quadrature",
+    "new_name": "scipy.integrate.quad",
+    "has_alternative": "Yes",
+    "update_info": "deprecated in favor of scipy.integrate.quad",
+    "update_description": "The function scipy.integrate.quadrature is deprecated due to accuracy issues and interface shortcomings. Use scipy.integrate.quad instead.",
+    "code_example": "from scipy.integrate import quad\nresult, error = quad(func, a, b)"
+  },
+  {
+    "version": "1.12.0",
+    "old_name": "scipy.integrate.romberg",
+    "new_name": "scipy.integrate.quad",
+    "has_alternative": "Yes",
+    "update_info": "deprecated in favor of scipy.integrate.quad",
+    "update_description": "The function scipy.integrate.romberg is deprecated due to accuracy issues and interface shortcomings. Use scipy.integrate.quad instead.",
+    "code_example": "from scipy.integrate import quad\nresult, error = quad(func, a, b)"
+  },
+  {
+    "version": "1.12.0",
+    "old_name": "scipy.integrate.simps",
+    "new_name": "scipy.integrate.simpson",
+    "has_alternative": "Yes",
+    "update_info": "deprecated in favor of scipy.integrate.simpson",
+    "update_description": "The function scipy.integrate.simps is deprecated in favor of scipy.integrate.simpson.",
+    "code_example": "from scipy.integrate import simpson\nresult = simpson(y, x)"
+  },
+  {
+    "version": "1.12.0",
+    "old_name": "scipy.stats.binom_test",
+    "new_name": "scipy.stats.binomtest",
+    "has_alternative": "Yes",
+    "update_info": "deprecated in favor of scipy.stats.binomtest",
+    "update_description": "The function scipy.stats.binom_test is deprecated in favor of scipy.stats.binomtest.",
+    "code_example": "from scipy.stats import binomtest\nresult = binomtest(k, n, p)"
+  },
+  {
+    "version": "1.12.0",
+    "old_name": "scipy.histogram",
+    "new_name": "numpy.histogram",
+    "has_alternative": "Yes",
+    "update_info": "deprecated in favor of numpy.histogram",
+    "update_description": "The function scipy.histogram is deprecated and removed from SciPy's main namespace. Use numpy.histogram directly.",
+    "code_example": "import numpy as np\nresult = np.histogram(data)"
+  },
+  {
+    "version": "1.14.0",
+    "old_name": "scipy.integrate.trapz",
+    "new_name": "scipy.integrate.trapezoid",
+    "has_alternative": "Yes",
+    "update_info": "renamed to trapezoid",
+    "update_description": "scipy.integrate.trapz have been removed in favour of scipy.integrate.trapezoid.",
+    "code_example": ""
+  },
+  {
+    "version": "1.14.0",
+    "old_name": "scipy.integrate.cumtrapz",
+    "new_name": "scipy.integrate.cumulative_trapezoid",
+    "has_alternative": "Yes",
+    "update_info": "renamed to cumulative_trapezoid",
+    "update_description": "scipy.integrate.cumtrapz have been removed in favour of cumulative_trapezoid.",
+    "code_example": ""
+  },
+  {
+    "version": "1.14.0",
+    "old_name": "scipy.interpolate.interp2d",
+    "new_name": "",
+    "has_alternative": "Yes",
+    "update_info": "replaced by empty stub",
+    "update_description": "scipy.interpolate.interp2d has been replaced by an empty stub (to be removed completely in the future).",
+    "code_example": ""
+  },
+  {
+    "version": "1.15.0",
+    "old_name": "scipy.stats.find_repeats",
+    "new_name": "numpy.unique",
+    "has_alternative": "Yes",
+    "update_info": "deprecated and will be removed in SciPy 1.17.0",
+    "update_description": "scipy.stats.find_repeats is deprecated and will be removed in SciPy 1.17.0. Please use numpy.unique / numpy.unique_counts instead.",
+    "code_example": ""
+  },
+  {
+    "version": "1.15.0",
+    "old_name": "scipy.linalg.kron",
+    "new_name": "numpy.kron",
+    "has_alternative": "Yes",
+    "update_info": "deprecated in favor of numpy.kron",
+    "update_description": "scipy.linalg.kron is deprecated in favour of numpy.kron.",
+    "code_example": "import numpy as np; instead of scipy.linalg.kron(a, b), use np.kron(a, b)"
+  },
+  {
+    "version": "1.15.0",
+    "old_name": "scipy.stats.trapz",
+    "new_name": "scipy.stats.trapezoid",
+    "has_alternative": "Yes",
+    "update_info": "deprecated in favor of scipy.stats.trapezoid",
+    "update_description": "scipy.stats.trapz is deprecated in favor of scipy.stats.trapezoid.",
+    "code_example": "import scipy.stats as stats; instead of stats.trapz(y, x), use stats.trapezoid(y, x)"
+  },
+  {
+    "version": "1.15.0",
+    "old_name": "scipy.special.lpn",
+    "new_name": "scipy.special.legendre_p_all",
+    "has_alternative": "Yes",
+    "update_info": "deprecated in favor of scipy.special.legendre_p_all",
+    "update_description": "scipy.special.lpn is deprecated in favor of scipy.special.legendre_p_all.",
+    "code_example": "import scipy.special as special; instead of special.lpn(n, x), use special.legendre_p_all(n, x)"
+  },
+  {
+    "version": "1.15.0",
+    "old_name": "scipy.special.lpmn",
+    "new_name": "scipy.special.assoc_legendre_p_all",
+    "has_alternative": "Yes",
+    "update_info": "deprecated in favor of scipy.special.assoc_legendre_p_all",
+    "update_description": "scipy.special.lpmn is deprecated in favor of scipy.special.assoc_legendre_p_all.",
+    "code_example": "import scipy.special as special; instead of special.lpmn(n, m, x), use special.assoc_legendre_p_all(n, m, x)"
+  },
+  {
+    "version": "1.15.0",
+    "old_name": "scipy.special.clpmn",
+    "new_name": "scipy.special.assoc_legendre_p_all",
+    "has_alternative": "Yes",
+    "update_info": "deprecated in favor of scipy.special.assoc_legendre_p_all",
+    "update_description": "scipy.special.clpmn is deprecated in favor of scipy.special.assoc_legendre_p_all.",
+    "code_example": "import scipy.special as special; instead of special.clpmn(n, m, x), use special.assoc_legendre_p_all(n, m, x)"
+  },
+  {
+    "version": "1.15.0",
+    "old_name": "scipy.special.sph_harm",
+    "new_name": "scipy.special.sph_harm_y",
+    "has_alternative": "Yes",
+    "update_info": "deprecated in favor of scipy.special.sph_harm_y",
+    "update_description": "scipy.special.sph_harm has been deprecated in favor of scipy.special.sph_harm_y.",
+    "code_example": "import scipy.special as special; instead of special.sph_harm(m, n, theta, phi), use special.sph_harm_y(m, n, theta, phi)"
+  },
+  {
+    "version": "1.15.0",
+    "old_name": "scipy.signal.sosfreqz",
+    "new_name": "scipy.signal.freqz_sos",
+    "has_alternative": "Yes",
+    "update_info": "renamed in favor of scipy.signal.freqz_sos",
+    "update_description": "scipy.signal.sosfreqz has been renamed to scipy.signal.freqz_sos. New code should use the new name. The old name is maintained as an alias for backwards compatibility.",
+    "code_example": "from scipy.signal import freqz_sos\nresult = freqz_sos(sos, fs=1.0)"
+  }
+]

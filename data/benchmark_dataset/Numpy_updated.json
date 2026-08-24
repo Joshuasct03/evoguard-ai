@@ -1,0 +1,207 @@
+[
+  {
+    "version": "2.0.0",
+    "function_name": "numpy.gradient",
+    "function_description": "Return the gradient of an N-dimensional array.",
+    "parameters": [
+      "f: array_like, An N-dimensional array containing samples of a scalar function.",
+      "varargs: list of scalar or array, optional. Spacing between f values. Default unitary spacing for all dimensions.",
+      "axis: None or int or tuple of ints, optional. Gradient is calculated only along the given axis or axes.",
+      "edge_order: {1, 2}, optional. Gradient is calculated using N-th order accurate differences at the boundaries. Default: 1."
+    ],
+    "return type": "ndarray or list of ndarray",
+    "update_type": "changed behavior",
+    "update_info": "return type changed from list to tuple",
+    "update_description": "The numpy.gradient function now returns a tuple instead of a list, making the return value immutable.",
+    "code_example": "import numpy as np\nf = np.array([1, 2, 4, 7, 11, 16], dtype=float)\nnp.gradient(f)"
+  },
+  {
+    "version": "2.0.0",
+    "function_name": "numpy.fft.fft",
+    "function_description": "Computes the one-dimensional discrete Fourier Transform using the Fast Fourier Transform algorithm.",
+    "parameters": [
+      {
+        "name": "a",
+        "type": "array_like",
+        "description": "Input array, can be complex."
+      },
+      {
+        "name": "n",
+        "type": "int",
+        "description": "Length of the transformed axis of the output. If smaller than the input, it is cropped; if larger, padded with zeros. Default is the input's length along the specified axis."
+      },
+      {
+        "name": "axis",
+        "type": "int",
+        "description": "Axis over which to compute the FFT. Default is the last axis."
+      },
+      {
+        "name": "norm",
+        "type": "str",
+        "description": "Normalization mode: {\"backward\", \"ortho\", \"forward\"}. Default is \"backward\"."
+      },
+      {
+        "name": "out",
+        "type": "complex ndarray",
+        "description": "Output array where the result will be placed. Must be of the appropriate shape and dtype."
+      }
+    ],
+    "return type": "complex ndarray",
+    "update_type": "added parameter",
+    "note": "FFT is most efficient when n is a power of two. The DFT is defined with conventions described in the numpy.fft documentation.",
+    "update_info": "added 'out' parameter for in-place calculations",
+    "update_description": "The numpy.fft.fft function now supports an 'out' parameter for in-place calculations, allowing the result to be stored in a pre-allocated array.",
+    "code_example": "import numpy as np\nresult = np.fft.fft(x, out=preallocated_array)"
+  },
+  {
+    "version": "2.0.0",
+    "function_name": "numpy.linalg.lstsq",
+    "function_description": "Returns the least-squares solution to a linear matrix equation, handling under-, well-, or over-determined systems.",
+    "parameters": [
+      {
+        "name": "a",
+        "description": "Coefficient matrix."
+      },
+      {
+        "name": "b",
+        "description": "Ordinate or dependent variable values. If b is two-dimensional, the least-squares solution is calculated for each of the K columns of b."
+      },
+      {
+        "name": "rcond",
+        "description": "Cut-off ratio for small singular values of a."
+      }
+    ],
+    "return type": "tuple of ndarrays (x, residuals, rank, s)",
+    "update_type": "modified parameter",
+    "update_info": "changed default rcond value",
+    "update_description": "The default rcond value for numpy.linalg.lstsq has been updated to machine precision times max(M, N).",
+    "code_example": "import numpy as np\nA = np.array([[0., 1.], [1., 1.], [2., 1.], [3., 1.]])\ny = np.array([-1, 0.2, 0.9, 2.1])\nx = np.linalg.lstsq(A, y, rcond=None)\nprint(x[0])"
+  },
+  {
+    "version": "2.0.0",
+    "function_name": "numpy.can_cast",
+    "function_description": "Checks if a cast between data types is possible based on the specified casting rule.",
+    "parameters": [
+      {
+        "name": "from_",
+        "description": "dtype, dtype specifier, NumPy scalar, or array to cast from."
+      },
+      {
+        "name": "to",
+        "description": "dtype or dtype specifier to cast to."
+      },
+      {
+        "name": "casting",
+        "description": "{\u2018no\u2019, \u2018equiv\u2019, \u2018safe\u2019, \u2018same_kind\u2019, \u2018unsafe\u2019}, optional. Controls what kind of data casting may occur.",
+        "optional": true
+      }
+    ],
+    "return type": "bool",
+    "update_type": "changed behavior",
+    "update_info": "parameter change: cannot be called on Python int, float, or complex",
+    "update_description": "numpy.can_cast cannot be called with Python int, float, or complex instances as the result must not depend on the value passed in.",
+    "code_example": "import numpy as np\nresult = np.can_cast(np.int32, np.float64)"
+  },
+  {
+    "version": "2.1.0",
+    "function_name": "numpy.clip",
+    "function_description": "Clips (limits) the values in an array to a specified interval, replacing values outside the interval with the interval's edges.",
+    "parameters": [
+      "a",
+      "a_min",
+      "a_max",
+      "out",
+      "min",
+      "max"
+    ],
+    "return type": "ndarray",
+    "update_type": "added parameter",
+    "note": "When min is greater than max, clip returns an array in which all values are equal to max.",
+    "update_info": "Parameter names changed from a_min/a_max to min/max",
+    "update_description": "In numpy.clip, the parameters max and min are meant to replace a_min and a_max. Additionally, calling np.clip(a) or np.clip(a, None, None) now returns a copy of the input array instead of raising an error.",
+    "code_example": "import numpy as np; a = np.arange(10); print(np.clip(a, 1, 8))"
+  },
+  {
+    "version": "2.1.0",
+    "function_name": "numpy.reshape",
+    "function_description": "Gives a new shape to an array without changing its data.",
+    "parameters": [
+      {
+        "name": "a",
+        "description": "array_like Array to be reshaped."
+      },
+      {
+        "name": "shape",
+        "description": "int or tuple of ints The new shape should be compatible with the original shape."
+      },
+      {
+        "name": "newshape",
+        "description": "int or tuple of ints Deprecated since version 2.1: Replaced by shape argument. Retained for backward compatibility."
+      },
+      {
+        "name": "order",
+        "description": "{\u2018C\u2019, \u2018F\u2019, \u2018A\u2019}, optional Read the elements of a using this index order..."
+      },
+      {
+        "name": "copy",
+        "description": "bool, optional If True, then the array data is copied."
+      }
+    ],
+    "return type": "ndarray",
+    "update_type": "added parameter",
+    "note": "It is not always possible to change the shape of an array without copying the data. The order keyword gives the index ordering both for fetching the values from a and placing the values into the output array.",
+    "update_info": "Added parameters shape and copy",
+    "update_description": "The numpy.reshape function now supports the shape and copy parameters, allowing for more flexible array reshaping.",
+    "code_example": "np.reshape(arr, shape=(2,3), copy=True)"
+  },
+  {
+    "version": "2.1.0",
+    "function_name": "numpy.asanyarray",
+    "function_description": "Converts the input to an ndarray, passing through ndarray subclasses without copying if possible.",
+    "parameters": [
+      "a",
+      "dtype",
+      "order",
+      "device",
+      "copy",
+      "like"
+    ],
+    "return type": "ndarray or an ndarray subclass",
+    "update_type": "added parameter",
+    "note": "The 'device' parameter is for Array-API interoperability and must be 'cpu' if passed. The 'copy' parameter was introduced in version 2.1.0, and 'like' in version 1.20.0.",
+    "update_info": "Added parameters copy and device",
+    "update_description": "The numpy.asanyarray function now supports the copy and device parameters, matching the behavior of asarray.",
+    "code_example": "np.asanyarray(arr, copy=True, device='cuda')"
+  },
+  {
+    "version": "2.1.0",
+    "function_name": "numpy.printoptions",
+    "function_description": "A context manager for setting print options temporarily and restoring them upon exit.",
+    "parameters": [
+      "*args",
+      "**kwargs"
+    ],
+    "note": "The as-clause of the with-statement can capture the previous print options.",
+    "update_type": "added parameter",
+    "update_info": "Added parameter override_repr",
+    "update_description": "The numpy.printoptions function now supports the override_repr parameter for defining custom repr(array) behavior.",
+    "code_example": "import numpy as np\nwith np.printoptions(precision=2):\n    print(np.array([2.0])/3)"
+  },
+  {
+    "version": "2.1.0",
+    "function_name": "numpy.astype",
+    "function_description": "Copies an array to a specified data type.",
+    "parameters": [
+      "x",
+      "dtype",
+      "copy",
+      "device"
+    ],
+    "return type": "ndarray",
+    "update_type": "added parameter",
+    "note": "array_likes are explicitly not supported here. The device parameter is for Array-API interoperability and must be 'cpu' if passed. When copy=False and dtype matches input dtype, the input array is returned.",
+    "update_info": "Added parameter device",
+    "update_description": "The numpy.astype function now supports the device parameter for specifying the device on which the array should be placed.",
+    "code_example": "np.astype(arr, dtype='float32', device='cuda')"
+  }
+]

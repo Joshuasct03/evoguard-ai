@@ -1,0 +1,326 @@
+[
+  {
+    "version": "2.0.0",
+    "old_name": "np.float_",
+    "new_name": "np.float64",
+    "has_alternative": "Yes",
+    "update_info": "name change from np.float_",
+    "update_description": "The alias np.float_ has been removed and replaced with np.float64.",
+    "code_example": ""
+  },
+  {
+    "version": "2.0.0",
+    "old_name": "np.complex_",
+    "new_name": "np.complex128",
+    "has_alternative": "Yes",
+    "update_info": "name change from np.complex_",
+    "update_description": "The alias np.complex_ has been removed and replaced with np.complex128.",
+    "code_example": ""
+  },
+  {
+    "version": "2.0.0",
+    "old_name": "np.longfloat",
+    "new_name": "np.longdouble",
+    "has_alternative": "Yes",
+    "update_info": "name change from np.longfloat",
+    "update_description": "The alias np.longfloat has been removed and replaced with np.longdouble.",
+    "code_example": ""
+  },
+  {
+    "version": "2.0.0",
+    "old_name": "np.singlecomplex",
+    "new_name": "np.complex64",
+    "has_alternative": "Yes",
+    "update_info": "name change from np.singlecomplex",
+    "update_description": "The alias np.singlecomplex has been removed and replaced with np.complex64.",
+    "code_example": ""
+  },
+  {
+    "version": "2.0.0",
+    "old_name": "np.cfloat",
+    "new_name": "np.complex128",
+    "has_alternative": "Yes",
+    "update_info": "name change from np.cfloat",
+    "update_description": "The alias np.cfloat has been removed and replaced with np.complex128.",
+    "code_example": ""
+  },
+  {
+    "version": "2.0.0",
+    "old_name": "np.longcomplex",
+    "new_name": "np.clongdouble",
+    "has_alternative": "Yes",
+    "update_info": "name change from np.longcomplex",
+    "update_description": "The alias np.longcomplex has been removed and replaced with np.clongdouble.",
+    "code_example": ""
+  },
+  {
+    "version": "2.0.0",
+    "old_name": "np.clongfloat",
+    "new_name": "np.clongdouble",
+    "has_alternative": "Yes",
+    "update_info": "name change from np.clongfloat",
+    "update_description": "The alias np.clongfloat has been removed and replaced with np.clongdouble.",
+    "code_example": ""
+  },
+  {
+    "version": "2.0.0",
+    "old_name": "np.string_",
+    "new_name": "np.bytes_",
+    "has_alternative": "Yes",
+    "update_info": "name change from np.string_",
+    "update_description": "The alias np.string_ has been removed and replaced with np.bytes_.",
+    "code_example": ""
+  },
+  {
+    "version": "2.0.0",
+    "old_name": "np.unicode_",
+    "new_name": "np.str_",
+    "has_alternative": "Yes",
+    "update_info": "name change from np.unicode_",
+    "update_description": "The alias np.unicode_ has been removed and replaced with np.str_.",
+    "code_example": ""
+  },
+  {
+    "version": "2.0.0",
+    "old_name": "np.np.Inf",
+    "new_name": "np.inf",
+    "has_alternative": "Yes",
+    "update_info": "name change from np.Inf",
+    "update_description": "The aliases np.Inf have been removed and replaced with np.inf.",
+    "code_example": ""
+  },
+  {
+    "version": "2.0.0",
+    "old_name": "np.Infinity",
+    "new_name": "np.inf",
+    "has_alternative": "Yes",
+    "update_info": "name change from np.Infinity",
+    "update_description": "The aliases np.Infinity have been removed and replaced with np.inf.",
+    "code_example": ""
+  },
+  {
+    "version": "2.0.0",
+    "old_name": "np.infty",
+    "new_name": "np.inf",
+    "has_alternative": "Yes",
+    "update_info": "name change from np.infty",
+    "update_description": "The aliases np.infty have been removed and replaced with np.inf.",
+    "code_example": ""
+  },
+  {
+    "version": "2.0.0",
+    "old_name": "np.mat",
+    "new_name": "np.asmatrix",
+    "has_alternative": "Yes",
+    "update_info": "name change from np.mat",
+    "update_description": "The alias np.mat has been removed and replaced with np.asmatrix.",
+    "code_example": ""
+  },
+  {
+    "version": "2.0.0",
+    "old_name": "np.issubclass_",
+    "new_name": "np.isclass",
+    "has_alternative": "Yes",
+    "update_info": "name change from np.issubclass_",
+    "update_description": "The alias np.issubclass_ has been removed and replaced with the built-in issubclass function.",
+    "code_example": ""
+  },
+  {
+    "version": "2.0.0",
+    "old_name": "np.asfarray",
+    "new_name": "np.asarray",
+    "has_alternative": "Yes",
+    "update_info": "name change from np.asfarray",
+    "update_description": "The alias np.asfarray has been removed and replaced with np.asarray with a proper dtype.",
+    "code_example": ""
+  },
+  {
+    "version": "2.0.0",
+    "old_name": "np.tracemalloc_domain",
+    "new_name": "np.lib",
+    "has_alternative": "Yes",
+    "update_info": "name change from np.tracemalloc_domain",
+    "update_description": "The np.tracemalloc_domain has been moved to np.lib and is now only available from np.lib.",
+    "code_example": ""
+  },
+  {
+    "version": "2.0.0",
+    "old_name": "np.recfromcsv",
+    "new_name": "np.genfromtxt",
+    "has_alternative": "Yes",
+    "update_info": "name change from np.recfromcsv",
+    "update_description": "The function np.recfromcsv has been removed and replaced with np.genfromtxt with comma delimiter.",
+    "code_example": ""
+  },
+  {
+    "version": "2.0.0",
+    "old_name": "np.recfromtxt",
+    "new_name": "np.genfromtxt",
+    "has_alternative": "Yes",
+    "update_info": "name change from np.recfromtxt",
+    "update_description": "The function np.recfromtxt has been removed and replaced with np.genfromtxt with comma delimiter.",
+    "code_example": ""
+  },
+  {
+    "version": "2.0.0",
+    "old_name": "np.dtype(\"a\")",
+    "new_name": "np.dtype(\"S\")",
+    "has_alternative": "Yes",
+    "update_info": "name change from np.dtype(\"a\")",
+    "update_description": "The np.dtype(\"a\") alias for np.dtype(np.bytes_) has been deprecated and replaced with np.dtype(\"S\").",
+    "code_example": ""
+  },
+  {
+    "version": "2.0.0",
+    "old_name": "np.geterrobj",
+    "new_name": "np.errstate",
+    "has_alternative": "Yes",
+    "update_info": "removed, replaced by using the context manager with np.errstate()",
+    "update_description": "The function np.geterrobj has been removed. The preferred replacement is using the context manager with np.errstate().",
+    "code_example": "with np.errstate():\n    # code that may raise floating-point errors"
+  },
+  {
+    "version": "2.0.0",
+    "old_name": "np.seterrobj",
+    "new_name": "np.errstate",
+    "has_alternative": "Yes",
+    "update_info": "removed, replaced by using the context manager with np.errstate()",
+    "update_description": "The function np.seterrobj has been removed. The preferred replacement is using the context manager with np.errstate().",
+    "code_example": "with np.errstate():\n    # code that may raise floating-point errors"
+  },
+  {
+    "version": "2.0.0",
+    "old_name": "np.cast",
+    "new_name": "np.asarray",
+    "has_alternative": "Yes",
+    "update_info": "removed, replaced by np.asarray",
+    "update_description": "np.cast has been removed. The literal replacement for np.cast[dtype](arg) is np.asarray(arg, dtype=dtype).",
+    "code_example": "np.asarray(arg, dtype=dtype)"
+  },
+  {
+    "version": "2.0.0",
+    "old_name": "np.source",
+    "new_name": "",
+    "has_alternative": "Yes",
+    "update_info": "removed, replaced by inspect.getsource",
+    "update_description": "np.source has been removed. The preferred replacement is inspect.getsource.",
+    "code_example": "inspect.getsource(some_function)"
+  },
+  {
+    "version": "2.0.0",
+    "old_name": "np.set_string_function",
+    "new_name": "np.set_printoptions",
+    "has_alternative": "Yes",
+    "update_info": "removed, replaced by np.set_printoptions",
+    "update_description": "np.set_string_function has been removed. Use np.set_printoptions with a formatter for custom printing of NumPy objects.",
+    "code_example": "np.set_printoptions(formatter={'all': '{:.2f}'.format})"
+  },
+  {
+    "version": "2.0.0",
+    "old_name": "np.trapz",
+    "new_name": "np.trapezoid",
+    "has_alternative": "Yes",
+    "update_info": "deprecated, replaced by np.trapezoid or scipy.integrate",
+    "update_description": "np.trapz has been deprecated. Use np.trapezoid or a scipy.integrate function instead.",
+    "code_example": "from scipy.integrate import trapezoid\nresult = trapezoid(y, x)"
+  },
+  {
+    "version": "2.0.0",
+    "old_name": "np.in1d",
+    "new_name": "np.isin",
+    "has_alternative": "Yes",
+    "update_info": "deprecated, replaced by np.isin",
+    "update_description": "np.in1d has been deprecated. Use np.isin instead.",
+    "code_example": "np.isin(a, b)"
+  },
+  {
+    "version": "2.0.0",
+    "old_name": "np.row_stack",
+    "new_name": "np.vstack",
+    "has_alternative": "Yes",
+    "update_info": "deprecated, replaced by np.vstack",
+    "update_description": "Alias np.row_stack has been deprecated. Use np.vstack directly.",
+    "code_example": "np.vstack((a, b))"
+  },
+  {
+    "version": "2.0.0",
+    "old_name": "np.deprecate",
+    "new_name": "",
+    "has_alternative": "Yes",
+    "update_info": "removed, replaced by DeprecationWarning",
+    "update_description": "Deprecated np.deprecate and np.deprecate_with_doc have been removed from the main namespace. Use DeprecationWarning instead.",
+    "code_example": "import warnings\nwarnings.warn('deprecated function', DeprecationWarning)"
+  },
+  {
+    "version": "2.0.0",
+    "old_name": "np.safe_eval",
+    "new_name": "",
+    "has_alternative": "Yes",
+    "update_info": "deprecated, replaced by ast.literal_eval",
+    "update_description": "np.safe_eval has been deprecated. Use ast.literal_eval instead.",
+    "code_example": "import ast\nast.literal_eval(s)"
+  },
+  {
+    "version": "2.0.0",
+    "old_name": "np.find_common_type",
+    "new_name": "np.promote_types",
+    "has_alternative": "Yes",
+    "update_info": "removed, replaced by numpy.promote_types or numpy.result_type",
+    "update_description": "np.find_common_type has been removed. Use numpy.promote_types or numpy.result_type instead. To achieve semantics for the scalar_types argument, use numpy.result_type and pass 0, 0.0, or 0j as a Python scalar instead.",
+    "code_example": "numpy.promote_types(dtype1, dtype2)"
+  },
+  {
+    "version": "2.0.0",
+    "old_name": "np.round_",
+    "new_name": "np.round",
+    "has_alternative": "Yes",
+    "update_info": "removed, replaced by np.round",
+    "update_description": "np.round_ has been removed. Use np.round instead.",
+    "code_example": "np.round(a, decimals=2)"
+  },
+  {
+    "version": "2.0.0",
+    "old_name": "np.nbytes",
+    "new_name": "np.dtype(<dtype>).itemsize",
+    "has_alternative": "Yes",
+    "update_info": "removed, replaced by np.dtype(<dtype>).itemsize",
+    "update_description": "np.nbytes has been removed. Use np.dtype(<dtype>).itemsize instead.",
+    "code_example": "np.dtype('float64').itemsize"
+  },
+  {
+    "version": "2.0.0",
+    "old_name": "np.compare_chararrays",
+    "new_name": "np.char.compare_chararrays",
+    "has_alternative": "Yes",
+    "update_info": "removed, replaced by np.char.compare_chararrays",
+    "update_description": "np.compare_chararrays has been removed from the main namespace. Use np.char.compare_chararrays instead.",
+    "code_example": "np.char.compare_chararrays(a, b)"
+  },
+  {
+    "version": "2.0.0",
+    "old_name": "np.format_parser",
+    "new_name": "np.rec.format_parser",
+    "has_alternative": "Yes",
+    "update_info": "removed, replaced by np.rec.format_parser",
+    "update_description": "np.format_parser has been removed from the main namespace. Use np.rec.format_parser instead.",
+    "code_example": "np.rec.format_parser"
+  },
+  {
+    "version": "2.0.0",
+    "old_name": "np.msort",
+    "new_name": "np.sort(a, axis=0)",
+    "has_alternative": "Yes",
+    "update_info": "removed, replaced by np.sort(a, axis=0)",
+    "update_description": "np.msort has been removed. For a replacement, np.sort(a, axis=0) should be used instead.",
+    "code_example": "np.sort(a, axis=0)"
+  },
+  {
+    "version": "2.2.0",
+    "old_name": "bool(np.array([]))",
+    "new_name": "",
+    "has_alternative": "Yes",
+    "update_info": "removed, now raises an error; use arr.size > 0 instead",
+    "update_description": "bool(np.array([])) and other empty arrays will now raise an error. Use arr.size > 0 instead to check whether an array has no elements. (gh-27160)",
+    "code_example": "if arr.size > 0: ..."
+  }
+]

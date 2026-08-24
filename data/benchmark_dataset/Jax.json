@@ -1,0 +1,265 @@
+[
+  {
+    "version": "0.5.1",
+    "function_name": "jax.lax.reduce_max",
+    "function_description": "Compute the maximum of elements over one or more array axes.",
+    "code_example": "import jax.lax\nimport jax.numpy as jnp\nresult = jax.lax.reduce_max(jnp.array([[1, 2], [3, 4]]), axis=1)\nprint(result)",
+    "parameters": [
+      {
+        "name": "operand",
+        "type": "ArrayLike"
+      },
+      {
+        "name": "axes",
+        "type": "Sequence[int]"
+      }
+    ],
+    "return type": "Array"
+  },
+  {
+    "version": "0.4.38",
+    "function_name": "jax.lax.split",
+    "function_description": "Splits an array along a specified axis into multiple arrays of given sizes.",
+    "code_example": "import jax.numpy as jnp\nresult = jax.lax.split(jnp.arange(10), sizes=[3, 3, 4], axis=0)",
+    "parameters": [
+      "operand (ArrayLike): an array to split",
+      "sizes (Sequence[int]): the sizes of the split arrays. The sum of the sizes must be equal to the size of the axis dimension of operand.",
+      "axis (int): the axis along which to split the array."
+    ],
+    "return type": "Sequence[Array]"
+  },
+  {
+    "version": "0.5.1",
+    "function_name": "jax.lax.reduce_min",
+    "function_description": "Computes the minimum of elements over one or more array axes.",
+    "code_example": "import jax.lax\nimport jax.numpy as jnp\nresult = jax.lax.reduce_min(jnp.array([[1, 2], [3, 4]]), axes=(0,))",
+    "parameters": [
+      {
+        "name": "operand",
+        "type": "ArrayLike"
+      },
+      {
+        "name": "axes",
+        "type": "Sequence[int]"
+      }
+    ],
+    "return type": "Array",
+    "note": "jax.numpy.min() provides a more flexible NumPy-style min-reduction API built around this function. Other low-level jax.lax reduction operators include reduce_sum, reduce_prod, reduce_max, reduce_and, reduce_or, and reduce_xor."
+  },
+  {
+    "version": "0.5.1",
+    "function_name": "jax.lax.reduce_sum",
+    "function_description": "Computes the sum of elements over one or more array axes.",
+    "code_example": "import jax.lax as lax\nimport jax.numpy as jnp\nresult = lax.reduce_sum(jnp.array([[1,2],[3,4]]), axes=[0])",
+    "parameters": [
+      {
+        "name": "operand",
+        "description": "ArrayLike - array over which to sum. Must have numerical dtype."
+      },
+      {
+        "name": "axes",
+        "description": "Sequence[int] - sequence of zero or more unique integers specifying the axes over which to sum. Each entry must satisfy 0 <= axis < operand.ndim."
+      }
+    ],
+    "return type": "Array - An array of the same dtype as operand, with shape corresponding to the dimensions of operand.shape with axes removed.",
+    "note": "Unlike jax.numpy.sum(), jax.lax.reduce_sum() does not upcast narrow-width types for accumulation, so sums of 8-bit or 16-bit types may be subject to rounding errors."
+  },
+  {
+    "version": "0.4.32",
+    "function_name": "jax.lax.optimization_barrier",
+    "function_description": "Prevents the compiler from moving operations across the barrier, ensuring specific execution order and preventing common subexpression elimination and fusion.",
+    "code_example": "def f(x):\n    return jax.lax.optimization_barrier(jax.lax.sin(x)) + jax.lax.sin(x)\njax.jit(f)(0.)",
+    "parameters": [
+      "operand: a pytree of JAX values"
+    ],
+    "return type": "A pytree of JAX values, with the same structure and contents as operand",
+    "note": "JAX does not define derivative or batching rules for an optimization barrier. Optimization barriers have no effect outside a compiled function."
+  },
+  {
+    "version": "0.6.2",
+    "function_name": "jax.tree.broadcast",
+    "function_description": "Broadcasts a tree prefix into the structure of a given full tree, replacing leaves in the full tree with those from the prefix.",
+    "code_example": "import jax\nprefix = (1, 2, 3)\nfull = (0, {'a': 0, 'b': 0}, (0, 0))\nresult = jax.tree.broadcast(prefix, full)",
+    "parameters": [
+      {
+        "name": "prefix_tree",
+        "type": "Any"
+      },
+      {
+        "name": "full_tree",
+        "type": "Any"
+      },
+      {
+        "name": "is_leaf",
+        "type": "Callable[[Any], bool] | None"
+      }
+    ],
+    "return type": "list[Any]"
+  },
+  {
+    "version": "0.5.0",
+    "function_name": "jax.ffi.register_ffi_type_id",
+    "function_description": "Registers a custom type ID for a foreign function interface (FFI) target.",
+    "code_example": "import jax.ffi\njax.ffi.register_ffi_type_id('MyType', obj, platform='cpu')",
+    "parameters": [
+      {
+        "name": "name",
+        "type": "str"
+      },
+      {
+        "name": "obj",
+        "type": "Any"
+      },
+      {
+        "name": "platform",
+        "type": "str",
+        "default": "cpu"
+      }
+    ],
+    "return type": "None",
+    "note": "The name must be unique within the process."
+  },
+  {
+    "version": "0.4.38",
+    "function_name": "jax.export.export",
+    "function_description": "Exports a JAX function for persistent serialization, allowing it to be serialized and rehydrated for use in separate processes.",
+    "code_example": "from jax import export\nexported = export.export(jnp.sin)(np.arange(4, dtype=np.float32))",
+    "parameters": [
+      "fun_jit (stages.Wrapped) \u2013 the function to export. Should be the result of jax.jit.",
+      "platforms (Sequence[str] | None) \u2013 Optional sequence containing a subset of 'tpu', 'cpu', 'cuda', 'rocm'.",
+      "disabled_checks (Sequence[DisabledSafetyCheck]) \u2013 the safety checks to disable.",
+      "_override_lowering_rules (Sequence[tuple[Any, Any]] | None) \u2013 an optional sequence of custom lowering rules for some JAX primitives."
+    ],
+    "return type": "Callable[..., Exported]",
+    "note": "The serialized bytes are safe to use in a separate process. The calling convention for multiple platforms is explained in the documentation."
+  },
+  {
+    "version": "0.5.1",
+    "function_name": "jax.random.multinomial",
+    "function_description": "Sample from a multinomial distribution.",
+    "code_example": "import jax.random as jr\nkey = jr.PRNGKey(0)\nn = 10\np = jr.array([0.2, 0.5, 0.3])\nresult = jr.multinomial(key, n, p)\nprint(result)",
+    "parameters": [
+      "key (Array)",
+      "n (RealArray)",
+      "p (RealArray)",
+      "shape (Shape or None)",
+      "dtype (DTypeLikeFloat)",
+      "unroll (int or bool)"
+    ],
+    "return type": "Array"
+  },
+  {
+    "version": "0.5.1",
+    "function_name": "jax.experimental.custom_dce.custom_dce",
+    "function_description": "Customizes dead code elimination (DCE) behavior for a JAX-transformable function by allowing a custom DCE rule.",
+    "code_example": "import jax\nimport jax.numpy as jnp\n\n@jax.experimental.custom_dce.custom_dce\ndef f(x, y):\n    return jnp.sin(x) * y, x * jnp.sin(y)\n\n@f.def_dce\ndef f_dce_rule(used_outs, x, y):\n    return (\n        jnp.sin(x) * y if used_outs[0] else None,\n        x * jnp.sin(y) if used_outs[1] else None,\n    )",
+    "parameters": [
+      {
+        "name": "fun",
+        "description": "Callable[[..., Any]]"
+      },
+      {
+        "name": "static_argnums",
+        "description": "Sequence[int]"
+      }
+    ],
+    "return type": "Instance of custom_dce class",
+    "note": "Requires compatibility with jax.jit() and DCE is applied when functions are staged out with jit()."
+  },
+  {
+    "version": "0.5.1",
+    "function_name": "jax.lax.reduce_prod",
+    "function_description": "Computes the product of elements over one or more array axes.",
+    "code_example": "import jax.lax\nresult = jax.lax.reduce_prod(operand=[1, 2, 3], axes=[0])",
+    "parameters": [
+      "operand (ArrayLike): array over which to sum. Must have numerical dtype.",
+      "axes (Sequence[int]): sequence of zero or more unique integers specifying the axes over which to sum."
+    ],
+    "return type": "Array",
+    "note": "Unlike jax.numpy.prod(), jax.lax.reduce_prod() does not upcast narrow-width types for accumulation, so products of 8-bit or 16-bit types may be subject to rounding errors."
+  },
+  {
+    "version": "0.5.1",
+    "function_name": "jax.lax.reduce_or",
+    "function_description": "Computes the bitwise OR of elements along specified axes of an array.",
+    "code_example": "import jax.lax\nresult = jax.lax.reduce_or([[1, 0], [0, 1]], axes=(1,))",
+    "parameters": [
+      {
+        "name": "operand",
+        "description": "array over which to compute the reduction. Must have boolean or integer dtype."
+      },
+      {
+        "name": "axes",
+        "description": "sequence of zero or more unique integers specifying the axes over which to reduce. Each entry must satisfy 0 <= axis < operand.ndim."
+      }
+    ],
+    "return type": "Array"
+  },
+  {
+    "version": "0.4.36",
+    "function_name": "jax.numpy.put_along_axis",
+    "function_description": "Puts values into the destination array by matching 1D index and data slices, returning a modified copy as JAX arrays are immutable.",
+    "code_example": "from jax import numpy as jnp\na = jnp.array([[10, 30, 20], [60, 40, 50]])\ni = jnp.argmax(a, axis=1, keepdims=True)\nb = jnp.put_along_axis(a, i, 99, axis=1, inplace=False)\nprint(b)",
+    "parameters": [
+      {
+        "name": "arr",
+        "type": "Array"
+      },
+      {
+        "name": "indices",
+        "type": "Array"
+      },
+      {
+        "name": "values",
+        "type": "Array"
+      },
+      {
+        "name": "axis",
+        "type": "int"
+      },
+      {
+        "name": "inplace",
+        "type": "bool"
+      },
+      {
+        "name": "mode",
+        "type": "str"
+      }
+    ],
+    "return type": "Array",
+    "note": "The JAX version returns a modified copy of the input array instead of modifying in-place (as numpy.put_along_axis does), requiring the user to set inplace=False."
+  },
+  {
+    "version": "0.6.1",
+    "function_name": "jax.lax.axis_size",
+    "function_description": "Returns the size of the specified mapped axis.",
+    "code_example": "import jax.lax\nprint(jax.lax.axis_size('i'))",
+    "parameters": [
+      "axis_name"
+    ],
+    "return type": "int"
+  },
+  {
+    "version": "0.5.1",
+    "function_name": "jax.lax.reduce_xor",
+    "function_description": "Computes the bitwise XOR of elements over one or more array axes.",
+    "code_example": "import jax.lax as lax\nresult = lax.reduce_xor(operand=[[1, 2], [3, 4]], axes=(0,))",
+    "parameters": [
+      "operand (ArrayLike): array over which to compute the reduction. Must have boolean or integer dtype.",
+      "axes (Sequence[int]): sequence of zero or more unique integers specifying the axes over which to reduce. Each entry must satisfy 0 <= axis < operand.ndim."
+    ],
+    "return_type": "Array",
+    "note": "See also: jax.numpy.bitwise_xor.reduce() for a more flexible NumPy-style logical reduction API, built around jax.lax.reduce_xor(). Other low-level jax.lax reduction operators include jax.lax.reduce_sum(), jax.lax.reduce_prod(), jax.lax.reduce_max(), jax.lax.reduce_min(), jax.lax.reduce_and(), jax.lax.reduce_or()."
+  },
+  {
+    "version": "0.5.1",
+    "function_name": "jax.lax.reduce_and",
+    "function_description": "Computes the bitwise AND of elements over one or more array axes.",
+    "code_example": "import jax.lax as lax\nimport jax.numpy as jnp\noperand = jnp.array([[True, False], [True, True]], dtype=bool)\nresult = lax.reduce_and(operand, axes=[0])\nprint(result)",
+    "parameters": [
+      "operand (ArrayLike): array over which to compute the reduction. Must have boolean or integer dtype.",
+      "axes (Sequence[int]): sequence of zero or more unique integers specifying the axes over which to reduce. Each entry must satisfy 0 <= axis < operand.ndim."
+    ],
+    "return type": "Array"
+  }
+]

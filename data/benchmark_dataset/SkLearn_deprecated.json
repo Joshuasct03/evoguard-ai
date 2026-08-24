@@ -1,0 +1,29 @@
+[
+  {
+    "version": "1.4",
+    "old_name": "sklearn.extmath.log_logistic",
+    "new_name": "np.logaddexp",
+    "has_alternative": "Yes",
+    "update_info": "deprecated and will be removed in 1.6",
+    "update_description": "The function sklearn.extmath.log_logistic is deprecated and will be removed in version 1.6. Use -np.logaddexp(0, -x) instead.",
+    "code_example": "import numpy as np\n# Replace log_logistic with -np.logaddexp(0, -x)\nresult = -np.logaddexp(0, -x)"
+  },
+  {
+    "version": "1.5",
+    "old_name": "sklearn.utils.parallel_backend",
+    "new_name": "joblib.parallel_backend",
+    "has_alternative": "Yes",
+    "update_info": "replaced with joblib.parallel_backend",
+    "update_description": "sklearn.utils.parallel_backend is deprecated and will be removed in version 1.7. Use joblib.parallel_backend instead.",
+    "code_example": "from joblib import parallel_backend\nwith parallel_backend('loky'):\n    result = model.fit(X, y)"
+  },
+  {
+    "version": "1.5",
+    "old_name": "sklearn.utils.register_parallel_backend",
+    "new_name": "joblib.register_parallel_backend",
+    "has_alternative": "Yes",
+    "update_info": "replaced with joblib.register_parallel_backend",
+    "update_description": "sklearn.utils.register_parallel_backend is deprecated and will be removed in version 1.7. Use joblib.register_parallel_backend instead.",
+    "code_example": "from joblib import register_parallel_backend\nwith register_parallel_backend('loky'):\n    result = model.fit(X, y)"
+  }
+]

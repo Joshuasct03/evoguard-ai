@@ -1,0 +1,92 @@
+[
+  {
+    "version": "2.2.0",
+    "old_name": "pandas.tseries.offsets.Day.delta, pandas.tseries.offsets.Hour.delta, etc.",
+    "new_name": "pd.Timedelta(obj)",
+    "has_alternative": "Yes",
+    "update_info": "deprecated in favor of pd.Timedelta(obj)",
+    "update_description": "Deprecated pandas.tseries.offsets.Day.delta, pandas.tseries.offsets.Hour.delta, and similar attributes for offset objects. Use pd.Timedelta(obj) instead.",
+    "code_example": "pd.Timedelta('1 day')"
+  },
+  {
+    "version": "2.2.0",
+    "old_name": "pandas.api.types.is_interval()",
+    "new_name": "isinstance(obj, pd.Interval)",
+    "has_alternative": "Yes",
+    "update_info": "deprecated in favor of isinstance(obj, pd.Interval)",
+    "update_description": "Deprecated pandas.api.types.is_interval() in favor of using isinstance(obj, pd.Interval).",
+    "code_example": "isinstance(df, pd.Interval)"
+  },
+  {
+    "version": "2.2.0",
+    "old_name": "pandas.api.types.is_period()",
+    "new_name": "isinstance(obj, pd.Period)",
+    "has_alternative": "Yes",
+    "update_info": "deprecated in favor of isinstance(obj, pd.Interval)",
+    "update_description": "Deprecated pandas.api.types.is_period() in favor of isinstance(obj, pd.Period) respectively.",
+    "code_example": "isinstance(df, pd.Interval)"
+  },
+  {
+    "version": "2.2.0",
+    "old_name": "pandas.read_gbq()",
+    "new_name": "pandas_gbq.read_gbq and pandas_gbq.to_gbq",
+    "has_alternative": "Yes",
+    "update_info": "deprecated in favor of pandas_gbq module",
+    "update_description": "Deprecated pandas.read_gbq() method; use pandas_gbq.read_gbq instead.",
+    "code_example": "import pandas_gbq; pandas_gbq.read_gbq(...)"
+  },
+  {
+    "version": "2.2.0",
+    "old_name": "pandas.DataFrame.to_gbq()",
+    "new_name": "pandas_gbq.to_gbq",
+    "has_alternative": "Yes",
+    "update_info": "deprecated in favor of pandas_gbq module",
+    "update_description": "Deprecated pandas.DataFrame.to_gbq() method; use pandas_gbq.to_gbq instead.",
+    "code_example": "import pandas_gbq; pandas_gbq.read_gbq(...)"
+  },
+  {
+    "version": "2.2.0",
+    "old_name": "pandas.core.groupby.DataFrameGroupBy.fillna() and pandas.core.groupby.SeriesGroupBy.fillna()",
+    "new_name": "DataFrameGroupBy.ffill()",
+    "has_alternative": "Yes",
+    "update_info": "deprecated in favor of ffill or bfill",
+    "update_description": "Deprecated DataFrameGroupBy.fillna() and SeriesGroupBy.fillna() methods; use DataFrameGroupBy.ffill() or DataFrameGroupBy.bfill() for forward/backward filling, or DataFrame.fillna() to fill with a single value.",
+    "code_example": "df.groupby('col').ffill()"
+  },
+  {
+    "version": "2.2.0",
+    "old_name": "pandas.tseries.offsets.DateOffset.is_anchored()",
+    "new_name": "obj.n == 1",
+    "has_alternative": "Yes",
+    "update_info": "deprecated in favor of obj.n == 1",
+    "update_description": "Deprecated pandas.tseries.offsets.DateOffset.is_anchored() method; use obj.n == 1 for non-Tick subclasses (Tick always returns False).",
+    "code_example": "obj.n == 1"
+  },
+  {
+    "version": "2.2.0",
+    "old_name": "ordinal keyword in pandas.PeriodIndex",
+    "new_name": "PeriodIndex.from_ordinals()",
+    "has_alternative": "Yes",
+    "update_info": "deprecated in favor of PeriodIndex.from_ordinals()",
+    "update_description": "Deprecated ordinal keyword in pandas.PeriodIndex constructor; use PeriodIndex.from_ordinals() instead.",
+    "code_example": "pd.PeriodIndex.from_ordinals(...)"
+  },
+  {
+    "version": "2.2.0",
+    "old_name": "unit keyword in pandas.TimedeltaIndex construction",
+    "new_name": "pandas.to_timedelta",
+    "has_alternative": "Yes",
+    "update_info": "deprecated in favor of to_timedelta()",
+    "update_description": "Deprecated unit keyword in pandas.TimedeltaIndex construction; use to_timedelta() instead.",
+    "code_example": "pd.to_timedelta(...)"
+  },
+  {
+    "version": "2.2.0",
+    "old_name": "extension test classes (BaseNoReduceTests, etc.)",
+    "new_name": "BaseReduceTests",
+    "has_alternative": "Yes",
+    "update_info": "deprecated in favor of BaseReduceTests",
+    "update_description": "Deprecated extension test classes BaseNoReduceTests, BaseBooleanReduceTests, and BaseNumericReduceTests; use BaseReduceTests instead.",
+    "code_example": ""
+  }
+]

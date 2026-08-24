@@ -1,0 +1,883 @@
+[
+  {
+    "version": "1.12.0",
+    "function_name": "scipy.integrate.cumulative_simpson",
+    "function_description": "Cumulatively integrates a function using the composite Simpson\u2019s 1/3 rule, assuming quadratic relationships between points.",
+    "code_example": "from scipy import integrate\nimport numpy as np\nx = np.linspace(-2, 2, num=20)\ny = x**2\ny_int = integrate.cumulative_simpson(y, x=x, initial=0)",
+    "parameters": [
+      "y",
+      "x",
+      "dx",
+      "axis",
+      "initial"
+    ],
+    "return type": "ndarray",
+    "note": "Added in version 1.12.0."
+  },
+  {
+    "version": "1.12.0",
+    "function_name": "scipy.optimize.isotonic_regression",
+    "function_description": "Performs nonparametric isotonic regression using the pool adjacent violators algorithm to fit a monotonically increasing or decreasing model.",
+    "code_example": "import numpy as np\nfrom scipy.optimize import isotonic_regression\ny = [1.5, 1.0, 4.0, 6.0, 5.7, 5.0, 7.8, 9.0, 7.5, 9.5, 9.0]\nresult = isotonic_regression(y)\nprint(result.x)",
+    "parameters": [
+      {
+        "name": "y",
+        "description": "Response variable."
+      },
+      {
+        "name": "weights",
+        "description": "Case weights."
+      },
+      {
+        "name": "increasing",
+        "description": "If True, fit monotonic increasing regression. If False, fit monotonic decreasing regression."
+      }
+    ],
+    "return type": "OptimizeResult",
+    "note": "The implemented version of PAVA has O(N) computational complexity. It is more user-friendly and significantly faster than using minimize with custom constraints."
+  },
+  {
+    "version": "1.12.0",
+    "function_name": "scipy.stats.sampling.FastGeneratorInversion",
+    "function_description": "Fast sampling by numerical inversion of the CDF for a large class of continuous distributions in scipy.stats.",
+    "code_example": "import numpy as np\nfrom scipy import stats\nfrom scipy.stats.sampling import FastGeneratorInversion\n\ngamma_frozen = stats.gamma(1.5)\ngamma_dist = FastGeneratorInversion(gamma_frozen)\nr = gamma_dist.rvs(size=1000)",
+    "parameters": [
+      "dist",
+      "domain",
+      "ignore_shape_range",
+      "random_state"
+    ],
+    "note": "Supports continuous distributions, uses numerical inversion for fast sampling, allows truncation via domain, and provides accurate PPF with error evaluation."
+  },
+  {
+    "version": "1.12.0",
+    "function_name": "scipy.special.betainccinv",
+    "function_description": "Computes the inverse of the complemented regularized incomplete beta function.",
+    "code_example": "from scipy.special import betainccinv\na, b = 1.2, 3.1\ny = 0.2\nresult = betainccinv(a, b, y)",
+    "parameters": [
+      {
+        "name": "a",
+        "type": "array_like",
+        "description": "Positive, real-valued parameters"
+      },
+      {
+        "name": "b",
+        "type": "array_like",
+        "description": "Positive, real-valued parameters"
+      },
+      {
+        "name": "y",
+        "type": "array_like",
+        "description": "Real-valued input"
+      },
+      {
+        "name": "out",
+        "type": "ndarray, optional",
+        "description": "Optional output array for function values"
+      }
+    ],
+    "return type": "scalar or ndarray",
+    "note": "Added in version 1.11.0. This function wraps the ibetac_inv routine from the Boost Math C++ library."
+  },
+  {
+    "version": "1.12.0",
+    "function_name": "scipy.stats.bws_test",
+    "function_description": "Performs the Baumgartner-Weiss-Schindler test to compare the distributions of two independent samples.",
+    "code_example": "import numpy as np\nx = [1, 2, 3, 4, 6, 7, 8]\ny = [5, 9, 10, 11, 12, 13, 14]\nres = bws_test(x, y)\nprint(res.statistic)\nprint(res.pvalue)",
+    "parameters": [
+      "x: array-like, 1-d arrays of samples.",
+      "y: array-like, 1-d arrays of samples.",
+      "alternative: {'two-sided', 'less', 'greater'}, optional, default 'two-sided'.",
+      "method: PermutationMethod, optional, default the default PermutationMethod object."
+    ],
+    "return type": "PermutationTestResult",
+    "note": "When alternative='two-sided', the statistic is defined by the equations given in [1] Section 2. This statistic is not appropriate for one-sided alternatives; in that case, the statistic is the negative of that given by the equations in [1] Section 2. Consequently, when the distribution of the first sample is stochastically greater than that of the second sample, the statistic will tend to be positive."
+  },
+  {
+    "version": "1.12.0",
+    "function_name": "scipy.stats.jf_skew_t",
+    "function_description": "Jones and Faddy skew-t distribution, which extends the t-distribution with skewness parameters a and b.",
+    "code_example": "import numpy as np\nfrom scipy.stats import jf_skew_t\na, b = 8, 4\nmean, var, skew, kurt = jf_skew_t.stats(a, b, moments='mvsk')",
+    "parameters": [
+      "a",
+      "b"
+    ],
+    "note": "When a = b, the distribution recovers the t-distribution with 2a degrees of freedom. Shifting the location does not make it a noncentral distribution."
+  },
+  {
+    "version": "1.12.0",
+    "function_name": "scipy.special.betaincc",
+    "function_description": "Computes the complement of the regularized incomplete beta function.",
+    "code_example": "from scipy.special import betaincc\nbetaincc(0.5, 8, [0.9, 0.99, 0.999])",
+    "parameters": [
+      "a: array_like, positive real-valued parameters",
+      "b: array_like, positive real-valued parameters",
+      "x: array_like, real-valued with 0 \u2264 x \u2264 1",
+      "out: ndarray, optional output array for function values"
+    ],
+    "return type": "scalar or ndarray",
+    "note": "Added in version 1.11.0. Wraps the ibetac routine from the Boost Math C++ library."
+  },
+  {
+    "version": "1.12.0",
+    "function_name": "scipy.special.stirling2",
+    "function_description": "Generates Stirling numbers of the second kind, which count the number of ways to partition a set with N elements into K non-empty subsets.",
+    "code_example": "import numpy as np; from scipy.special import stirling2; print(stirling2(np.array([10, 10, 9]), np.array([3, -1, 3])))",
+    "parameters": [
+      "N (int, ndarray): Number of things.",
+      "K (int, ndarray): Number of non-empty subsets taken.",
+      "exact (bool, optional): Uses dynamic programming for smaller arrays and Temme approximation for larger entries."
+    ],
+    "return type": "int, float, or ndarray",
+    "note": "If N < 0 or K < 0, returns 0. If K > N, returns 0. Output type is always int or ndarray of object. Input must be numpy or Python integers; otherwise, TypeError is raised."
+  },
+  {
+    "version": "1.12.0",
+    "function_name": "scipy.stats.quantile_test",
+    "function_description": "Perform a quantile test and compute a confidence interval of the quantile.",
+    "code_example": "import numpy as np\nfrom scipy import stats\nrng = np.random.default_rng()\nrvs = stats.uniform.rvs(size=100, random_state=rng)\nstats.quantile_test(rvs, q=0.5, p=0.5)",
+    "parameters": [
+      {
+        "name": "x",
+        "description": "A one-dimensional sample."
+      },
+      {
+        "name": "q",
+        "description": "The hypothesized value of the quantile.",
+        "default": "0"
+      },
+      {
+        "name": "p",
+        "description": "The probability associated with the quantile; i.e. the proportion of the population less than q is p.",
+        "default": "0.5"
+      },
+      {
+        "name": "alternative",
+        "description": "Defines the alternative hypothesis.",
+        "default": "'two-sided'"
+      }
+    ],
+    "return type": "QuantileTestResult",
+    "note": "This test and its method for computing confidence intervals are non-parametric. They are valid if and only if the observations are i.i.d. The implementation of the test follows Conover [1]. Two test statistics are considered. The same computation of confidence intervals for quantiles is included in the confintr package [5]. Two-sided confidence intervals are not guaranteed to be optimal; i.e., there may exist a tighter interval that may contain the quantile of interest with probability larger than the confidence level. Without further assumption on the samples (e.g., the nature of the underlying distribution), the one-sided intervals are optimally tight."
+  },
+  {
+    "version": "1.12.0",
+    "function_name": "scipy.stats.betanbinom",
+    "function_description": "A beta-negative-binomial distribution, which is a negative binomial distribution with the probability of success p following a beta distribution.",
+    "code_example": "import numpy as np; from scipy.stats import betanbinom; r = betanbinom.rvs(n=5, a=9.3, b=1, size=1000)",
+    "parameters": [
+      "n",
+      "a",
+      "b",
+      "loc"
+    ],
+    "note": "The probability mass function is defined in the standardized form. The loc parameter shifts the distribution. Added in version 1.12.0."
+  },
+  {
+    "version": "1.12.0",
+    "function_name": "scipy.sparse.linalg.matrix_power",
+    "function_description": "Raises a square matrix to the specified integer power using repeated matrix multiplications.",
+    "code_example": "from scipy import sparse\nA = sparse.csc_array([[0,1,0],[1,0,1],[0,1,0]])\nA2 = sparse.linalg.matrix_power(A, 2)\nA2.todense()",
+    "parameters": [
+      "A (M, M) square sparse array or matrix",
+      "power int"
+    ],
+    "return_type": "sparse array or matrix",
+    "note": "This uses a recursive implementation of the matrix power. For computing the matrix power using a reasonably large power, this may be less efficient than computing the product directly, using A @ A @ \u2026 @ A. This is contingent upon the number of nonzero entries in the matrix. Added in version 1.12.0."
+  },
+  {
+    "version": "1.13.0",
+    "function_name": "scipy.stats.wasserstein_distance_nd",
+    "function_description": "Computes the Wasserstein-1 distance between two N-dimensional discrete distributions.",
+    "code_example": "from scipy.stats import wasserstein_distance_nd\nwasserstein_distance_nd([[0, 2, 3], [1, 2, 5]], [[3, 2, 3], [4, 2, 5]])",
+    "parameters": [
+      {
+        "name": "u_values",
+        "type": "2d array_like",
+        "description": "A sample from a probability distribution or the support of a probability distribution."
+      },
+      {
+        "name": "v_values",
+        "type": "2d array_like",
+        "description": "A sample from or the support of a second distribution."
+      },
+      {
+        "name": "u_weights",
+        "type": "1d array_like",
+        "description": "Weights or counts corresponding with the sample or probability masses corresponding with the support values. Sum of elements must be positive and finite. If unspecified, each value is assigned the same weight."
+      },
+      {
+        "name": "v_weights",
+        "type": "1d array_like",
+        "description": "Weights or counts corresponding with the sample or probability masses corresponding with the support values. Sum of elements must be positive and finite. If unspecified, each value is assigned the same weight."
+      }
+    ],
+    "return type": "float",
+    "note": "The input distributions can be empirical, therefore coming from samples whose values are effectively inputs of the function, or they can be seen as generalized functions, in which case they are weighted sums of Dirac delta functions located at the specified values."
+  },
+  {
+    "version": "1.13.0",
+    "function_name": "scipy.interpolate.BSpline.insert_knot",
+    "function_description": "Inserts a new knot at a specified position with a given multiplicity in a B-spline representation.",
+    "parameters": [
+      {
+        "name": "x",
+        "type": "float"
+      },
+      {
+        "name": "m",
+        "type": "int",
+        "default": 1
+      }
+    ],
+    "return_type": "BSpline object",
+    "code_example": "import numpy as np\nfrom scipy.interpolate import BSpline, make_interp_spline\nx = np.linspace(0, 10, 5)\ny = np.sin(x)\nspl = make_interp_spline(x, y, k=3)\nspl_1 = spl.insert_knot(3)\nspl_2 = spl.insert_knot(8, m=3)",
+    "note": "In case of a periodic spline (self.extrapolate == 'periodic') there must be either at least k interior knots t(j) satisfying t(k+1)<t(j)<=x or at least k interior knots t(j) satisfying x<=t(j)<t(n-k). This routine is functionally equivalent to scipy.interpolate.insert."
+  },
+  {
+    "version": "1.14.0",
+    "function_name": "scipy.fft.prev_fast_len",
+    "function_description": "Finds the largest fast Fourier transform (FFT) compatible length less than or equal to a target value, optimizing computation speed.",
+    "code_example": "from scipy.fft import prev_fast_len\nprev_fast_len(93059, real=True)",
+    "parameters": [
+      {
+        "name": "target",
+        "type": "int"
+      },
+      {
+        "name": "real",
+        "type": "bool",
+        "optional": true
+      }
+    ],
+    "return type": "int",
+    "note": "The result of this function may change in future as performance considerations change, for example, if new prime factors are added."
+  },
+  {
+    "version": "1.14.0",
+    "function_name": "scipy.sparse.csgraph.yen",
+    "function_description": "Finds the K-shortest loopless paths between a source and sink node in a directed or undirected graph using Yen\u2019s algorithm.",
+    "code_example": "from scipy.sparse import csr_array\nfrom scipy.sparse.csgraph import yen\ngraph = csr_array([[0, 1, 2, 0], [0, 0, 0, 1], [2, 0, 0, 3], [0, 0, 0, 0]])\ndist_array, predecessors = yen(csgraph=graph, source=0, sink=3, K=2, directed=False, return_predecessors=True)",
+    "parameters": [
+      "csgraph: array_like, or sparse array or matrix, 2 dimensions",
+      "source: int",
+      "sink: int",
+      "K: int",
+      "directed: bool, optional",
+      "return_predecessors: bool, optional",
+      "unweighted: bool, optional"
+    ],
+    "return type": "tuple of ndarrays",
+    "note": "Yen's algorithm is for graphs with nonnegative edge costs. Negative cycles raise NegativeCycleError. Output may vary with SciPy and Python versions."
+  },
+  {
+    "version": "1.14.0",
+    "function_name": "scipy.stats.power",
+    "function_description": "Simulates the power of a hypothesis test under an alternative hypothesis.",
+    "code_example": "import numpy as np\nfrom scipy import stats\nrng = np.random.default_rng()\ntest = stats.ttest_ind\nn_observations = (10, 12)\nrvs1 = rng.normal\nrvs2 = lambda size: rng.normal(loc=1, size=size)\nrvs = (rvs1, rvs2)\nres = stats.power(test, rvs, n_observations, significance=0.05)\nprint(res.power)",
+    "parameters": [
+      "test (callable): Hypothesis test function.",
+      "rvs (callable or tuple of callables): Random variate generators under the alternative hypothesis.",
+      "n_observations (tuple of ints or arrays): Sample sizes for each test.",
+      "significance (float or array, default 0.01): Significance threshold.",
+      "vectorized (bool, default None): Whether test is vectorized.",
+      "n_resamples (int, default 10000): Number of samples per test.",
+      "batch (int, optional): Number of samples per test call.",
+      "kwargs (dict, optional): Additional keyword arguments."
+    ],
+    "return type": "PowerResult: An object with attributes power (float or ndarray) and pvalues (ndarray).",
+    "note": "Power is calculated by simulating p-values under the alternative hypothesis and checking their proportion below significance. Notes include Type I error rate estimation and limitations with small samples."
+  },
+  {
+    "version": "1.14.0",
+    "function_name": "scipy.stats.irwinhall",
+    "function_description": "The Irwin-Hall distribution represents the sum of n independent standard uniform random variables.",
+    "code_example": "import scipy.stats as stats\nr = stats.irwinhall.rvs(n=10, size=1000)",
+    "parameters": [
+      "n",
+      "loc",
+      "scale"
+    ],
+    "note": "The Bates distribution is the Irwin-Hall distribution scaled by 1/n. Shifting the location does not make it a noncentral distribution."
+  },
+  {
+    "version": "1.15.0",
+    "function_name": "scipy.differentiate.derivative",
+    "function_description": "Evaluates the derivative of a function numerically using finite difference differentiation.",
+    "code_example": "import numpy as np\nfrom scipy.differentiate import derivative\nf = np.exp\nx = np.linspace(1, 2, 5)\nres = derivative(f, x)\nprint(res.df)",
+    "parameters": [
+      "f",
+      "x",
+      "args",
+      "tolerances",
+      "maxiter",
+      "order",
+      "initial_step",
+      "step_factor",
+      "step_direction",
+      "preserve_shape",
+      "callback"
+    ],
+    "return_type": "_RichResult",
+    "note": "The implementation was inspired by jacobi, numdifftools, and DERIVEST. The default tolerances are challenging to satisfy at points where the true derivative is exactly zero. Consider specifying an absolute tolerance if the derivative may be exactly zero."
+  },
+  {
+    "version": "1.15.0",
+    "function_name": "scipy.special.assoc_legendre_p",
+    "function_description": "Computes the associated Legendre polynomial of the first kind.",
+    "code_example": "import scipy.special\nscipy.special.assoc_legendre_p(n=2, m=1, z=0.5)",
+    "parameters": [
+      "n: ArrayLike[int] - Degree of the associated Legendre polynomial. Must have n >= 0.",
+      "m: ArrayLike[int] - order of the associated Legendre polynomial.",
+      "z: ArrayLike[float | complex] - Input value.",
+      "branch_cut: Optional[ArrayLike[int]] - Selects branch cut. Must be 2 (default) or 3.",
+      "norm: Optional[bool] - If True, compute the normalized associated Legendre polynomial. Default is False.",
+      "diff_n: Optional[int] - A non-negative integer. Compute and return all derivatives up to order diff_n. Default is 0."
+    ],
+    "return type": "ndarray or tuple[ndarray]",
+    "note": "The normalized counterpart of an (unnormalized) associated Legendre polynomial has the additional factor [formula]."
+  },
+  {
+    "version": "1.15.0",
+    "function_name": "scipy.special.sph_legendre_p",
+    "function_description": "Computes the spherical Legendre polynomial of the first kind.",
+    "code_example": "import scipy.special\nscipy.special.sph_legendre_p(2, 1, 0.5)",
+    "parameters": [
+      {
+        "name": "n",
+        "type": "ArrayLike[int]",
+        "description": "Degree of the spherical Legendre polynomial. Must have n >= 0."
+      },
+      {
+        "name": "m",
+        "type": "ArrayLike[int]",
+        "description": "Order of the spherical Legendre polynomial."
+      },
+      {
+        "name": "theta",
+        "type": "ArrayLike[float]",
+        "description": "Input value."
+      },
+      {
+        "name": "diff_n",
+        "type": "Optional[int]",
+        "description": "Non-negative integer. Compute and return all derivatives up to order diff_n. Default is 0."
+      }
+    ],
+    "return type": "ndarray or tuple[ndarray]",
+    "note": "The spherical counterpart of an (unnormalized) associated Legendre polynomial has the additional factor sqrt((2n + 1)(n - m)! / (4\u03c0(n + m)!)). It is the same as the spherical harmonic Y_n^m(\u03b8, \u03c6) with \u03c6 = 0."
+  },
+  {
+    "version": "1.15.0",
+    "function_name": "scipy.integrate.cubature",
+    "function_description": "Performs adaptive multidimensional integration of array-valued functions over a hypercube region.",
+    "code_example": "import numpy as np\nfrom scipy.integrate import cubature\n\ndef f(x, n):\n    return x[:, np.newaxis] ** n[np.newaxis, :]\n\nres = cubature(f, a=[0], b=[1], args=(np.arange(10),))\nprint(res.estimate)",
+    "parameters": [
+      "f",
+      "a",
+      "b",
+      "rule",
+      "rtol",
+      "atol",
+      "max_subdivisions",
+      "args",
+      "workers",
+      "points"
+    ],
+    "return type": "object with attributes: estimate (ndarray), error (ndarray), status (str), subdivisions (int), atol (float), rtol (float), regions (list of objects)",
+    "note": "Handles infinite limits via variable transformation. Gauss-Kronrod rules have exponentially increasing nodes with dimensions, while Genz-Malik rules have fewer nodes but lower accuracy. Use 'genz-malik' for higher dimensions to avoid excessive node count."
+  },
+  {
+    "version": "1.15.0",
+    "function_name": "scipy.integrate.nsum",
+    "function_description": "Evaluates a convergent finite or infinite series using numerical summation with error estimation.",
+    "code_example": "import numpy as np\nfrom scipy.integrate import nsum\nres = nsum(lambda k: 1/k**2, 1, np.inf)",
+    "parameters": [
+      "f (callable): The function that evaluates terms to be summed. Must take x (ndarray) and *args, and return ndarray.",
+      "a (float array_like): Real lower limit of summed terms.",
+      "b (float array_like): Real upper limit of summed terms.",
+      "step (float array_like): Finite, positive, real step between summed terms.",
+      "args (tuple of array_like, optional): Additional positional arguments to be passed to f.",
+      "log (bool, default: False): If True, f returns the log of the terms.",
+      "maxterms (int, default: 1048576): Maximum number of terms to evaluate for direct summation.",
+      "tolerances (float, optional): Absolute and relative termination tolerances."
+    ],
+    "return_type": "scipy.integrate._quad.RichResult",
+    "note": "The method uses an integral test for convergence and approximates infinite sums by integrating beyond the last evaluated term. It handles unimodal functions and may fail if the maximum is far from the limits."
+  },
+  {
+    "version": "1.15.0",
+    "function_name": "scipy.differentiate.jacobian",
+    "function_description": "Evaluates the Jacobian of a function numerically using finite difference methods.",
+    "code_example": "import numpy as np\nfrom scipy.differentiate import jacobian\nfrom scipy.optimize import rosen\nx = np.full(3, 0.5)\nres = jacobian(rosen, x)",
+    "parameters": [
+      "f: callable - The function whose Jacobian is desired. The signature must be: f(xi: ndarray) -> ndarray",
+      "x: float array_like - Points at which to evaluate the Jacobian. Must have at least one dimension.",
+      "tolerances: dictionary of floats, optional - Absolute and relative tolerances. Valid keys are atol and rtol.",
+      "maxiter: int, default: 10 - The maximum number of iterations of the algorithm to perform.",
+      "order: int, default: 8 - The order of the finite difference formula to be used.",
+      "initial_step: float array_like, default: 0.5 - The initial step size for the finite difference derivative approximation.",
+      "step_factor: float, default: 2.0 - The factor by which the step size is reduced in each iteration.",
+      "step_direction: integer array_like - An array representing the direction of the finite difference steps."
+    ],
+    "return_type": "scipy.optimize.OptimizeResult-like object with attributes success, status, df, error, nit, nfev",
+    "note": "The function is vectorized to handle multiple points. The input x must be an array of shape (m,) for a single point or (m, k) for k points. The function f must return an array of shape (n, ...) where n is the number of outputs. The result's df attribute has shape (n, m) for a single point or (n, m, k) for k points."
+  },
+  {
+    "version": "1.15.0",
+    "function_name": "scipy.interpolate.generate_knots",
+    "function_description": "Generates knot vectors for spline interpolation based on data points and smoothing parameters.",
+    "code_example": "import numpy as np\nfrom scipy.interpolate import generate_knots\nx = np.linspace(-3, 3, 50)\ny = np.exp(-x**2) + 0.1 * np.random.standard_normal(size=50)\nknots = list(generate_knots(x, y, s=1e-10))",
+    "parameters": [
+      "x",
+      "y",
+      "w",
+      "xb",
+      "xe",
+      "k",
+      "s",
+      "nest"
+    ],
+    "return type": "ndarray",
+    "note": "The generator stops when the smoothing criterion is satisfied or when the number of knots exceeds the maximum. Knots are located at data sites unless k is even and the number of knots is len(x) + k + 1, in which case they are at Greville sites."
+  },
+  {
+    "version": "1.15.0",
+    "function_name": "scipy.special.sph_legendre_p_all",
+    "function_description": "Computes all spherical Legendre polynomials of the first kind up to the specified degree and order.",
+    "code_example": "from scipy.special import sph_legendre_p_all\nresult = sph_legendre_p_all(2, 1, 0.5, diff_n=0)",
+    "parameters": [
+      "n",
+      "m",
+      "theta",
+      "diff_n"
+    ],
+    "return_type": "<scipy.special._multiufuncs.MultiUFunc object>",
+    "note": "Output shape is (n+1, 2*m+1, ...). The entry at (j, i) corresponds to degree j and order i for all 0 <= j <= n and -m <= i <= m."
+  },
+  {
+    "version": "1.15.0",
+    "function_name": "scipy.stats.landau",
+    "function_description": "Represents the Landau distribution, a continuous probability distribution used in physics for energy loss of fast particles.",
+    "code_example": "import scipy.stats as stats\nstats.landau.pdf([0, 1], loc=0, scale=1)",
+    "parameters": [
+      "loc",
+      "scale"
+    ],
+    "note": "The Landau distribution is parameterized with location and scale parameters, and uses routines from the Boost Math library for computations."
+  },
+  {
+    "version": "1.15.0",
+    "function_name": "scipy.stats.normal_inverse_gamma",
+    "function_description": "The normal-inverse-gamma distribution is the conjugate prior for a normal distribution with unknown mean and variance.",
+    "code_example": "import numpy as np\nfrom scipy import stats\nrng = np.random.default_rng()\ndist = stats.normal_inverse_gamma(0, 1, 20, 20)\nsamples = dist.rvs(size=10000, random_state=rng)",
+    "parameters": [
+      "mu",
+      "lmbda",
+      "a",
+      "b",
+      "seed"
+    ]
+  },
+  {
+    "version": "1.15.0",
+    "function_name": "scipy.special.sph_harm_y_all",
+    "function_description": "Computes all spherical harmonics up to degree n and order m, returning a 2D array where each entry corresponds to a specific degree and order.",
+    "code_example": "import scipy.special\nresult = scipy.special.sph_harm_y_all(n=2, m=1, theta=0.5, phi=0.5, diff_n=0)",
+    "parameters": [
+      "n (int)",
+      "m (int)",
+      "theta (float)",
+      "phi (float)",
+      "diff_n (int, optional, default 0)"
+    ],
+    "return type": "scipy.special._multiufuncs.MultiUFunc",
+    "note": "Output shape is (n+1, 2*m+1, ...). The entry at (j, i) corresponds to degree j and order i for all 0 <= j <= n and -m <= i <= m."
+  },
+  {
+    "version": "1.15.0",
+    "function_name": "scipy.interpolate.make_splprep",
+    "function_description": "Finds a smoothed B-spline representation of a parametric N-D curve using given data points and parameters.",
+    "code_example": "from scipy.interpolate import make_splprep\nimport numpy as np\n\nx = np.array([[0, 1], [1, 2], [2, 3], [3, 4]])\nspl, u = make_splprep(x)\nprint(spl)",
+    "parameters": [
+      "x (array_like, shape (m, ndim))",
+      "w (array_like, shape(m,), optional)",
+      "u (array_like, optional)",
+      "ub (float, optional)",
+      "ue (float, optional)",
+      "k (int, optional)",
+      "s (float, optional)",
+      "t (array_like, optional)",
+      "nest (int, optional)"
+    ],
+    "return type": "BSpline instance and ndarray",
+    "note": "Balances smoothness (measured as jumps of the derivative) and deviation from data. Added in version 1.15.0. References: P. Dierckx's works on splines."
+  },
+  {
+    "version": "1.15.0",
+    "function_name": "scipy.interpolate.make_splrep",
+    "function_description": "Determines a smooth spline approximation of a 1D function using B-splines.",
+    "code_example": "import numpy as np\nfrom scipy.interpolate import make_splrep\n\nx = np.linspace(0, 10, 10)\ny = np.sin(x)\nspl = make_splrep(x, y)\nprint(spl)",
+    "parameters": [
+      "x: array_like, shape (m,) \u2013 The data points defining a curve y = f(x).",
+      "y: array_like, shape (m,) \u2013 The data points defining a curve y = f(x).",
+      "w: array_like, shape (m,), optional \u2013 Strictly positive 1D array of weights for the fit.",
+      "xb: float, optional \u2013 The start of the interval to fit.",
+      "xe: float, optional \u2013 The end of the interval to fit.",
+      "k: int, optional \u2013 The degree of the spline fit (default 3).",
+      "s: float, optional \u2013 Smoothing parameter (default 0.0, interpolation).",
+      "t: array_like, optional \u2013 The spline knots.",
+      "nest: int, optional \u2013 Target length of the knot vector."
+    ],
+    "return_type": "BSpline instance",
+    "note": "Balances smoothness (jumps of the k-th derivative) and data fit. For s=0, it interpolates; for s>0, it smooths. Differs from make_lsq_spline by considering smoothness. Added in version 1.15.0."
+  },
+  {
+    "version": "1.15.0",
+    "function_name": "scipy.special.legendre_p_all",
+    "function_description": "Computes all Legendre polynomials of the first kind up to a specified degree.",
+    "code_example": "import scipy.special\nscipy.special.legendre_p_all(n=3, z=0.5, diff_n=0)",
+    "parameters": [
+      "n",
+      "z",
+      "diff_n"
+    ],
+    "return type": "<scipy.special._multiufuncs.MultiUFunc object>",
+    "note": "Output shape is (n+1, ...). The entry at j corresponds to degree j for all 0 <= j <= n."
+  },
+  {
+    "version": "1.15.0",
+    "function_name": "scipy.stats.exp",
+    "function_description": "Returns the natural exponential of a random variable, transforming it into a lognormally distributed variable.",
+    "code_example": "import numpy as np\nfrom scipy import stats\nX = stats.Normal()\nY = stats.exp(X)",
+    "parameters": [
+      {
+        "name": "X",
+        "description": "ContinuousDistribution, the random variable X."
+      }
+    ],
+    "return type": "ContinuousDistribution",
+    "note": "Y represents the natural exponential of X, and X represents the natural logarithm of Y."
+  },
+  {
+    "version": "1.15.0",
+    "function_name": "scipy.signal.envelope",
+    "function_description": "Compute the envelope of a real- or complex-valued signal.",
+    "code_example": "import numpy as np\nfrom scipy.signal import envelope\n\nz = np.random.rand(100)\nresult = envelope(z, bp_in=(1, None))",
+    "parameters": [
+      "z: ndarray, Real- or complex-valued input signal, which is assumed to be made up of n samples and having sampling interval T.",
+      "bp_in: tuple[int | None, int | None], optional, 2-tuple defining the frequency band bp_in[0]:bp_in[1] of the input filter.",
+      "n_out: int | None, optional, If not None the output will be resampled to n_out samples.",
+      "squared: bool, optional, If set, the square of the envelope is returned.",
+      "residual: Literal['lowpass', 'all', None], optional, This option determines what kind of residual is returned.",
+      "axis: int, optional, Axis of z over which to compute the envelope."
+    ],
+    "return type": "ndarray",
+    "note": "The envelope of a complex-valued signal with no bandpass filtering corresponds to the absolute value. Hence, it is more efficient to use np.abs(z) instead of this function. The FFT implementation has caveats: periodic signal assumption, Gibbs phenomenon, slow performance for prime lengths, and memory demands. The frequency spacing corresponds to scipy.fft.fftfreq(len(z), T)."
+  },
+  {
+    "version": "1.15.0",
+    "function_name": "scipy.special.assoc_legendre_p_all",
+    "function_description": "Computes all associated Legendre polynomials of the first kind up to the specified degree n and order m.",
+    "code_example": "import scipy.special\nresult = scipy.special.assoc_legendre_p_all(n=2, m=1, z=0.5)",
+    "parameters": [
+      "n",
+      "m",
+      "z",
+      "branch_cut",
+      "norm",
+      "diff_n"
+    ],
+    "return_type": "<scipy.special._multiufuncs.MultiUFunc object>"
+  },
+  {
+    "version": "1.15.0",
+    "function_name": "scipy.special.legendre_p",
+    "function_description": "Computes the Legendre polynomial of the first kind for a given degree and input value.",
+    "code_example": "import scipy.special\nresult = scipy.special.legendre_p(2, 0.5)\nprint(result)",
+    "parameters": [
+      "n: ArrayLike[int] (Degree of the Legendre polynomial. Must have n >= 0)",
+      "z: ArrayLike[float] (Input value)",
+      "diff_n: Optional[int] (Non-negative integer. Compute and return all derivatives up to order diff_n. Default is 0)"
+    ],
+    "return type": "ndarray or tuple[ndarray]"
+  },
+  {
+    "version": "1.15.0",
+    "function_name": "scipy.interpolate.AAA",
+    "function_description": "Performs rational approximation using the AAA algorithm on real or complex data points.",
+    "code_example": "import numpy as np\nfrom scipy.interpolate import AAA\nsample_points = np.linspace(-1.5, 1.5, num=100)\nr = AAA(sample_points, gamma(sample_points))",
+    "parameters": [
+      "x",
+      "y",
+      "rtol",
+      "max_terms",
+      "clean_up",
+      "clean_up_tol"
+    ],
+    "return type": "class instance",
+    "note": "The algorithm uses a greedy approach to select support points and may automatically remove Froissart doublets if clean_up is True."
+  },
+  {
+    "version": "1.15.0",
+    "function_name": "scipy.stats.dpareto_lognorm",
+    "function_description": "A continuous random variable with a double Pareto lognormal distribution, combining lognormal and Pareto characteristics.",
+    "code_example": "import scipy.stats as stats\nrv = stats.dpareto_lognorm(3, 1.2, 1.5, 2)\nprint(rv.pdf(1))",
+    "parameters": [
+      "u",
+      "s",
+      "a",
+      "b",
+      "loc",
+      "scale"
+    ],
+    "note": "Note that shifting the location of a distribution does not make it a \u201cnoncentral\u201d distribution; noncentral generalizations of some distributions are available in separate classes."
+  },
+  {
+    "version": "1.15.0",
+    "function_name": "scipy.stats.log",
+    "function_description": "Natural logarithm of a non-negative random variable",
+    "code_example": "import numpy as np\nfrom scipy import stats\nGamma = stats.make_distribution(stats.gamma)\nX = Gamma(a=1.0)\nY = stats.log(X)",
+    "parameters": [
+      "X"
+    ],
+    "return type": "ContinuousDistribution"
+  },
+  {
+    "version": "1.15.0",
+    "function_name": "scipy.stats.poisson_binom",
+    "function_description": "Represents a Poisson Binomial distribution, which models the sum of independent Bernoulli trials with varying success probabilities.",
+    "code_example": "import numpy as np\nfrom scipy.stats import poisson_binom\np = [0.1, 0.6, 0.7, 0.8]\nmean, var, skew, kurt = poisson_binom.stats(p, moments='mvsk')",
+    "parameters": [
+      "p",
+      "loc"
+    ],
+    "note": "Instances of this class do not support serialization/unserialization."
+  },
+  {
+    "version": "1.15.0",
+    "function_name": "scipy.stats.chatterjeexi",
+    "function_description": "Computes the xi correlation coefficient and performs a test of independence between two variables.",
+    "code_example": "import numpy as np\nfrom scipy import stats\nrng = np.random.default_rng()\nx = rng.uniform(0, 10, size=100)\ny = np.sin(x)\nres = stats.chatterjeexi(x, y)\nprint(res.statistic)",
+    "parameters": [
+      "x (array-like): The samples: corresponding observations of the independent and dependent variable. The (N-d) arrays must be broadcastable.",
+      "y (array-like): The samples: corresponding observations of the independent and dependent variable. The (N-d) arrays must be broadcastable.",
+      "axis (int or None, default: 0): If an int, the axis of the input along which to compute the statistic. The statistic of each axis-slice (e.g. row) of the input will appear in a corresponding element of the output. If None, the input will be raveled before computing the statistic.",
+      "y_continuous (bool, default: False): Whether y is assumed to be drawn from a continuous distribution.",
+      "method (str or PermutationMethod instance, default: 'asymptotic'): Selects the method used to calculate the p-value. Default is 'asymptotic'.",
+      "nan_policy (str, default: 'propagate'): Defines how to handle input NaNs.",
+      "keepdims (bool, default: False): If this is set to True, the axes which are reduced are left in the result as dimensions with size one."
+    ],
+    "return type": "SignificanceResult",
+    "note": "There is currently no special handling of ties in x; they are broken arbitrarily by the implementation. The statistic is not symmetric in x and y by design. Beginning in SciPy 1.9, np.matrix inputs are converted to np.ndarray before the calculation is performed."
+  },
+  {
+    "version": "1.15.0",
+    "function_name": "scipy.stats.abs",
+    "function_description": "Returns the absolute value of a random variable, resulting in a folded distribution.",
+    "code_example": "import numpy as np\nfrom scipy import stats\nX = stats.Normal()\nY = stats.abs(X)",
+    "parameters": [
+      "X: ContinuousDistribution"
+    ],
+    "return type": "ContinuousDistribution"
+  },
+  {
+    "version": "1.15.0",
+    "function_name": "scipy.interpolate.FloaterHormannInterpolator",
+    "function_description": "Performs Floater-Hormann barycentric rational interpolation to approximate a function based on given points and values.",
+    "code_example": "import numpy as np\nfrom scipy.interpolate import FloaterHormannInterpolator\n\ndef f(z):\n    return 1 / (1 + z**2)\n\nz = np.linspace(-5, 5, num=15)\ninterpolator = FloaterHormannInterpolator(z, f(z))\nresult = interpolator(np.linspace(-5, 5, num=1000))",
+    "parameters": [
+      {
+        "name": "points",
+        "description": "1D array_like, shape (n,) containing values of the independent variable."
+      },
+      {
+        "name": "values",
+        "description": "array_like, shape (n, \u2026) containing values of the dependent variable."
+      },
+      {
+        "name": "d",
+        "description": "int, optional. Blends n-d degree d polynomials together. Defaults to 3."
+      }
+    ],
+    "note": "The interpolant has no poles on the real axis and uses a barycentric rational form for stability. It blends n-d polynomials of degree d for high approximation order O(h^{d+1})."
+  },
+  {
+    "version": "1.15.0",
+    "function_name": "scipy.differentiate.hessian",
+    "function_description": "Evaluates the Hessian of a function numerically.",
+    "code_example": "import numpy as np\nfrom scipy.differentiate import hessian\nfrom scipy.optimize import rosen\n\nx = np.full(3, 0.5)\nres = hessian(rosen, x)\nprint(res.ddf)",
+    "parameters": [
+      "f",
+      "x",
+      "tolerances",
+      "maxiter",
+      "order",
+      "initial_step",
+      "step_factor"
+    ],
+    "return type": "_RichResult",
+    "note": "The function is implemented by nesting calls to jacobian. The rtol used in the inner jacobian call is tightened by a factor of 100. A warning is emitted if rtol is set less than 100 times the precision of the dtype of x."
+  },
+  {
+    "version": "1.15.0",
+    "function_name": "scipy.integrate.lebedev_rule",
+    "function_description": "Computes sample points and weights for Lebedev quadrature on the unit sphere for integrating functions over its surface.",
+    "code_example": "from scipy.integrate import lebedev_rule\nx, w = lebedev_rule(3)\nprint(x.shape, w.shape)",
+    "parameters": [
+      {
+        "name": "n",
+        "type": "int",
+        "description": "Quadrature order. See Notes for supported values."
+      }
+    ],
+    "return type": "tuple of ndarrays",
+    "note": "Supported values for n are 3,5,7,...131. Corresponding degrees m are 6,14,26,...5810. Implemented by translating Matlab code to Python. References include [1], [2], [3]."
+  },
+  {
+    "version": "1.15.0",
+    "function_name": "scipy.special.sph_harm_y",
+    "function_description": "Computes spherical harmonics with given degree, order, and angular coordinates.",
+    "code_example": "import scipy.special\nresult = scipy.special.sph_harm_y(1, 0, 1.5708, 0.0)",
+    "parameters": [
+      {
+        "name": "n",
+        "type": "ArrayLike[int]",
+        "description": "Degree of the harmonic. Must have n >= 0."
+      },
+      {
+        "name": "m",
+        "type": "ArrayLike[int]",
+        "description": "Order of the harmonic."
+      },
+      {
+        "name": "theta",
+        "type": "ArrayLike[float]",
+        "description": "Polar (colatitudinal) coordinate; must be in [0, pi]."
+      },
+      {
+        "name": "phi",
+        "type": "ArrayLike[float]",
+        "description": "Azimuthal (longitudinal) coordinate; must be in [0, 2pi]."
+      },
+      {
+        "name": "diff_n",
+        "type": "Optional[int]",
+        "description": "A non-negative integer. Compute and return all derivatives up to order diff_n. Default is 0."
+      }
+    ],
+    "return_type": "ndarray[complex] or tuple[ndarray[complex]]",
+    "note": "SciPy uses polar angle theta and azimuthal angle phi. The Condon-Shortley phase is included as part of sph_legendre_p. The first several spherical harmonics are defined with specific formulas."
+  },
+  {
+    "version": "1.15.0",
+    "function_name": "scipy.integrate.tanhsinh",
+    "function_description": "Evaluates a convergent integral numerically using tanh-sinh quadrature, achieving quadratic convergence for many integrands.",
+    "code_example": "import numpy as np\nfrom scipy.integrate import tanhsinh\n\ndef f(x):\n    return np.exp(-x**2)\n\nres = tanhsinh(f, -np.inf, np.inf)",
+    "parameters": [
+      "f",
+      "a",
+      "b",
+      "args",
+      "log",
+      "maxlevel",
+      "minlevel",
+      "atol",
+      "rtol",
+      "preserve_shape",
+      "callback"
+    ],
+    "return type": "_RichResult",
+    "note": "Implements tanh-sinh quadrature with quadratic convergence. Handles infinite limits and endpoint singularities. Log-integration avoids underflow for extreme magnitudes. Floating-point errors may cause endpoint evaluations to be ignored."
+  },
+  {
+    "version": "1.15.0",
+    "function_name": "scipy.stats.lmoment",
+    "function_description": "Computes the L-moments of a sample from a continuous distribution, which are summary statistics less sensitive to extreme observations than conventional moments.",
+    "code_example": "import numpy as np\nfrom scipy import stats\nrng = np.random.default_rng()\nsample = rng.exponential(size=100000)\nstats.lmoment(sample)",
+    "parameters": [
+      {
+        "name": "sample",
+        "type": "array_like",
+        "description": "The real-valued sample whose L-moments are desired."
+      },
+      {
+        "name": "order",
+        "type": "array_like",
+        "description": "The (positive integer) orders of the desired L-moments. Must be a scalar or non-empty 1D array. Default is [1, 2, 3, 4]."
+      },
+      {
+        "name": "axis",
+        "type": "int or None",
+        "description": "If an int, the axis of the input along which to compute the statistic. Default is 0."
+      },
+      {
+        "name": "sorted",
+        "type": "bool",
+        "description": "Whether sample is already sorted in increasing order along axis. Default is False."
+      },
+      {
+        "name": "standardize",
+        "type": "bool",
+        "description": "Whether to return L-moment ratios for orders 3 and higher. Default is True."
+      },
+      {
+        "name": "nan_policy",
+        "type": "str",
+        "description": "Defines how to handle input NaNs. Options: 'propagate', 'omit', 'raise'. Default is 'propagate'."
+      },
+      {
+        "name": "keepdims",
+        "type": "bool",
+        "description": "If True, the axes which are reduced are left in the result as dimensions with size one. Default is False."
+      }
+    ],
+    "return type": "ndarray",
+    "note": "Beginning in SciPy 1.9, np.matrix inputs are converted to np.ndarray. The first four standardized population L-moments of the standard exponential distribution are 1, 1/2, 1/3, and 1/6; the sample L-moments provide reasonable estimates."
+  },
+  {
+    "version": "1.15.0",
+    "function_name": "scipy.stats.truncate",
+    "function_description": "Truncates the support of a random variable and normalizes the probability density function within the specified interval.",
+    "code_example": "from scipy import stats\nX = stats.truncate(stats.Normal(), lb=-2, ub=2)",
+    "parameters": [
+      "X",
+      "lb",
+      "ub"
+    ],
+    "return_type": "ContinuousDistribution",
+    "note": "Unlike truncnorm, which truncates then shifts/scales, truncate allows shifting/scale first. Can be applied to any random variable."
+  },
+  {
+    "version": "1.15.0",
+    "function_name": "scipy.stats.order_statistic",
+    "function_description": "Returns a random variable representing the distribution of the rth order statistic from a sample of size n.",
+    "code_example": "import numpy as np\nfrom scipy import stats\nX = stats.Normal()\nY = stats.order_statistic(X, r=[1,2,3,4,5], n=5)",
+    "parameters": [
+      {
+        "name": "X",
+        "description": "ContinuousDistribution The random variable X"
+      },
+      {
+        "name": "r",
+        "description": "array_like The (positive integer) rank of the order statistic r"
+      },
+      {
+        "name": "n",
+        "description": "array_like The (positive integer) sample size n"
+      }
+    ],
+    "return type": "ContinuousDistribution",
+    "note": "The distribution is calculated using the beta distribution B(r, n - r + 1)."
+  },
+  {
+    "version": "1.15.0",
+    "function_name": "scipy.special.softplus",
+    "function_description": "Computes the softplus function element-wise, which is a smooth approximation of the rectifier function (ReLU).",
+    "code_example": "from scipy import special\nspecial.softplus(0)",
+    "parameters": [
+      "x"
+    ],
+    "return type": "ndarray"
+  }
+]

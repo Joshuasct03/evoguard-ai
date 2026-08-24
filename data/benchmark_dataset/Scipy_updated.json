@@ -1,0 +1,1520 @@
+[
+  {
+    "version": "1.12.0",
+    "function_name": "scipy.optimize.differential_evolution",
+    "function_description": "Finds the global minimum of a multivariate function.",
+    "parameters": [
+      "func",
+      "bounds",
+      "args",
+      "strategy",
+      "maxiter",
+      "popsize",
+      "tol",
+      "mutation",
+      "recombination",
+      "rng",
+      "callback",
+      "disp",
+      "polish",
+      "init",
+      "atol",
+      "updating",
+      "workers",
+      "constraints",
+      "x0",
+      "integrality",
+      "vectorized"
+    ],
+    "return type": "OptimizeResult",
+    "update_type": "modified parameter",
+    "note": "Differential evolution is a stochastic population based method that is useful for global optimization problems. It does not use gradient methods to find the minimum, and can search large areas of candidate space, but often requires larger numbers of function evaluations than conventional gradient-based techniques.",
+    "update_info": "accepts the intermediate_result keyword in callback",
+    "update_description": "The scipy.optimize.differential_evolution function now supports the intermediate_result keyword parameter to pass detailed information to the callback function.",
+    "code_example": "import numpy as np\nfrom scipy.optimize import rosen, differential_evolution\nbounds = [(0, 2), (0, 2), (0, 2), (0, 2), (0, 2)]\nresult = differential_evolution(rosen, bounds)\nresult.x, result.fun"
+  },
+  {
+    "version": "1.12.0",
+    "function_name": "scipy.integrate.cumulative_trapezoid",
+    "function_description": "Cumulatively integrate y(x) using the composite trapezoidal rule.",
+    "parameters": [
+      {
+        "name": "y",
+        "description": "array_like Values to integrate."
+      },
+      {
+        "name": "x",
+        "description": "array_like, optional The coordinate to integrate along. If None (default), use spacing dx between consecutive elements in y."
+      },
+      {
+        "name": "dx",
+        "description": "float, optional Spacing between elements of y. Only used if x is None."
+      },
+      {
+        "name": "axis",
+        "description": "int, optional Specifies the axis to cumulate. Default is -1 (last axis)."
+      },
+      {
+        "name": "initial",
+        "description": "scalar, optional If given, insert this value at the beginning of the returned result. 0 or None are the only values accepted."
+      }
+    ],
+    "return_type": "ndarray",
+    "update_type": "modified parameter",
+    "update_info": "deprecated parameters",
+    "update_description": "Values of the initial parameter of scipy.integrate.cumulative_trapezoid other than 0 and None are now deprecated.",
+    "code_example": "from scipy import integrate\nimport numpy as np\nx = np.linspace(-2, 2, num=20)\ny = x\ny_int = integrate.cumulative_trapezoid(y, x, initial=0)\nprint(y_int)"
+  },
+  {
+    "version": "1.12.0",
+    "function_name": "scipy.stats.iqr",
+    "function_description": "Computes the interquartile range (IQR) of the data along the specified axis, which is the difference between the 75th and 25th percentiles.",
+    "parameters": [
+      "x: array_like, Input array or object that can be converted to an array.",
+      "axis: int or None, default: None, If an int, the axis of the input along which to compute the statistic.",
+      "rng: Two-element sequence containing floats in range of [0,100], optional, Percentiles over which to compute the range. The default is the true IQR: (25, 75).",
+      "scale: scalar or str or array_like of reals, optional, The numerical value of scale will be divided out of the final result.",
+      "nan_policy: {\u2018propagate\u2019, \u2018omit\u2019, \u2018raise\u2019}, Defines how to handle input NaNs.",
+      "interpolation: str, optional, Specifies the interpolation method to use when the percentile boundaries lie between two data points.",
+      "keepdims: bool, default: False, If this is set to True, the axes which are reduced are left in the result as dimensions with size one."
+    ],
+    "return_type": "scalar or ndarray",
+    "note": "Beginning in SciPy 1.9, np.matrix inputs are converted to np.ndarray. The output will be a scalar or np.ndarray. Masked elements of masked arrays are ignored, but the output will not be a masked array.",
+    "update_type": "modified parameter",
+    "update_info": "parameter scale='raw' is deprecated in favor of scale=1",
+    "update_description": "The use of scale='raw' in scipy.stats.iqr is deprecated in favor of scale=1.",
+    "code_example": "import numpy as np\nfrom scipy.stats import iqr\nx = np.array([[10, 7, 4], [3, 2, 1]])\niqr(x)"
+  },
+  {
+    "version": "1.13.0",
+    "function_name": "scipy.interpolate.Akima1DInterpolator",
+    "function_description": "Fits a piecewise cubic polynomial to 1D data using Akima's method for smooth interpolation.",
+    "parameters": [
+      {
+        "name": "x",
+        "description": "1-D array of monotonically increasing real values."
+      },
+      {
+        "name": "y",
+        "description": "N-D array of real values. The length of y along the interpolation axis must be equal to the length of x."
+      },
+      {
+        "name": "axis",
+        "description": "Axis in the y array corresponding to the x-coordinate values. Defaults to axis=0."
+      },
+      {
+        "name": "method",
+        "description": "{'akima', 'makima'}, optional. Use 'makima' for modified Akima interpolation."
+      },
+      {
+        "name": "extrapolate",
+        "description": "bool or None, optional. Determines extrapolation behavior for out-of-bounds points."
+      }
+    ],
+    "note": "Use only for precise data, as the fitted curve passes through the given points exactly. This routine is useful for plotting a pleasingly smooth curve through a few given points.",
+    "update_type": "added parameter",
+    "update_info": "added parameter: 'method' for Modified Akima Interpolation",
+    "update_description": "The Modified Akima Interpolation has been added to scipy.interpolate.Akima1DInterpolator, available via the new method argument.",
+    "code_example": "import numpy as np\nfrom scipy.interpolate import Akima1DInterpolator\nx = np.linspace(1, 7, 7)\ny = np.array([-1, -1, -1, 0, 1, 1, 1])\ninterpolator = Akima1DInterpolator(x, y, method='akima')\nx_new = np.linspace(min(x), max(x), num=100)\ny_interpolated = interpolator(x_new)"
+  },
+  {
+    "version": "1.13.0",
+    "function_name": "scipy.stats.boxcox_normmax",
+    "function_description": "Compute optimal Box-Cox transform parameter for input data.",
+    "parameters": [
+      "x",
+      "brack",
+      "method",
+      "optimizer",
+      "ymax"
+    ],
+    "return type": "float or ndarray",
+    "note": "brack is the starting interval for the default optimizer. If optimizer is passed, brack must be None. ymax is ignored when method is 'pearsonr'.",
+    "update_type": "added parameter",
+    "update_info": "added parameter: ymax",
+    "update_description": "scipy.stats.boxcox_normmax has gained a ymax parameter to allow user specification of the maximum value of the transformed data.",
+    "code_example": "import numpy as np; from scipy import stats; x = np.array([1, 2, 3, 4, 5]); lmbda = stats.boxcox_normmax(x); print(lmbda)"
+  },
+  {
+    "version": "1.13.0",
+    "function_name": "scipy.special.factorial",
+    "function_description": "Calculates the factorial of a number or array of numbers using integer or gamma function-based computation.",
+    "parameters": [
+      {
+        "name": "n",
+        "description": "int or float or complex (or array_like thereof). Input values for n!. Complex values require extend='complex'. By default, the return value for n < 0 is 0."
+      },
+      {
+        "name": "exact",
+        "description": "bool, optional. If set to True, calculate the answer exactly using integer arithmetic, otherwise approximate using the gamma function (faster, but yields floats instead of integers). Default is False."
+      },
+      {
+        "name": "extend",
+        "description": "string, optional. One of 'zero' or 'complex'; this determines how values n < 0 are handled - by default they are 0, but it is possible to opt into the complex extension of the factorial (see below)."
+      }
+    ],
+    "return type": "int or float or complex or ndarray",
+    "note": "For arrays with exact=True, the factorial is computed once for the largest input, with each other result computed in the process. The output dtype is increased to int64 or object if necessary. With exact=False, the factorial is approximated using the gamma function: n! = \u0393(n+1).",
+    "update_type": "changed behavior",
+    "update_info": "deprecated parameter: non-integer n with exact=True",
+    "update_description": "Non-integer arrays in scipy.special.factorial with exact=True now raise an error.",
+    "code_example": "import numpy as np; from scipy.special import factorial; print(factorial(5, exact=True))"
+  },
+  {
+    "version": "1.13.0",
+    "function_name": "scipy.stats.moment",
+    "function_description": "Calculate the nth moment about the mean for a sample.",
+    "parameters": [
+      {
+        "name": "a",
+        "type": "array_like",
+        "description": "Input array."
+      },
+      {
+        "name": "order",
+        "type": "int or 1-D array_like of ints",
+        "description": "Order of central moment that is returned. Default is 1."
+      },
+      {
+        "name": "axis",
+        "type": "int or None",
+        "description": "Axis of the input along which to compute the statistic. Default is 0."
+      },
+      {
+        "name": "nan_policy",
+        "type": "{\u2018propagate\u2019, \u2018omit\u2019, \u2018raise\u2019}",
+        "description": "Defines how to handle input NaNs. Default is 'propagate'."
+      },
+      {
+        "name": "center",
+        "type": "float or None",
+        "description": "The point about which moments are taken. Default is None (compute sample mean)."
+      },
+      {
+        "name": "keepdims",
+        "type": "bool",
+        "description": "If True, the axes which are reduced are left in the result as dimensions with size one. Default is False."
+      }
+    ],
+    "return_type": "ndarray or float",
+    "note": "The k-th moment of a data sample is: [formula]. This function uses exponentiation by squares for efficiency. Note that, if a is an empty array (a.size == 0), array moment with one element (moment.size == 1) is treated the same as scalar moment (np.isscalar(moment)). This might produce arrays of unexpected shape. Beginning in SciPy 1.9, np.matrix inputs (not recommended for new code) are converted to np.ndarray before the calculation is performed. In this case, the output will be a scalar or np.ndarray of appropriate shape rather than a 2D np.matrix. Similarly, while masked elements of masked arrays are ignored, the output will be a scalar or np.ndarray rather than a masked array with mask=False.",
+    "update_type": "modified parameter",
+    "update_info": "parameter name change: second argument renamed to 'order'",
+    "update_description": "The second argument of scipy.stats.moment has been renamed to 'order' while maintaining backward compatibility.",
+    "code_example": "from scipy.stats import moment\nmoment([1,2,3,4,5], order=1)"
+  },
+  {
+    "version": "1.13.0",
+    "function_name": "scipy.stats.mood",
+    "function_description": "Performs Mood\u2019s test for equal scale parameters between two samples.",
+    "parameters": [
+      "x, y: array_like",
+      "axis: int or None, default: 0",
+      "alternative: {\u2018two-sided\u2019, \u2018less\u2019, \u2018greater\u2019}, optional",
+      "nan_policy: {\u2018propagate\u2019, \u2018omit\u2019, \u2018raise\u2019}",
+      "keepdims: bool, default: False"
+    ],
+    "return type": "SignificanceResult",
+    "note": "Data are assumed to be drawn from probability distributions f(x) and f(x/s)/s. Multi-dimensional arrays are handled with specified axis. NaNs are managed via nan_policy. SciPy 1.9+ converts np.matrix inputs to np.ndarray.",
+    "update_type": "added parameter",
+    "update_info": "added parameters: nan_policy, keepdims",
+    "update_description": "scipy.stats.mood now has nan_policy and keepdims support.",
+    "code_example": "import numpy as np\nfrom scipy import stats\nrng = np.random.default_rng()\nx1 = rng.standard_normal((2, 30))\nx2 = rng.standard_normal((2, 35)) * 10.0\nstats.mood(x1, x2, axis=1)"
+  },
+  {
+    "version": "1.13.0",
+    "function_name": "scipy.stats.brunnermunzel",
+    "function_description": "Compute the Brunner-Munzel test on samples x and y to compare two independent groups without assuming equivariance.",
+    "parameters": [
+      {
+        "name": "x",
+        "description": "array_like, Array of samples, should be one-dimensional."
+      },
+      {
+        "name": "y",
+        "description": "array_like, Array of samples, should be one-dimensional."
+      },
+      {
+        "name": "alternative",
+        "description": "{\u2018two-sided\u2019, \u2018less\u2019, \u2018greater\u2019}, optional. Defines the alternative hypothesis."
+      },
+      {
+        "name": "distribution",
+        "description": "{\u2018t\u2019, \u2018normal\u2019}, optional. Defines how to get the p-value."
+      },
+      {
+        "name": "nan_policy",
+        "description": "{\u2018propagate\u2019, \u2018omit\u2019, \u2018raise\u2019}. Defines how to handle input NaNs."
+      },
+      {
+        "name": "axis",
+        "description": "int or None, default: 0. Axis along which to compute the statistic."
+      },
+      {
+        "name": "keepdims",
+        "description": "bool, default: False. Whether to keep reduced dimensions in the result."
+      }
+    ],
+    "return type": "tuple (statistic: float, pvalue: float)",
+    "note": "Brunner and Munzel recommended using t-distribution for data size \u226450. For size <10, permuted test is advised. NaN handling options are available.",
+    "update_type": "added parameter",
+    "update_info": "added parameters: axis, keepdims",
+    "update_description": "scipy.stats.brunnermunzel now has axis and keepdims support.",
+    "code_example": "from scipy import stats\nx1 = [1, 2, 1, 1, 1, 1, 1, 1, 1, 1, 2, 4, 1, 1]\nx2 = [3, 3, 4, 3, 1, 2, 3, 1, 1, 5, 4]\nw, p_value = stats.brunnermunzel(x1, x2)"
+  },
+  {
+    "version": "1.13.0",
+    "function_name": "scipy.stats.friedmanchisquare",
+    "function_description": "Compute the Friedman test for repeated samples to determine if they have the same distribution.",
+    "parameters": [
+      "samples (array_like, multiple)",
+      "axis (int, default 0)",
+      "nan_policy (str, default 'propagate')",
+      "keepdims (bool, default False)"
+    ],
+    "return type": "tuple of float, float",
+    "note": "The p-value is only reliable for n > 10 and more than 6 repeated samples. Output is a scalar or array depending on input.",
+    "update_type": "added parameter",
+    "update_info": "added parameters: axis, nan_policy, keepdims",
+    "update_description": "scipy.stats.friedmanchisquare has gained axis, nan_policy, and keepdims support.",
+    "code_example": "import numpy as np\nfrom scipy.stats import friedmanchisquare\nx = np.random.random((6, 10))\nresult = friedmanchisquare(x[0], x[1], x[2], x[3], x[4], x[5])\nprint(result.statistic, result.pvalue)"
+  },
+  {
+    "version": "1.13.0",
+    "function_name": "scipy.stats.shapiro",
+    "function_description": "The Shapiro-Wilk test for normality checks if the data was drawn from a normal distribution.",
+    "parameters": [
+      {
+        "name": "x",
+        "description": "array_like. Array of sample data. Must contain at least three observations."
+      },
+      {
+        "name": "axis",
+        "description": "int or None, default: None. If an int, the axis of the input along which to compute the statistic. The statistic of each axis-slice (e.g. row) of the input will appear in a corresponding element of the output. If None, the input will be raveled before computing the statistic."
+      },
+      {
+        "name": "nan_policy",
+        "description": "{\u2018propagate\u2019, \u2018omit\u2019, \u2018raise\u2019}. Defines how to handle input NaNs. propagate: if a NaN is present in the axis slice (e.g. row) along which the statistic is computed, the corresponding entry of the output will be NaN. omit: NaNs will be omitted when performing the calculation. If insufficient data remains in the axis slice along which the statistic is computed, the corresponding entry of the output will be NaN. raise: if a NaN is present, a ValueError will be raised."
+      },
+      {
+        "name": "keepdims",
+        "description": "bool, default: False. If this is set to True, the axes which are reduced are left in the result as dimensions with size one. With this option, the result will broadcast correctly against the input array."
+      }
+    ],
+    "return_type": "tuple[float, float]",
+    "note": "The algorithm used is described in [4] but censoring parameters as described are not implemented. For N > 5000 the W test statistic is accurate, but the p-value may not be. Beginning in SciPy 1.9, np.matrix inputs (not recommended for new code) are converted to np.ndarray before the calculation is performed. In this case, the output will be a scalar or np.ndarray of appropriate shape rather than a 2D np.matrix. Similarly, while masked elements of masked arrays are ignored, the output will be a scalar or np.ndarray rather than a masked array with mask=False.",
+    "update_type": "added parameter",
+    "update_info": "added parameters: axis, nan_policy, keepdims",
+    "update_description": "scipy.stats.shapiro has gained axis, nan_policy, and keepdims support.",
+    "code_example": "import numpy as np\nfrom scipy import stats\nrng = np.random.default_rng()\nx = stats.norm.rvs(loc=5, scale=3, size=100, random_state=rng)\nshapiro_test = stats.shapiro(x)"
+  },
+  {
+    "version": "1.13.0",
+    "function_name": "scipy.stats.normaltest",
+    "function_description": "Test whether a sample differs from a normal distribution.",
+    "parameters": [
+      {
+        "name": "a",
+        "description": "array_like, The array containing the sample to be tested. Must contain at least eight observations."
+      },
+      {
+        "name": "axis",
+        "description": "int or None, default: 0, If an int, the axis of the input along which to compute the statistic."
+      },
+      {
+        "name": "nan_policy",
+        "description": "{\u2018propagate\u2019, \u2018omit\u2019, \u2018raise\u2019}, Defines how to handle input NaNs."
+      },
+      {
+        "name": "keepdims",
+        "description": "bool, default: False, If True, the axes which are reduced are left in the result as dimensions with size one."
+      }
+    ],
+    "return type": "tuple of float or array, (statistic, pvalue)",
+    "update_type": "added parameter",
+    "note": "Beginning in SciPy 1.9, np.matrix inputs are converted to np.ndarray. Masked elements of masked arrays are ignored, but output is not a masked array.",
+    "update_info": "added parameters: axis, nan_policy, keepdims",
+    "update_description": "scipy.stats.normaltest has gained axis, nan_policy, and keepdims support.",
+    "code_example": "import numpy as np\nfrom scipy import stats\nrng = np.random.default_rng()\npts = 1000\na = rng.normal(0, 1, size=pts)\nb = rng.normal(2, 1, size=pts)\nx = np.concatenate((a, b))\nres = stats.normaltest(x)\nprint(res.statistic)\nprint(res.pvalue)"
+  },
+  {
+    "version": "1.13.0",
+    "function_name": "scipy.stats.skewtest",
+    "function_description": "Tests if the skewness of a dataset differs from a normal distribution.",
+    "parameters": [
+      {
+        "name": "a",
+        "description": "array: The data to be tested. Must contain at least eight observations."
+      },
+      {
+        "name": "axis",
+        "description": "int or None, default: 0: If an int, the axis of the input along which to compute the statistic."
+      },
+      {
+        "name": "nan_policy",
+        "description": "{\u2018propagate\u2019, \u2018omit\u2019, \u2018raise\u2019}: Defines how to handle input NaNs."
+      },
+      {
+        "name": "alternative",
+        "description": "{\u2018two-sided\u2019, \u2018less\u2019, \u2018greater\u2019}, optional: Defines the alternative hypothesis."
+      },
+      {
+        "name": "keepdims",
+        "description": "bool, default: False: If True, the axes which are reduced are left in the result as dimensions with size one."
+      }
+    ],
+    "return type": "tuple of float: (statistic, pvalue)",
+    "note": "Sample size must be at least 8. np.matrix inputs are converted to np.ndarray. NaN handling and masked arrays are supported.",
+    "update_type": "added parameter",
+    "update_info": "added parameters: axis, nan_policy, keepdims",
+    "update_description": "scipy.stats.skewtest has gained axis, nan_policy, and keepdims support.",
+    "code_example": "from scipy.stats import skewtest\nskewtest([1, 2, 3, 4, 5, 6, 7, 8])"
+  },
+  {
+    "version": "1.13.0",
+    "function_name": "scipy.stats.kurtosistest",
+    "function_description": "Tests if a dataset has normal kurtosis by checking if the population's kurtosis matches the normal distribution.",
+    "parameters": [
+      {
+        "name": "a",
+        "description": "Array of the sample data. Must contain at least five observations."
+      },
+      {
+        "name": "axis",
+        "description": "int or None, default: 0. If an int, the axis of the input along which to compute the statistic. The statistic of each axis-slice (e.g. row) of the input will appear in a corresponding element of the output. If None, the input will be raveled before computing the statistic."
+      },
+      {
+        "name": "nan_policy",
+        "description": "{\u2018propagate\u2019, \u2018omit\u2019, \u2018raise\u2019}, default: \u2018propagate\u2019. Defines how to handle input NaNs. propagate: if a NaN is present in the axis slice (e.g. row) along which the statistic is computed, the corresponding entry of the output will be NaN. omit: NaNs will be omitted when performing the calculation. If insufficient data remains in the axis slice along which the statistic is computed, the corresponding entry of the output will be NaN. raise: if a NaN is present, a ValueError will be raised."
+      },
+      {
+        "name": "alternative",
+        "description": "{\u2018two-sided\u2019, \u2018less\u2019, \u2018greater\u2019}, optional. Defines the alternative hypothesis. \u2018two-sided\u2019: the kurtosis of the distribution underlying the sample is different from that of the normal distribution. \u2018less\u2019: the kurtosis of the distribution underlying the sample is less than that of the normal distribution. \u2018greater\u2019: the kurtosis of the distribution underlying the sample is greater than that of the normal distribution."
+      },
+      {
+        "name": "keepdims",
+        "description": "bool, default: False. If True, the axes which are reduced are left in the result as dimensions with size one. With this option, the result will broadcast correctly against the input array."
+      }
+    ],
+    "return type": "tuple of float (statistic) and float (pvalue)",
+    "update_type": "added parameter",
+    "note": "Valid only for n>20. This function uses the method described in [1]. Beginning in SciPy 1.9, np.matrix inputs (not recommended for new code) are converted to np.ndarray before the calculation is performed. In this case, the output will be a scalar or np.ndarray of appropriate shape rather than a 2D np.matrix. Similarly, while masked elements of masked arrays are ignored, the output will be a scalar or np.ndarray rather than a masked array with mask=False.",
+    "update_info": "added parameters: axis, nan_policy, keepdims",
+    "update_description": "scipy.stats.kurtosistest has gained axis, nan_policy, and keepdims support.",
+    "code_example": "import numpy as np\nfrom scipy.stats import kurtosistest\nkurtosistest(list(range(20)))"
+  },
+  {
+    "version": "1.13.0",
+    "function_name": "scipy.stats.f_oneway",
+    "function_description": "Performs one-way ANOVA to test if the population means of two or more groups are equal.",
+    "parameters": [
+      {
+        "name": "samples",
+        "description": "Array_like, multiple input arrays for each group. Must have at least two arguments."
+      },
+      {
+        "name": "axis",
+        "description": "int or None, default: 0. Axis along which to compute the statistic."
+      },
+      {
+        "name": "nan_policy",
+        "description": "{\u2018propagate\u2019, \u2018omit\u2019, \u2018raise\u2019}, default: \u2018propagate\u2019. Defines handling of input NaNs."
+      },
+      {
+        "name": "keepdims",
+        "description": "bool, default: False. Whether to keep reduced axes as dimension 1 in output."
+      }
+    ],
+    "return type": "tuple (statistic: float, pvalue: float)",
+    "note": "Assumes independence, normality, and homoscedasticity. Handles NaNs via nan_policy. Returns NaN/inf for invalid inputs. Requires at least one group with length >1.",
+    "update_type": "added parameter",
+    "update_info": "added parameters: axis, nan_policy, keepdims",
+    "update_description": "scipy.stats.f_oneway has gained axis, nan_policy, and keepdims support.",
+    "code_example": "from scipy.stats import f_oneway\nf_oneway(tillamook, newport, petersburg, magadan, tvarminne)"
+  },
+  {
+    "version": "1.13.0",
+    "function_name": "scipy.stats.alexandergovern",
+    "function_description": "Performs the Alexander-Govern test to compare the equality of k independent means with heterogeneous variances.",
+    "parameters": [
+      {
+        "name": "samples",
+        "description": "Variable number of array_like inputs representing sample measurements for each group. Requires at least two samples, each with at least two observations."
+      },
+      {
+        "name": "nan_policy",
+        "description": "{\u2018propagate\u2019, \u2018omit\u2019, \u2018raise\u2019} Defines handling of input NaNs (default: \u2018propagate\u2019)."
+      },
+      {
+        "name": "axis",
+        "description": "int or None, default: 0. Axis along which to compute the statistic. None ravelles the input."
+      },
+      {
+        "name": "keepdims",
+        "description": "bool, default: False. Whether to keep reduced axes as dimensions of size one."
+      }
+    ],
+    "return type": "AlexanderGovernResult",
+    "note": "Assumes independent samples from normal distributions, no homoscedasticity. Input samples must be finite, 1D, and size >1. NaN handling and SciPy 1.9+ matrix conversion behavior noted.",
+    "update_type": "added parameter",
+    "update_info": "added parameters: axis, nan_policy, keepdims",
+    "update_description": "scipy.stats.alexandergovern has gained axis, nan_policy, and keepdims support.",
+    "code_example": "from scipy.stats import alexandergovern\nalexandergovern(atlanta, chicago, houston, memphis)"
+  },
+  {
+    "version": "1.13.0",
+    "function_name": "scipy.stats.kstest",
+    "function_description": "Performs the (one-sample or two-sample) Kolmogorov-Smirnov test for goodness of fit.",
+    "parameters": [
+      "rvs",
+      "cdf",
+      "args",
+      "N",
+      "alternative",
+      "method",
+      "axis",
+      "nan_policy",
+      "keepdims"
+    ],
+    "return type": "KstestResult",
+    "note": "The alternative parameter defines the null and alternative hypotheses. The null hypothesis is that the two distributions are identical (F(x)=G(x) for all x) for 'two-sided', F(x) >= G(x) for 'less', or F(x) <= G(x) for 'greater'. np.matrix inputs are converted to np.ndarray. Masked arrays are handled by omitting NaNs.",
+    "update_type": "added parameter",
+    "update_info": "added parameters: axis, nan_policy, keepdims",
+    "update_description": "scipy.stats.kstest has gained axis, nan_policy, and keepdims support.",
+    "code_example": "import numpy as np\nfrom scipy import stats\nrng = np.random.default_rng()\nstats.kstest(stats.uniform.rvs(size=100, random_state=rng), stats.norm.cdf)"
+  },
+  {
+    "version": "1.14.0",
+    "function_name": "scipy.signal.minimum_phase",
+    "update_info": "added parameter 'half'",
+    "function_description": "Converts a linear-phase FIR filter to a minimum-phase filter.",
+    "parameters": [
+      {
+        "name": "h",
+        "description": "array: Linear-phase FIR filter coefficients."
+      },
+      {
+        "name": "method",
+        "description": "{\u2018hilbert\u2019, \u2018homomorphic\u2019}: The method to use for conversion."
+      },
+      {
+        "name": "n_fft",
+        "description": "int: The number of points to use for the FFT."
+      },
+      {
+        "name": "half",
+        "description": "bool: If True, create a filter that is half the length of the original."
+      }
+    ],
+    "return type": "array: The minimum-phase version of the filter.",
+    "note": "Both methods require selecting an FFT length. The Hilbert method's epsilon is related to n_stop and n_fft. Alternative methods include zero inversion and spectral factorization.",
+    "update_type": "added parameter",
+    "update_description": "The scipy.signal.minimum_phase function now supports a 'half' argument, allowing the provision of a filter of the same length as the linear-phase FIR filter coefficients and with the same magnitude spectrum.",
+    "code_example": "from scipy.signal import minimum_phase\nh_linear = [1, 2, 3]  # example coefficients\nh_min = minimum_phase(h_linear, method='homomorphic')"
+  },
+  {
+    "version": "1.14.0",
+    "function_name": "scipy.interpolate.Akima1DInterpolator",
+    "function_description": "Fits piecewise cubic polynomials to create a smooth curve through given data points using Akima interpolation.",
+    "parameters": [
+      "x",
+      "y",
+      "axis",
+      "method",
+      "extrapolate"
+    ],
+    "note": "Use only for precise data, as the fitted curve passes through the given points exactly. This routine is useful for plotting a pleasingly smooth curve through a few given points for purposes of plotting.",
+    "update_type": "added parameter",
+    "update_info": "added parameter 'extrapolate'",
+    "update_description": "The scipy.interpolate.Akima1DInterpolator now supports extrapolation via the 'extrapolate' argument.",
+    "code_example": "import numpy as np\nfrom scipy.interpolate import Akima1DInterpolator\nx = np.linspace(1, 7, 7)\ny = np.array([-1, -1, -1, 0, 1, 1, 1])\ninterpolator = Akima1DInterpolator(x, y, method='makima')\nxs = np.linspace(min(x), max(x), num=100)\ny_interpolated = interpolator(xs)"
+  },
+  {
+    "version": "1.14.0",
+    "function_name": "scipy.stats.pearsonr",
+    "function_description": "Calculates the Pearson correlation coefficient and p-value to test for non-correlation between two datasets.",
+    "parameters": [
+      {
+        "name": "x",
+        "type": "array_like",
+        "description": "Input array."
+      },
+      {
+        "name": "y",
+        "type": "array_like",
+        "description": "Input array."
+      },
+      {
+        "name": "axis",
+        "type": "int or None",
+        "description": "Axis along which to perform the calculation. Default is 0. If None, ravel both arrays before performing the calculation."
+      },
+      {
+        "name": "alternative",
+        "type": "{\u2018two-sided\u2019, \u2018greater\u2019, \u2018less\u2019}",
+        "description": "Defines the alternative hypothesis. Default is \u2018two-sided\u2019. Options: \u2018two-sided\u2019 (correlation is nonzero), \u2018less\u2019 (correlation is negative), \u2018greater\u2019 (correlation is positive)."
+      },
+      {
+        "name": "method",
+        "type": "ResamplingMethod, optional",
+        "description": "Method to compute the p-value. If provided, uses permutation/monte carlo tests; otherwise, uses default distribution-based calculation."
+      }
+    ],
+    "return_type": "PearsonRResult",
+    "note": "Raises ValueError if inputs have length < 2. Warns about constant/near-constant inputs. The p-value calculation assumes normality unless resampling methods are used.",
+    "update_type": "added parameter",
+    "update_info": "added parameter 'axis'",
+    "update_description": "The scipy.stats.pearsonr function now accepts n-D arrays and computes the statistic along a specified axis with the new axis parameter.",
+    "code_example": "import numpy as np\nfrom scipy import stats\nx = [1, 2, 3, 4, 5, 6, 7]\ny = [10, 9, 2.5, 6, 4, 3, 2]\nres = stats.pearsonr(x, y)\nprint(res)"
+  },
+  {
+    "version": "1.14.0",
+    "function_name": "scipy.stats.gstd",
+    "function_description": "Calculates the geometric standard deviation of an array, which describes the spread using the geometric mean.",
+    "parameters": [
+      {
+        "name": "a",
+        "description": "array_like: An array containing finite, strictly positive, real numbers."
+      },
+      {
+        "name": "axis",
+        "description": "int, tuple or None, optional: Axis along which to operate. Default is 0."
+      },
+      {
+        "name": "ddof",
+        "description": "int, optional: Degree of freedom correction. Default is 1."
+      }
+    ],
+    "return type": "ndarray or float: An array of the geometric standard deviation. If axis is None or a is a 1d array, a float is returned.",
+    "note": "Support for masked array input was deprecated in SciPy 1.14.0 and will be removed in version 1.16.0. Non-positive observations produce NaNs. The geometric standard deviation is exp(std(log(a))) not exp(std(a)).",
+    "update_type": "changed behavior",
+    "update_info": "deprecated support for masked array input",
+    "update_description": "scipy.stats.gstd has deprecated support for masked array input.",
+    "code_example": "import numpy as np\nfrom scipy.stats import gstd\nsample = np.lognormal(0, 1, 1000)\ngstd(sample)"
+  },
+  {
+    "version": "1.14.0",
+    "function_name": "scipy.integrate.quad_vec",
+    "function_description": "Adaptive integration of a vector-valued function.",
+    "parameters": [
+      {
+        "name": "f",
+        "type": "callable",
+        "description": "Vector-valued function f(x) to integrate."
+      },
+      {
+        "name": "a",
+        "type": "float",
+        "description": "Initial point."
+      },
+      {
+        "name": "b",
+        "type": "float",
+        "description": "Final point."
+      },
+      {
+        "name": "epsabs",
+        "type": "float",
+        "description": "Absolute tolerance."
+      },
+      {
+        "name": "epsrel",
+        "type": "float",
+        "description": "Relative tolerance."
+      },
+      {
+        "name": "norm",
+        "type": "{\u2018max\u2019, \u20182\u2019}",
+        "description": "Vector norm to use for error estimation."
+      },
+      {
+        "name": "cache_size",
+        "type": "int",
+        "description": "Number of bytes to use for memoization."
+      },
+      {
+        "name": "limit",
+        "type": "float or int",
+        "description": "Upper bound on the number of subintervals used in the adaptive algorithm."
+      },
+      {
+        "name": "workers",
+        "type": "int or map-like callable",
+        "description": "If workers is an integer, part of the computation is done in parallel."
+      },
+      {
+        "name": "points",
+        "type": "list",
+        "description": "List of additional breakpoints."
+      },
+      {
+        "name": "quadrature",
+        "type": "{\u2018gk21\u2019, \u2018gk15\u2019, \u2018trapezoid\u2019}",
+        "description": "Quadrature rule to use on subintervals."
+      },
+      {
+        "name": "full_output",
+        "type": "bool",
+        "description": "Return an additional info dictionary."
+      },
+      {
+        "name": "args",
+        "type": "tuple",
+        "description": "Extra arguments to pass to function, if any."
+      }
+    ],
+    "return type": "tuple of (res: float/array-like, err: float, info: dict) when full_output=True",
+    "note": "Algorithm differs from QUADPACK by subdividing multiple intervals in parallel and not using Wynn epsilon extrapolation. The 'norm' parameter specifies vector norm for error estimation.",
+    "update_type": "modified parameter",
+    "update_info": "parameter deprecated",
+    "update_description": "The option quadrature='trapz' in scipy.integrate.quad_vec has been deprecated in favour of quadrature='trapezoid' and will be removed in SciPy 1.16.0.",
+    "code_example": "from scipy.integrate import quad_vec\nimport numpy as np\n\nf = lambda x: x**np.linspace(0.0, 2.0, 30)\nx0, x1 = 0, 2\ny, err = quad_vec(f, x0, x1)\nprint(y, err)"
+  },
+  {
+    "version": "1.14.0",
+    "function_name": "scipy.special.comb",
+    "function_description": "Calculates the number of combinations of N things taken k at a time, also known as 'N choose k'.",
+    "parameters": [
+      {
+        "name": "N",
+        "type": "int, ndarray"
+      },
+      {
+        "name": "k",
+        "type": "int, ndarray"
+      },
+      {
+        "name": "exact",
+        "type": "bool, optional"
+      },
+      {
+        "name": "repetition",
+        "type": "bool, optional"
+      }
+    ],
+    "return type": "int, float, or ndarray",
+    "note": "Array arguments are only accepted when exact=False. If N < 0 or k < 0, returns 0. If k > N and repetition=False, returns 0. exact=True is deprecated for non-integer N and k and will raise an error in SciPy 1.16.0.",
+    "update_type": "modified parameter",
+    "update_info": "deprecated support for use of exact=True with non-integral N and/or k",
+    "update_description": "scipy.special.comb has deprecated support for use of exact=True in conjunction with non-integral N and/or k.",
+    "code_example": "from scipy.special import comb\nprint(comb(10, 3, exact=True))"
+  },
+  {
+    "version": "1.14.0",
+    "function_name": "scipy.special.perm",
+    "function_description": "Permutations of N things taken k at a time, i.e., k-permutations of N., also known as 'partial permutations'.",
+    "parameters": [
+      {
+        "name": "N",
+        "type": "int, ndarray"
+      },
+      {
+        "name": "k",
+        "type": "int, ndarray"
+      },
+      {
+        "name": "exact",
+        "type": "bool, optional"
+      },
+      {
+        "name": "repetition",
+        "type": "bool, optional"
+      }
+    ],
+    "return type": "int, float, or ndarray",
+    "note": "Array arguments are only accepted when exact=False. If N < 0 or k < 0, returns 0. If k > N and repetition=False, returns 0. exact=True is deprecated for non-integer N and k and will raise an error in SciPy 1.16.0.",
+    "update_type": "modified parameter",
+    "update_info": "deprecated support for use of exact=True with non-integral N and/or k",
+    "update_description": "scipy.special.perm has deprecated support for use of exact=True in conjunction with non-integral N and/or k.",
+    "code_example": "from scipy.special import perm\nprint(perm(10, 3, exact=True))"
+  },
+  {
+    "version": "1.14.0",
+    "function_name": "scipy.sparse.linalg.bicg",
+    "function_description": "Solves a linear system Ax = b using the Biconjugate Gradient iteration method.",
+    "parameters": [
+      "A: {sparse array, ndarray, LinearOperator} The real or complex N-by-N matrix of the linear system.",
+      "b: ndarray Right hand side of the linear system. Has shape (N,) or (N,1).",
+      "x0: ndarray Starting guess for the solution.",
+      "rtol, atol: float, optional Parameters for the convergence test.",
+      "maxiter: integer Maximum number of iterations.",
+      "M: {sparse array, ndarray, LinearOperator} Preconditioner for A.",
+      "callback: function User-supplied function to call after each iteration."
+    ],
+    "return_type": "tuple of ndarray and integer",
+    "note": "The preconditioner M should be a matrix such that M @ A has a smaller condition number than A, see [1].",
+    "update_type": "removed parameter",
+    "has_alternative": "Yes",
+    "update_info": "tol argument removed in favor of rtol",
+    "update_description": "The tol argument of scipy.sparse.linalg.bicg has been removed in favour of rtol.",
+    "code_example": "import numpy as np\nfrom scipy.sparse import csc_array\nfrom scipy.sparse.linalg import bicg\nA = csc_array([[3, 2, 0], [1, -1, 0], [0, 5, 1.]])\nb = np.array([2., 4., -1.])\nx, exitCode = bicg(A, b, atol=1e-5)\nprint(exitCode)"
+  },
+  {
+    "version": "1.14.0",
+    "function_name": "scipy.sparse.linalg.bicgstab",
+    "function_description": "Solves a linear system Ax = b using the BIConjugate Gradient STABilized (BiCGSTAB) iteration method.",
+    "parameters": [
+      {
+        "name": "A",
+        "description": "The real or complex N-by-N matrix of the linear system. Alternatively, A can be a linear operator which can produce Ax and A^T x using, e.g., scipy.sparse.linalg.LinearOperator."
+      },
+      {
+        "name": "b",
+        "description": "Right hand side of the linear system. Has shape (N,) or (N,1)."
+      },
+      {
+        "name": "x0",
+        "description": "Starting guess for the solution."
+      },
+      {
+        "name": "rtol",
+        "description": "Relative tolerance for the convergence test. Default is 1e-5."
+      },
+      {
+        "name": "atol",
+        "description": "Absolute tolerance for the convergence test. Default is 0.0."
+      },
+      {
+        "name": "maxiter",
+        "description": "Maximum number of iterations. Iteration will stop after maxiter steps even if the specified tolerance has not been achieved."
+      },
+      {
+        "name": "M",
+        "description": "Preconditioner for A. It should approximate the inverse of A."
+      },
+      {
+        "name": "callback",
+        "description": "User-supplied function to call after each iteration. It is called as callback(xk), where xk is the current solution vector."
+      }
+    ],
+    "return type": "tuple of ndarray and integer",
+    "note": "The preconditioner M should be a matrix such that M @ A has a smaller condition number than A.",
+    "update_type": "removed parameter",
+    "has_alternative": "Yes",
+    "update_info": "tol argument removed in favor of rtol",
+    "update_description": "The tol argument of scipy.sparse.linalg.bicgstab has been removed in favour of rtol.",
+    "code_example": "import numpy as np\nfrom scipy.sparse import csc_array\nfrom scipy.sparse.linalg import bicgstab\n\nR = np.array([[4, 2, 0, 1],\n             [3, 0, 0, 2],\n             [0, 1, 1, 1],\n             [0, 2, 1, 0]])\nA = csc_array(R)\nb = np.array([-1, -0.5, -1, 2])\nx, exit_code = bicgstab(A, b, atol=1e-5)\nprint(exit_code)  # 0 indicates successful convergence"
+  },
+  {
+    "version": "1.14.0",
+    "function_name": "scipy.sparse.linalg.cg",
+    "function_description": "Solves the linear system Ax = b using the Conjugate Gradient iteration.",
+    "parameters": [
+      "A: The real or complex N-by-N matrix of the linear system. A must represent a hermitian, positive definite matrix. Alternatively, A can be a linear operator which can produce Ax using, e.g., scipy.sparse.linalg.LinearOperator.",
+      "b: Right hand side of the linear system. Has shape (N,) or (N,1).",
+      "x0: Starting guess for the solution.",
+      "rtol, atol: Parameters for the convergence test. For convergence, norm(b - A@x) <= max(rtol*norm(b), atol) should be satisfied. The default is atol=0. and rtol=1e-5.",
+      "maxiter: Maximum number of iterations. Iteration will stop after maxiter steps even if the specified tolerance has not been achieved.",
+      "M: Preconditioner for A. M must represent a hermitian, positive definite matrix. It should approximate the inverse of A (see Notes). Effective preconditioning dramatically improves the rate of convergence, which implies that fewer iterations are needed to reach a given error tolerance.",
+      "callback: User-supplied function to call after each iteration. It is called as callback(xk), where xk is the current solution vector."
+    ],
+    "return_type": "ndarray and integer",
+    "note": "The preconditioner M should be a matrix such that M@A has a smaller condition number than A.",
+    "update_type": "removed parameter",
+    "has_alternative": "Yes",
+    "update_info": "tol argument removed in favor of rtol",
+    "update_description": "The tol argument of scipy.sparse.linalg.cg has been removed in favour of rtol.",
+    "code_example": "import numpy as np\nfrom scipy.sparse.linalg import cg\nA = np.array([[4, 0, 1, 0], [0, 5, 0, 0], [1, 0, 3, 2], [0, 0, 2, 4]])\nb = np.array([-1, -0.5, -1, 2])\nx, exit_code = cg(A, b, atol=1e-5)\nprint(exit_code)"
+  },
+  {
+    "version": "1.14.0",
+    "function_name": "scipy.sparse.linalg.cgs",
+    "function_description": "Solves a linear system using the Conjugate Gradient Squared iteration method.",
+    "parameters": [
+      "A",
+      "b",
+      "x0",
+      "rtol",
+      "atol",
+      "maxiter",
+      "M",
+      "callback"
+    ],
+    "return type": "tuple of ndarray and integer",
+    "note": "The preconditioner M should approximate the inverse of A to improve convergence. References: [1] Preconditioner, Wikipedia, [2] Conjugate gradient squared, Wikipedia",
+    "update_type": "removed parameter",
+    "has_alternative": "Yes",
+    "update_info": "tol argument removed in favor of rtol",
+    "update_description": "The tol argument of scipy.sparse.cgs has been removed in favour of rtol.",
+    "code_example": "import numpy as np\nfrom scipy.sparse.linalg import cgs\nA = np.array([[4, 2, 0, 1], [3, 0, 0, 2], [0, 1, 1, 1], [0, 2, 1, 0]])\nb = np.array([-1, -0.5, -1, 2])\nx, exit_code = cgs(A, b)\nprint(exit_code)"
+  },
+  {
+    "version": "1.14.0",
+    "function_name": "scipy.sparse.linalg.gcrotmk",
+    "function_description": "Solves a matrix equation using the flexible GCROT(m,k) algorithm.",
+    "parameters": [
+      {
+        "name": "A",
+        "type": "sparse array, ndarray, LinearOperator",
+        "description": "The real or complex N-by-N matrix of the linear system. Alternatively, A can be a linear operator which can produce Ax using, e.g., LinearOperator."
+      },
+      {
+        "name": "b",
+        "type": "ndarray",
+        "description": "Right hand side of the linear system. Has shape (N,) or (N,1)."
+      },
+      {
+        "name": "x0",
+        "type": "ndarray",
+        "description": "Starting guess for the solution."
+      },
+      {
+        "name": "rtol",
+        "type": "float",
+        "description": "Relative tolerance for the convergence test."
+      },
+      {
+        "name": "atol",
+        "type": "float",
+        "description": "Absolute tolerance for the convergence test."
+      },
+      {
+        "name": "maxiter",
+        "type": "int",
+        "description": "Maximum number of iterations."
+      },
+      {
+        "name": "M",
+        "type": "sparse array, ndarray, LinearOperator",
+        "description": "Preconditioner for A."
+      },
+      {
+        "name": "callback",
+        "type": "function",
+        "description": "User-supplied function to call after each iteration."
+      },
+      {
+        "name": "m",
+        "type": "int",
+        "description": "Number of inner FGMRES iterations per each outer iteration."
+      },
+      {
+        "name": "k",
+        "type": "int",
+        "description": "Number of vectors to carry between inner FGMRES iterations."
+      },
+      {
+        "name": "CU",
+        "type": "list of tuples",
+        "description": "List of tuples (c, u) which contain the columns of the matrices C and U in the GCROT(m,k) algorithm."
+      },
+      {
+        "name": "discard_C",
+        "type": "bool",
+        "description": "Discard the C-vectors at the end."
+      },
+      {
+        "name": "truncate",
+        "type": "str",
+        "description": "Truncation scheme to use. Drop: oldest vectors, or vectors with smallest singular values."
+      }
+    ],
+    "return type": "x: ndarray, info: int",
+    "update_type": "removed parameter",
+    "has_alternative": "Yes",
+    "update_info": "tol argument removed in favor of rtol",
+    "update_description": "The tol argument of scipy.sparse.linalg.gcrotmk has been removed in favour of rtol.",
+    "code_example": "import numpy as np\nfrom scipy.sparse import csc_array\nfrom scipy.sparse.linalg import gcrotmk\nR = np.random.randn(5,5)\nA = csc_array(R)\nb = np.random.randn(5)\nx, exit_code = gcrotmk(A, b, atol=1e-5)\nprint(exit_code)\nnp.allclose(A.dot(x), b)"
+  },
+  {
+    "version": "1.14.0",
+    "function_name": "scipy.sparse.linalg.lgmres",
+    "function_description": "Solves a matrix equation using the LGMRES algorithm to avoid convergence issues in restarted GMRES.",
+    "parameters": [
+      "A",
+      "b",
+      "x0",
+      "rtol",
+      "atol",
+      "maxiter",
+      "M",
+      "callback",
+      "inner_m",
+      "outer_k",
+      "outer_v",
+      "store_outer_Av",
+      "prepend_outer_v"
+    ],
+    "return type": "tuple of ndarray and int",
+    "note": "The LGMRES algorithm is designed to avoid the slowing of convergence in restarted GMRES, due to alternating residual vectors. Typically, it often outperforms GMRES(m) of comparable memory requirements by some measure, or at least is not much worse. Another advantage in this algorithm is that you can supply it with 'guess' vectors in the outer_v argument that augment the Krylov subspace. If the solution lies close to the span of these vectors, the algorithm converges faster. This can be useful if several very similar matrices need to be inverted one after another, such as in Newton-Krylov iteration where the Jacobian matrix often changes little in the nonlinear steps.",
+    "update_type": "removed parameter",
+    "has_alternative": "Yes",
+    "update_info": "tol argument removed in favor of rtol",
+    "update_description": "The tol argument of scipy.sparse.linalg.lgmres has been removed in favour of rtol.",
+    "code_example": "import numpy as np\nfrom scipy.sparse.linalg import lgmres\nA = np.array([[3,2,0],[1,-1,0],[0,5,1]])\nb = np.array([2,4,-1])\nx, exitCode = lgmres(A, b, atol=1e-5)"
+  },
+  {
+    "version": "1.14.0",
+    "function_name": "scipy.sparse.linalg.minres",
+    "function_description": "Use MINimum RESidual iteration to solve Ax=b for a real symmetric matrix A, which can be indefinite or singular.",
+    "parameters": [
+      "A",
+      "b",
+      "x0",
+      "shift",
+      "rtol",
+      "maxiter",
+      "M",
+      "callback",
+      "show",
+      "check"
+    ],
+    "return type": "tuple of ndarray and integer",
+    "update_type": "removed parameter",
+    "has_alternative": "Yes",
+    "update_info": "tol argument removed in favor of rtol",
+    "update_description": "The tol argument of scipy.sparse.linalg.minres has been removed in favour of rtol.",
+    "code_example": "import numpy as np\nfrom scipy.sparse import csc_array\nfrom scipy.sparse.linalg import minres\nA = csc_array([[3, 2, 0], [1, -1, 0], [0, 5, 1]], dtype=float)\nA = A + A.T\nb = np.array([2, 4, -1], dtype=float)\nx, exitCode = minres(A, b)"
+  },
+  {
+    "version": "1.14.0",
+    "function_name": "scipy.sparse.linalg.qmr",
+    "function_description": "Solves the linear system Ax = b using the Quasi-Minimal Residual iteration method.",
+    "parameters": [
+      {
+        "name": "A",
+        "type": "{sparse array, ndarray, LinearOperator}",
+        "description": "The real-valued N-by-N matrix of the linear system. Alternatively, A can be a linear operator which can produce Ax and A^T x."
+      },
+      {
+        "name": "b",
+        "type": "ndarray",
+        "description": "Right hand side of the linear system. Has shape (N,) or (N,1)."
+      },
+      {
+        "name": "x0",
+        "type": "ndarray",
+        "description": "Starting guess for the solution."
+      },
+      {
+        "name": "atol",
+        "type": "float",
+        "description": "Absolute tolerance for the convergence test. Default is 0.0."
+      },
+      {
+        "name": "rtol",
+        "type": "float",
+        "description": "Relative tolerance for the convergence test. Default is 1e-5."
+      },
+      {
+        "name": "maxiter",
+        "type": "integer",
+        "description": "Maximum number of iterations. Iteration will stop after maxiter steps even if the specified tolerance has not been achieved."
+      },
+      {
+        "name": "M1",
+        "type": "{sparse array, ndarray, LinearOperator}",
+        "description": "Left preconditioner for A."
+      },
+      {
+        "name": "M2",
+        "type": "{sparse array, ndarray, LinearOperator}",
+        "description": "Right preconditioner for A. Used together with the left preconditioner M1."
+      },
+      {
+        "name": "callback",
+        "type": "function",
+        "description": "User-supplied function to call after each iteration. It is called as callback(xk), where xk is the current solution vector."
+      }
+    ],
+    "return type": "x (ndarray), info (integer)",
+    "update_type": "removed parameter",
+    "has_alternative": "Yes",
+    "update_info": "tol argument removed in favor of rtol",
+    "update_description": "The tol argument of scipy.sparse.linalg.qmr has been removed in favour of rtol.",
+    "code_example": "import numpy as np\nfrom scipy.sparse import csc_array\nfrom scipy.sparse.linalg import qmr\nA = csc_array([[3., 2., 0.], [1., -1., 0.], [0., 5., 1.]])\nb = np.array([2., 4., -1.])\nx, exitCode = qmr(A, b, atol=1e-5)\nprint(exitCode)  # 0 indicates successful convergence\nnp.allclose(A.dot(x), b)"
+  },
+  {
+    "version": "1.14.0",
+    "function_name": "scipy.sparse.linalg.tfqmr",
+    "function_description": "Solves the linear system Ax = b using the Transpose-Free Quasi-Minimal Residual (TFQMR) iteration.",
+    "parameters": [
+      "A",
+      "b",
+      "x0",
+      "rtol",
+      "atol",
+      "maxiter",
+      "M",
+      "callback",
+      "show"
+    ],
+    "return_type": "x: ndarray, info: int",
+    "note": "The Transpose-Free QMR algorithm is derived from the CGS algorithm. However, unlike CGS, the convergence curves for the TFQMR method are smoothed by computing a quasi minimization of the residual norm. The implementation supports left preconditioner, and the 'residual norm' to compute in convergence criterion is actually an upper bound on the actual residual norm ||b - Axk||.",
+    "update_type": "removed parameter",
+    "has_alternative": "Yes",
+    "update_info": "tol argument removed in favor of rtol",
+    "update_description": "The tol argument of scipy.sparse.linalg.tfqmr has been removed in favour of rtol.",
+    "code_example": "import numpy as np\nfrom scipy.sparse import csc_array\nfrom scipy.sparse.linalg import tfqmr\nA = csc_array([[3, 2, 0], [1, -1, 0], [0, 5, 1]], dtype=float)\nb = np.array([2, 4, -1], dtype=float)\nx, exitCode = tfqmr(A, b, atol=0.0)\nprint(exitCode)\n# 0 indicates successful convergence\nnp.allclose(A.dot(x), b)"
+  },
+  {
+    "version": "1.14.0",
+    "function_name": "scipy.sparse.linalg.gmres",
+    "function_description": "Solves the linear system Ax = b using the Generalized Minimal RESidual (GMRES) iteration method.",
+    "parameters": [
+      {
+        "name": "A",
+        "description": "The real or complex N-by-N matrix of the linear system. Alternatively, A can be a linear operator which can produce Ax using, e.g., scipy.sparse.linalg.LinearOperator."
+      },
+      {
+        "name": "b",
+        "description": "Right hand side of the linear system. Has shape (N,) or (N,1)."
+      },
+      {
+        "name": "x0",
+        "description": "Starting guess for the solution (a vector of zeros by default)."
+      },
+      {
+        "name": "atol",
+        "description": "Parameters for the convergence test. For convergence, norm(b - A@x) <= max(rtol*norm(b), atol) should be satisfied. The default is atol=0.0 and rtol=1e-5."
+      },
+      {
+        "name": "rtol",
+        "description": "Parameters for the convergence test. For convergence, norm(b - A@x) <= max(rtol*norm(b), atol) should be satisfied. The default is atol=0.0 and rtol=1e-5."
+      },
+      {
+        "name": "restart",
+        "description": "Number of iterations between restarts. Larger values increase iteration cost, but may be necessary for convergence. If omitted, min(20, n) is used."
+      },
+      {
+        "name": "maxiter",
+        "description": "Maximum number of iterations (restart cycles). Iteration will stop after maxiter steps even if the specified tolerance has not been achieved. See callback_type."
+      },
+      {
+        "name": "M",
+        "description": "Inverse of the preconditioner of A. M should approximate the inverse of A and be easy to solve for. By default, no preconditioner is used."
+      },
+      {
+        "name": "callback",
+        "description": "User-supplied function to call after each iteration. It is called as callback(args), where args are selected by callback_type."
+      },
+      {
+        "name": "callback_type",
+        "description": "Callback function argument requested: x: current iterate (ndarray), called on every restart; pr_norm: relative (preconditioned) residual norm (float), called on every inner iteration; legacy (default): same as pr_norm, but also changes the meaning of maxiter to count inner iterations instead of restart cycles."
+      }
+    ],
+    "return type": "x: ndarray, info: int",
+    "note": "A preconditioner, P, is chosen such that P is close to A but easy to solve for. The preconditioner parameter required by this routine is M = P^-1. The inverse should preferably not be calculated explicitly. Rather, use the following template to produce M: # Construct a linear operator that computes P^-1 @ x. import scipy.sparse.linalg as spla M_x = lambda x: spla.spsolve(P, x) M = spla.LinearOperator((n, n), M_x). This keyword has no effect if callback is not set.",
+    "update_type": "removed parameter",
+    "has_alternative": "Yes",
+    "update_info": "restrt argument removed in favor of restart",
+    "update_description": "The restrt argument of scipy.sparse.linalg.gmres has been removed in favour of restart.",
+    "code_example": "import numpy as np\nfrom scipy.sparse import csc_array\nfrom scipy.sparse.linalg import gmres\nA = csc_array([[3, 2, 0], [1, -1, 0], [0, 5, 1]], dtype=float)\nb = np.array([2, 4, -1], dtype=float)\nx, exitCode = gmres(A, b, atol=1e-5)\nprint(exitCode)\n# 0 indicates successful convergence\nnp.allclose(A.dot(x), b)"
+  },
+  {
+    "version": "1.14.0",
+    "function_name": "scipy.stats.kendalltau",
+    "function_description": "Calculate Kendall's tau, a correlation measure for ordinal data.",
+    "parameters": [
+      "x",
+      "y",
+      "nan_policy",
+      "method",
+      "variant",
+      "alternative"
+    ],
+    "return_type": "SignificanceResult",
+    "note": "The definition of Kendall\u2019s tau that is used is [2] : tau_b = (P - Q)/sqrt((P + Q + T)*(P + Q + U)) tau_c = 2*(P - Q)/(n**2*(m - 1)/m) where P is the number of concordant pairs, Q the number of discordant pairs, T the number of ties only in x, and U the number of ties only in y. If a tie occurs for the same pair in both x and y, it is not added to either T or U. n is the total number of samples, and m is the number of unique values in either x or y, whichever is smaller.",
+    "update_type": "removed parameter",
+    "has_alternative": "No",
+    "update_info": "initial_lexsort argument removed",
+    "update_description": "The initial_lexsort argument of scipy.stats.kendalltau has been removed.",
+    "code_example": "from scipy import stats; x1 = [12, 2, 1, 12, 2]; x2 = [1, 4, 7, 1, 0]; res = stats.kendalltau(x1, x2); print(res.statistic); print(res.pvalue)"
+  },
+  {
+    "version": "1.14.0",
+    "function_name": "scipy.linalg.pinv",
+    "function_description": "Computes the Moore-Penrose pseudo-inverse of a matrix using singular-value decomposition.",
+    "parameters": [
+      {
+        "name": "a",
+        "type": "array_like",
+        "description": "Matrix to be pseudo-inverted."
+      },
+      {
+        "name": "atol",
+        "type": "float",
+        "description": "Absolute threshold term, default value is 0."
+      },
+      {
+        "name": "rtol",
+        "type": "float",
+        "description": "Relative threshold term, default value is max(M, N) * eps."
+      },
+      {
+        "name": "return_rank",
+        "type": "bool",
+        "description": "If True, return the effective rank of the matrix."
+      },
+      {
+        "name": "check_finite",
+        "type": "bool",
+        "description": "Whether to check that the input matrix contains only finite numbers."
+      }
+    ],
+    "return type": "B (N, M) ndarray, rank (int) if return_rank is True",
+    "note": "If A is invertible, the Moore-Penrose pseudoinverse is exactly the inverse of A. The pseudo-inverse computes the x solution to Ax = b such that ||Ax - b|| is minimized.",
+    "update_type": "removed parameter",
+    "has_alternative": "No",
+    "update_info": "cond and rcond arguments removed",
+    "update_description": "The cond and rcond arguments of scipy.linalg.pinv have been removed.",
+    "code_example": "import numpy as np\nfrom scipy import linalg\nA = np.random.standard_normal((9, 6))\nB = linalg.pinv(A)"
+  },
+  {
+    "version": "1.14.0",
+    "function_name": "scipy.integrate.simpson",
+    "function_description": "Integrate y(x) using samples along the given axis and the composite Simpson\u2019s rule.",
+    "parameters": [
+      {
+        "name": "y",
+        "type": "array_like",
+        "description": "Array to be integrated."
+      },
+      {
+        "name": "x",
+        "type": "array_like",
+        "description": "If given, the points at which y is sampled."
+      },
+      {
+        "name": "dx",
+        "type": "float",
+        "description": "Spacing of integration points along axis of x. Only used when x is None. Default is 1."
+      },
+      {
+        "name": "axis",
+        "type": "int",
+        "description": "Axis along which to integrate. Default is the last axis."
+      }
+    ],
+    "return_type": "float",
+    "note": "For an odd number of samples that are equally spaced the result is exact if the function is a polynomial of order 3 or less. If the samples are not equally spaced, then the result is exact only if the function is a polynomial of order 2 or less.",
+    "update_type": "removed parameter",
+    "has_alternative": "No",
+    "update_info": "even argument removed",
+    "update_description": "The even argument of scipy.integrate.simpson has been removed.",
+    "code_example": "from scipy import integrate\nimport numpy as np\nx = np.arange(0, 10)\ny = np.arange(0, 10)\nintegrate.simpson(y, x=x)"
+  },
+  {
+    "version": "1.14.0",
+    "function_name": "scipy.linalg.eigh",
+    "function_description": "Solves a standard or generalized eigenvalue problem for a complex Hermitian or real symmetric matrix, returning eigenvalues and optionally eigenvectors.",
+    "parameters": [
+      "a",
+      "b",
+      "lower",
+      "eigvals_only",
+      "overwrite_a",
+      "overwrite_b",
+      "type",
+      "check_finite",
+      "subset_by_index",
+      "subset_by_value",
+      "driver"
+    ],
+    "return_type": "tuple of ndarrays",
+    "note": "The function does not check input arrays for Hermitian/symmetric properties. LAPACK drivers are used with different performance characteristics. Eigenvalues may vary slightly based on eigenvector calculation. Normalization depends on the 'type' argument.",
+    "update_type": "removed parameter",
+    "has_alternative": "No",
+    "update_info": "turbo and eigvals arguments removed",
+    "update_description": "The turbo and eigvals arguments from scipy.linalg.eigh have been removed.",
+    "code_example": "import numpy as np\nfrom scipy.linalg import eigh\nA = np.array([[6, 3, 1, 5], [3, 0, 5, 1], [1, 5, 6, 2], [5, 1, 2, 2]])\nw, v = eigh(A)\nprint(np.allclose(A @ v - v @ np.diag(w), np.zeros((4, 4))))"
+  },
+  {
+    "version": "1.14.0",
+    "function_name": "scipy.linalg.eigvalsh",
+    "function_description": "Solves a standard or generalized eigenvalue problem for a complex Hermitian or real symmetric matrix.",
+    "parameters": [
+      "a",
+      "b",
+      "lower",
+      "overwrite_a",
+      "overwrite_b",
+      "type",
+      "check_finite",
+      "subset_by_index",
+      "subset_by_value",
+      "driver"
+    ],
+    "return type": "ndarray",
+    "note": "This function does not check the input array for being Hermitian/symmetric. It serves as a legacy convenience and may be beneficial to use the main function for full control.",
+    "update_type": "removed parameter",
+    "has_alternative": "No",
+    "update_info": "turbo and eigvals arguments removed",
+    "update_description": "The turbo and eigvals arguments from scipy.linalg.eigvalsh have been removed.",
+    "code_example": "import numpy as np\nfrom scipy.linalg import eigvalsh\nA = np.array([[6, 3, 1, 5], [3, 0, 5, 1], [1, 5, 6, 2], [5, 1, 2, 2]])\nw = eigvalsh(A)"
+  },
+  {
+    "version": "1.14.0",
+    "function_name": "scipy.special.comb",
+    "function_description": "Calculates the number of combinations of N things taken k at a time, also known as 'N choose k'.",
+    "parameters": [
+      {
+        "name": "N",
+        "type": "int, ndarray"
+      },
+      {
+        "name": "k",
+        "type": "int, ndarray"
+      },
+      {
+        "name": "exact",
+        "type": "bool, optional"
+      },
+      {
+        "name": "repetition",
+        "type": "bool, optional"
+      }
+    ],
+    "return type": "int, float, or ndarray",
+    "note": "Array arguments are only accepted when exact=False. If N < 0 or k < 0, returns 0. If k > N and repetition=False, returns 0. exact=True is deprecated for non-integer N and k and will raise an error in SciPy 1.16.0.",
+    "update_type": "removed parameter",
+    "has_alternative": "No",
+    "update_info": "legacy argument removed",
+    "update_description": "The legacy argument of scipy.special.comb has been removed.",
+    "code_example": "from scipy.special import comb\nprint(comb(10, 3, exact=True))"
+  },
+  {
+    "version": "1.14.0",
+    "function_name": "scipy.signal.firls",
+    "function_description": "Designs an FIR filter using least-squares error minimization to approximate the desired frequency response.",
+    "parameters": [
+      "numtaps (int, must be odd)",
+      "bands (array-like, monotonic nondecreasing sequence containing the band edges in Hz. All elements must be non-negative and less than or equal to the Nyquist frequency given by nyq. The bands are specified as frequency pairs, thus, if using a 1D array, its length must be even, e.g., np.array([0, 1, 2, 3, 4, 5]). Alternatively, the bands can be specified as an nx2 sized 2D array, where n is the number of bands, e.g., np.array([[0, 1], [2, 3], [4, 5]]))",
+      "desired (array-like, a sequence the same size as bands containing the desired gain at the start and end point of each band)",
+      "weight (array_like, optional. A relative weighting to give to each band region when solving the least squares problem. weight has to be half the size of bands)",
+      "fs (float, optional. The sampling frequency of the signal. Each frequency in bands must be between 0 and fs/2 (inclusive). Default is 2)"
+    ],
+    "return_type": "ndarray",
+    "note": "This function constructs a Type I linear phase FIR filter, which contains an odd number of coeffs satisfying for n < numtaps: coeffs(n) = coeffs(numtaps - 1 - n). The odd number of coefficients and filter symmetry avoid boundary conditions that could otherwise occur at the Nyquist and 0 frequencies (e.g., for Type II, III, or IV variants). Added in version 0.18.",
+    "update_type": "removed parameter",
+    "has_alternative": "No",
+    "update_info": "nyq argument removed",
+    "update_description": "The nyq argument of signal.firls has been removed.",
+    "code_example": "import numpy as np\nfrom scipy import signal\n\ncoeffs = signal.firls(73, [0, 1, 2, 3, 4, 5], [0, 0, 1, 1, 0, 0], fs=10.0)"
+  },
+  {
+    "version": "1.14.0",
+    "function_name": "scipy.signal.firwin",
+    "function_description": "Designs a finite impulse response (FIR) filter using the window method, resulting in linear phase.",
+    "parameters": [
+      "numtaps (int): Length of the filter (number of coefficients, i.e. the filter order + 1).",
+      "cutoff (float or 1-D array_like): Cutoff frequency of filter (expressed in the same units as fs) OR an array of cutoff frequencies.",
+      "width (float or None, optional): Approximate width of the transition region for use in Kaiser FIR filter design.",
+      "window (string or tuple of string and parameter values, optional): Desired window to use.",
+      "pass_zero ({True, False, 'bandpass', 'lowpass', 'highpass', 'bandstop'}, optional): DC gain setting and filter type.",
+      "scale (bool, optional): Set to True to scale the coefficients for unity frequency response.",
+      "fs (float, optional): Sampling frequency of the signal. Default is 2."
+    ],
+    "return_type": "numpy.ndarray",
+    "note": "Type II filters always have zero response at the Nyquist frequency, raising ValueError if numtaps is even and passband includes Nyquist. Cutoff frequency is the half-amplitude point (-6dB), different from scipy.signal.iirdesign's half-power point (-3dB).",
+    "update_type": "removed parameter",
+    "has_alternative": "No",
+    "update_info": "nyq argument removed",
+    "update_description": "The nyq argument of signal.firwin has been removed.",
+    "code_example": "from scipy import signal\nnumtaps = 3\nf = 0.1\nsignal.firwin(numtaps, f)"
+  },
+  {
+    "version": "1.14.0",
+    "function_name": "scipy.signal.firwin2",
+    "function_description": "Designs an FIR filter with linear phase using the window method based on specified frequencies and gains.",
+    "parameters": [
+      {
+        "name": "numtaps",
+        "type": "int",
+        "description": "The number of taps in the FIR filter. numtaps must be less than nfreqs."
+      },
+      {
+        "name": "freq",
+        "type": "array_like",
+        "description": "The frequency sampling points. Typically 0.0 to 1.0 with 1.0 being Nyquist. The values in freq must be nondecreasing."
+      },
+      {
+        "name": "gain",
+        "type": "array_like",
+        "description": "The filter gains at the frequency sampling points."
+      },
+      {
+        "name": "nfreqs",
+        "type": "int",
+        "description": "The size of the interpolation mesh used to construct the filter. Default is one more than the smallest power of 2 not less than numtaps."
+      },
+      {
+        "name": "window",
+        "type": "string or (string, float) or float or None",
+        "description": "Window function to use. Default is 'hamming'. See scipy.signal.get_window for possible values."
+      },
+      {
+        "name": "antisymmetric",
+        "type": "bool",
+        "description": "Whether resulting impulse response is symmetric/antisymmetric."
+      },
+      {
+        "name": "fs",
+        "type": "float",
+        "description": "The sampling frequency of the signal. Default is 2."
+      }
+    ],
+    "return_type": "ndarray",
+    "note": "The FIR filter will have linear phase. The type of filter is determined by numtaps and antisymmetric flag. Magnitude response of all but type I filters are subject to constraints: type II \u2013 zero at Nyquist frequency, type III \u2013 zero at zero and Nyquist frequencies, type IV \u2013 zero at zero frequency.",
+    "update_type": "removed parameter",
+    "has_alternative": "No",
+    "update_info": "nyq argument removed",
+    "update_description": "The nyq argument of signal.firwin2 has been removed.",
+    "code_example": "from scipy import signal\n\n# Example: Lowpass FIR filter\n# Design a filter with 150 taps, frequencies [0.0, 0.5, 1.0], gains [1.0, 1.0, 0.0]\ntaps = signal.firwin2(150, [0.0, 0.5, 1.0], [1.0, 1.0, 0.0])"
+  },
+  {
+    "version": "1.14.0",
+    "function_name": "scipy.signal.remez",
+    "function_description": "Calculates the minimax optimal FIR filter coefficients using the Remez exchange algorithm.",
+    "parameters": [
+      "numtaps: int - The desired number of taps in the filter.",
+      "bands: array_like - A monotonic sequence containing the band edges.",
+      "desired: array_like - A sequence half the size of bands containing the desired gain in each of the specified bands.",
+      "weight: array_like, optional - A relative weighting to give to each band region.",
+      "type: {\u2018bandpass\u2019, \u2018differentiator\u2019, \u2018hilbert\u2019}, optional - The type of filter.",
+      "maxiter: int, optional - Maximum number of iterations of the algorithm.",
+      "grid_density: int, optional - Grid density.",
+      "fs: float, optional - The sampling frequency of the signal."
+    ],
+    "return_type": "ndarray",
+    "note": "The Hz parameter is deprecated in favor of fs and will be removed in SciPy 1.14.0.",
+    "update_type": "removed parameter",
+    "has_alternative": "No",
+    "update_info": "hz argument removed",
+    "update_description": "The hz argument of signal.remez has been removed.",
+    "code_example": "import numpy as np\nfrom scipy import signal\n\nfs = 22050\nnumtaps = 325\nbands = [0, 8000, 8100, 11025]\ndesired = [1, 0]\ntaps = signal.remez(numtaps, bands, desired, fs=fs)"
+  },
+  {
+    "version": "1.15.0",
+    "function_name": "scipy.signal.lombscargle",
+    "function_description": "Computes the generalized Lomb-Scargle periodogram to detect periodic signals in unevenly sampled data.",
+    "parameters": [
+      "x: array_like, Sample times.",
+      "y: array_like, Measurement values. Values are assumed to have a baseline of y = 0. If there is a possibility of a y offset, it is recommended to set floating_mean to True.",
+      "freqs: array_like, Angular frequencies for output periodogram. Frequencies are normally >= 0.",
+      "precenter: bool, optional, Pre-center measurement values by subtracting the mean, if True. This is a legacy parameter and unnecessary if floating_mean is True.",
+      "normalize: bool | str, optional, Compute normalized or complex (amplitude + phase) periodogram. Valid options are: False/'power', True/'normalize', or 'amplitude'.",
+      "weights: array_like, optional, Weights for each sample. Weights must be nonnegative.",
+      "floating_mean: bool, optional, Determines a y offset for each frequency independently, if True. Else the y offset is assumed to be 0."
+    ],
+    "return type": "array_like",
+    "note": "The algorithm does not automatically account for an unknown y offset; set floating_mean=True to include a y offset for each frequency. The precenter parameter is a legacy option and unnecessary when floating_mean is True.",
+    "update_type": "added parameter",
+    "update_info": "added parameters",
+    "update_description": "scipy.signal.lombscargle has new arguments: weights and floating_mean, enabling sample weighting and removal of an unknown y-offset independently for each frequency.",
+    "code_example": "import numpy as np\nfrom scipy.signal import lombscargle\nx = np.random.uniform(0, 10*np.pi, 150)\ny = 2*np.cos(1*x) + 2\nfreqs = np.linspace(0.25, 10, 1002)\npgram = lombscargle(x, y, freqs)"
+  },
+  {
+    "version": "1.15.0",
+    "function_name": "scipy.special.factorial",
+    "function_description": "Calculates the factorial of a number or array of numbers using integer or gamma function-based computation.",
+    "parameters": [
+      {
+        "name": "n",
+        "type": "int or float or complex (or array_like thereof)",
+        "description": "Input values for n!."
+      },
+      {
+        "name": "exact",
+        "type": "bool",
+        "description": "If True, calculate the answer exactly using integer arithmetic; otherwise approximate using the gamma function."
+      },
+      {
+        "name": "extend",
+        "type": "string",
+        "description": "Determines how values n < 0 are handled. Options: 'zero' (default) or 'complex'."
+      }
+    ],
+    "return_type": "int, float, complex, or ndarray (depending on exact and extend parameters)",
+    "note": "For arrays with exact=True, the factorial is computed once for the largest input. With exact=False, it uses the gamma function definition: n! = \u0393(n+1).",
+    "update_type": "added parameter",
+    "update_info": "added parameter",
+    "update_description": "scipy.special.factorial now offers an extension to the complex domain by passing the kwarg extend='complex'.",
+    "code_example": "import scipy.special as sp\nprint(sp.factorial(5, exact=True))"
+  },
+  {
+    "version": "1.15.0",
+    "function_name": "scipy.stats.ttest_ind",
+    "function_description": "Calculate the T-test for the means of two independent samples of scores.",
+    "parameters": [
+      "a",
+      "b",
+      "axis",
+      "equal_var",
+      "nan_policy",
+      "permutations",
+      "random_state",
+      "alternative",
+      "trim",
+      "method",
+      "keepdims"
+    ],
+    "return type": "TtestResult",
+    "note": "The function is deprecated in SciPy 1.17.0. Use the method argument for permutation tests. Trimming is recommended for long-tailed distributions. The p-value is calculated using a t-distribution by default.",
+    "update_type": "deprecated parameter",
+    "has_alternative": "Yes",
+    "update_info": "deprecated parameters",
+    "update_description": "scipy.stats.ttest_ind has deprecated the random_state and permutations arguments. Use method to perform a permutation test instead.",
+    "code_example": "import numpy as np; from scipy import stats; stats.ttest_ind(np.random.rand(10), np.random.rand(10))"
+  },
+  {
+    "version": "1.15.0",
+    "function_name": "scipy.spatial.distance.cosine",
+    "function_description": "Compute the Cosine distance between 1-D arrays.",
+    "parameters": [
+      {
+        "name": "u",
+        "type": "array_like",
+        "description": "Input array."
+      },
+      {
+        "name": "v",
+        "type": "array_like",
+        "description": "Input array."
+      },
+      {
+        "name": "w",
+        "type": "array_like",
+        "description": "The weights for each value in u and v. Default is None, which gives each value a weight of 1.0."
+      }
+    ],
+    "return_type": "double",
+    "note": "Complex u is deprecated and will raise an error in SciPy 1.17.0.",
+    "update_type": "modified parameter",
+    "update_info": "deprecated complex inputs and will raise an error in SciPy 1.17.0",
+    "update_description": "Complex inputs to scipy.spatial.distance.cosine have been deprecated and will raise an error in SciPy 1.17.0.",
+    "code_example": "from scipy.spatial import distance\nprint(distance.cosine([1, 0, 0], [0, 1, 0]))"
+  },
+  {
+    "version": "1.15.0",
+    "function_name": "scipy.spatial.distance.correlation",
+    "function_description": "Compute the correlation distance between two 1-D arrays.",
+    "parameters": [
+      {
+        "name": "u",
+        "type": "array_like of floats",
+        "description": "Input array. Deprecated since version 1.15.0: Complex u is deprecated and will raise an error in SciPy 1.17.0"
+      },
+      {
+        "name": "v",
+        "type": "array_like of floats",
+        "description": "Input array. Deprecated since version 1.15.0: Complex v is deprecated and will raise an error in SciPy 1.17.0"
+      },
+      {
+        "name": "w",
+        "type": "array_like of floats",
+        "description": "The weights for each value in u and v. Default is None, which gives each value a weight of 1.0"
+      },
+      {
+        "name": "centered",
+        "type": "bool",
+        "description": "If True, u and v will be centered. Default is True."
+      }
+    ],
+    "return_type": "double",
+    "update_type": "modified parameter",
+    "update_info": "deprecated complex inputs and will raise an error in SciPy 1.17.0",
+    "update_description": "Complex inputs to scipy.spatial.distance.correlation have been deprecated and will raise an error in SciPy 1.17.0.",
+    "code_example": "from scipy.spatial.distance import correlation\ncorrelation([1,0,1], [1,1,0])"
+  }
+]

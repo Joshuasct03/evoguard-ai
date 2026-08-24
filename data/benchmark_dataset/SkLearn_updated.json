@@ -1,0 +1,898 @@
+[
+  {
+    "version": "1.4",
+    "function_name": "sklearn.utils.metadata_routing.process_routing.process_routing",
+    "function_description": "Validates and routes input parameters for metadata-aware methods.",
+    "parameters": [
+      {
+        "name": "_obj",
+        "description": "An object implementing get_metadata_routing. Typically a meta-estimator."
+      },
+      {
+        "name": "_method",
+        "description": "The name of the router's method in which this function is called."
+      },
+      {
+        "name": "**kwargs",
+        "description": "Metadata to be routed."
+      }
+    ],
+    "return type": "Bunch",
+    "update_type": "modified parameter",
+    "note": "If routing is not enabled and kwargs is empty, returns an empty routing where process_routing(...).ANYTHING.ANY_METHOD is always an empty dictionary. Added in version 1.3.",
+    "update_info": "API Change",
+    "update_description": "The process_routing function of sklearn.utils.metadata_routing.process_routing module now has a different signature. The first two (the object and the method) are positional only, and all metadata are passed as keyword arguments.",
+    "code_example": "process_routing(self, \"fit\", sample_weight=sample_weight, **fit_params)"
+  },
+  {
+    "version": "1.4",
+    "function_name": "sklearn.metrics.mean_squared_error",
+    "function_description": "Computes the mean squared error regression loss between true and predicted values.",
+    "parameters": [
+      {
+        "name": "y_true",
+        "description": "array-like of shape (n_samples,) or (n_samples, n_outputs) Ground truth (correct) target values."
+      },
+      {
+        "name": "y_pred",
+        "description": "array-like of shape (n_samples,) or (n_samples, n_outputs) Estimated target values."
+      },
+      {
+        "name": "sample_weight",
+        "description": "array-like of shape (n_samples,), default=None Sample weights."
+      },
+      {
+        "name": "multioutput",
+        "description": "{\u2018raw_values\u2019, \u2018uniform_average\u2019} or array-like of shape (n_outputs,), default=\u2019uniform_average\u2019 Defines aggregating of multiple output values."
+      }
+    ],
+    "return type": "float or array of floats A non-negative floating point value (the best value is 0.0), or an array of floating point values, one for each individual target.",
+    "update_type": "deprecated parameter",
+    "has_alternative": "Yes",
+    "update_info": "parameter deprecated",
+    "update_description": "The squared parameter of sklearn.metrics.mean_squared_error is deprecated and will be removed in version 1.6. Use the new function metrics.root_mean_squared_error instead.",
+    "code_example": "from sklearn.metrics import mean_squared_error\ny_true = [3, -0.5, 2, 7]\ny_pred = [2.5, 0.0, 2, 8]\nmean_squared_error(y_true, y_pred)"
+  },
+  {
+    "version": "1.4",
+    "function_name": "sklearn.metrics.mean_squared_log_error",
+    "function_description": "Calculates the mean squared logarithmic error regression loss between true and predicted values.",
+    "parameters": [
+      {
+        "name": "y_true",
+        "description": "array-like of shape (n_samples,) or (n_samples, n_outputs) Ground truth (correct) target values."
+      },
+      {
+        "name": "y_pred",
+        "description": "array-like of shape (n_samples,) or (n_samples, n_outputs) Estimated target values."
+      },
+      {
+        "name": "sample_weight",
+        "description": "array-like of shape (n_samples,), default=None Sample weights."
+      },
+      {
+        "name": "multioutput",
+        "description": "{\u2018raw_values\u2019, \u2018uniform_average\u2019} or array-like of shape (n_outputs,), default=\u2019uniform_average\u2019 Defines aggregating of multiple output values."
+      }
+    ],
+    "return_type": "float or ndarray of floats A non-negative floating point value (the best value is 0.0), or an array of floating point values, one for each individual target.",
+    "update_type": "deprecated parameter",
+    "has_alternative": "Yes",
+    "update_info": "parameter deprecated",
+    "update_description": "The squared parameter of sklearn.metrics.mean_squared_log_error is deprecated and will be removed in version 1.6. Use the new function metrics.root_mean_squared_log_error instead.",
+    "code_example": "from sklearn.metrics import mean_squared_log_error\ny_true = [3, 5, 2.5, 7]\ny_pred = [2.5, 5, 4, 8]\nprint(mean_squared_log_error(y_true, y_pred))"
+  },
+  {
+    "version": "1.4",
+    "function_name": "sklearn.tree.DecisionTreeClassifier",
+    "function_description": "A decision tree classifier that builds a model to predict class labels based on input features.",
+    "parameters": [
+      "criterion: {\"gini\", \"entropy\", \"log_loss\"}, default=\"gini\"",
+      "splitter: {\"best\", \"random\"}, default=\"best\"",
+      "max_depth: int, default=None",
+      "min_samples_split: int or float, default=2",
+      "min_samples_leaf: int or float, default=1",
+      "min_weight_fraction_leaf: float, default=0.0",
+      "max_features: int, float or {\"sqrt\", \"log2\"}, default=None",
+      "random_state: int, RandomState instance or None, default=None",
+      "max_leaf_nodes: int, default=None",
+      "min_impurity_decrease: float, default=0.0",
+      "class_weight: dict, list of dict or \"balanced\", default=None",
+      "ccp_alpha: non-negative float, default=0.0",
+      "monotonic_cst: array-like of int of shape (n_features), default=None"
+    ],
+    "return type": "DecisionTreeClassifier",
+    "update_type": "added parameter",
+    "note": "The default values for the parameters controlling the size of the trees (e.g. max_depth, min_samples_leaf, etc.) lead to fully grown and unpruned trees which can potentially be very large on some data sets. To reduce memory consumption, the complexity and size of the trees should be controlled by setting those parameter values. The predict method operates using the numpy.argmax function on the outputs of predict_proba. This means that in case the highest predicted probabilities are tied, the classifier will predict the tied class with the lowest index in classes_.",
+    "update_info": "new parameter added",
+    "update_description": "sklearn.tree.DecisionTreeClassifier now supports monotonic constraints with the parameter 'monotonic_cst', useful when features are supposed to have a positive/negative effect on the target. This is a new parameter for the model.",
+    "code_example": "from sklearn.tree import DecisionTreeClassifier\nclf = DecisionTreeClassifier(random_state=0)"
+  },
+  {
+    "version": "1.4",
+    "function_name": "sklearn.ensemble.HistGradientBoostingClassifier",
+    "function_description": "A histogram-based gradient boosting classifier that is efficient for large datasets and supports missing values.",
+    "parameters": [
+      "loss",
+      "learning_rate",
+      "max_iter",
+      "max_leaf_nodes",
+      "max_depth",
+      "min_samples_leaf",
+      "l2_regularization",
+      "max_features",
+      "max_bins",
+      "categorical_features",
+      "monotonic_cst",
+      "interaction_cst",
+      "warm_start",
+      "early_stopping",
+      "scoring",
+      "validation_fraction",
+      "n_iter_no_change",
+      "tol",
+      "verbose",
+      "random_state",
+      "class_weight"
+    ],
+    "update_type": "added parameter",
+    "note": "Efficient for large datasets, supports missing values, and native support for categorical features via 'from_dtype' option. For small datasets, lower min_samples_leaf to allow deeper trees.",
+    "update_info": "new parameter added",
+    "update_description": "sklearn.ensemble.HistGradientBoostingClassifier got the new parameter max_features to specify the proportion of randomly chosen features considered in each split.",
+    "code_example": "from sklearn.ensemble import HistGradientBoostingClassifier\nfrom sklearn.datasets import load_iris\nX, y = load_iris(return_X_y=True)\nclf = HistGradientBoostingClassifier().fit(X, y)\nprint(clf.score(X, y))"
+  },
+  {
+    "version": "1.4",
+    "function_name": "sklearn.ensemble.HistGradientBoostingRegressor",
+    "function_description": "A histogram-based gradient boosting regressor that is efficient for large datasets and supports missing values.",
+    "parameters": [
+      "loss",
+      "quantile",
+      "learning_rate",
+      "max_iter",
+      "max_leaf_nodes",
+      "max_depth",
+      "min_samples_leaf",
+      "l2_regularization",
+      "max_features",
+      "max_bins",
+      "categorical_features",
+      "monotonic_cst",
+      "interaction_cst",
+      "warm_start",
+      "early_stopping",
+      "scoring",
+      "validation_fraction",
+      "n_iter_no_change",
+      "tol",
+      "verbose",
+      "random_state"
+    ],
+    "return type": "HistGradientBoostingRegressor",
+    "update_type": "added parameter",
+    "note": "This estimator is much faster than GradientBoostingRegressor for big datasets (n_samples >= 10 000). This estimator has native support for missing values (NaNs). During training, the tree grower learns at each split point whether samples with missing values should go to the left or right child, based on the potential gain. When predicting, samples with missing values are assigned to the left or right child consequently. If no missing values were encountered for a given feature during training, then samples with missing values are mapped to whichever child has the most samples. This implementation is inspired by LightGBM.",
+    "update_info": "new parameter added",
+    "update_description": "sklearn.ensemble.HistGradientBoostingRegressor got the new parameter max_features to specify the proportion of randomly chosen features considered in each split.",
+    "code_example": "from sklearn.ensemble import HistGradientBoostingRegressor\nfrom sklearn.datasets import load_diabetes\nX, y = load_diabetes(return_X_y=True)\nest = HistGradientBoostingRegressor().fit(X, y)\nprint(est.score(X, y))"
+  },
+  {
+    "version": "1.4",
+    "function_name": "sklearn.linear_model.SGDClassifier",
+    "function_description": "Implements regularized linear models with stochastic gradient descent (SGD) for classification tasks.",
+    "parameters": [
+      "loss",
+      "penalty",
+      "alpha",
+      "l1_ratio",
+      "fit_intercept",
+      "max_iter",
+      "tol",
+      "shuffle",
+      "verbose",
+      "epsilon",
+      "n_jobs",
+      "random_state",
+      "learning_rate",
+      "eta0",
+      "power_t",
+      "early_stopping",
+      "validation_fraction",
+      "n_iter_no_change",
+      "class_weight",
+      "warm_start",
+      "average"
+    ],
+    "return type": "An instance of SGDClassifier",
+    "note": "For best results using the default learning rate schedule, the data should have zero mean and unit variance. The SGD allows minibatch (online/out-of-core) learning via the partial_fit method.",
+    "update_type": "deprecated attribute",
+    "update_info": "deprecated attribute",
+    "update_description": "The attribute loss_function_ in sklearn.linear_model.SGDClassifier is deprecated and will be removed in version 1.6.",
+    "code_example": "from sklearn.linear_model import SGDClassifier\nfrom sklearn.preprocessing import StandardScaler\nfrom sklearn.pipeline import make_pipeline\n\nX = [[-1, -1], [-2, -1], [1, 1], [2, 1]]\ny = [1, 1, 2, 2]\nclf = make_pipeline(StandardScaler(), SGDClassifier(max_iter=1000, tol=1e-3))\nclf.fit(X, y)\nprint(clf.predict([[-0.8, -1]]))"
+  },
+  {
+    "version": "1.4",
+    "function_name": "sklearn.linear_model.SGDOneClassSVM",
+    "function_description": "Solves linear One-Class SVM using Stochastic Gradient Descent.",
+    "parameters": [
+      "nu",
+      "fit_intercept",
+      "max_iter",
+      "tol",
+      "shuffle",
+      "verbose",
+      "random_state",
+      "learning_rate",
+      "eta0",
+      "power_t",
+      "warm_start",
+      "average"
+    ],
+    "note": "This estimator has a linear complexity in the number of training samples and is thus better suited than the sklearn.svm.OneClassSVM implementation for datasets with a large number of training samples (say > 10,000).",
+    "update_type": "deprecated attribute",
+    "update_info": "deprecated attribute",
+    "update_description": "The attribute loss_function_ in sklearn.linear_model.SGDOneClassSVM is deprecated and will be removed in version 1.6.",
+    "code_example": "import numpy as np\nfrom sklearn import linear_model\nX = np.array([[-1, -1], [-2, -1], [1, 1], [2, 1]])\nclf = linear_model.SGDOneClassSVM(random_state=42)\nclf.fit(X)\nprint(clf.predict([[4, 4]]))"
+  },
+  {
+    "version": "1.5",
+    "function_name": "sklearn.utils.check_array",
+    "function_description": "Validates and converts input data to a consistent format for machine learning tasks.",
+    "parameters": [
+      "array",
+      "accept_sparse",
+      "dtype",
+      "order",
+      "copy",
+      "force_writeable",
+      "force_all_finite",
+      "ensure_all_finite",
+      "ensure_non_negative",
+      "ensure_2d",
+      "allow_nd",
+      "ensure_min_samples",
+      "ensure_min_features",
+      "estimator",
+      "input_name"
+    ],
+    "return type": "object",
+    "update_type": "added parameter",
+    "note": "Note: 'force_all_finite' has been renamed to 'ensure_all_finite' and will be removed in version 1.8. The 'input_name' parameter helps in constructing error messages.",
+    "update_info": "Added parameter 'force_writeable'",
+    "update_description": "The 'check_array' function in sklearn.utils now includes a new parameter 'force_writeable' to control the writeability of the output array. If set to True, the output array is guaranteed to be writeable and a copy is made if the input is read-only. If False, no guarantee is made about writeability.",
+    "code_example": "from sklearn.utils.validation import check_array\nX = [[1, 2, 3], [4, 5, 6]]\nX_checked = check_array(X)"
+  },
+  {
+    "version": "1.5",
+    "function_name": "sklearn.linear_model.LogisticRegression",
+    "function_description": "A logistic regression classifier with regularization options for binary and multiclass classification.",
+    "parameters": [
+      "Cs",
+      "fit_intercept",
+      "cv",
+      "dual",
+      "penalty",
+      "scoring",
+      "solver",
+      "tol",
+      "max_iter",
+      "class_weight",
+      "n_jobs",
+      "verbose",
+      "refit",
+      "intercept_scaling",
+      "multi_class",
+      "random_state",
+      "l1_ratios"
+    ],
+    "update_type": "deprecated parameter",
+    "has_alternative": "Yes",
+    "note": "The default solver changed from 'liblinear' to 'lbfgs' in version 0.22. The 'multi_class' parameter was deprecated in version 1.5 and removed in 1.7. The underlying C implementation uses a random number generator, leading to potential slight differences in results.",
+    "update_info": "Parameter 'multi_class' deprecated",
+    "update_description": "The 'multi_class' parameter in sklearn.linear_model.LogisticRegression is deprecated. It will be removed in version 1.7, and internally, for 3 or more classes, it will always use the multinomial approach. Use OneVsRestClassifier for one-vs-rest schemes.",
+    "code_example": "from sklearn.datasets import load_iris\nfrom sklearn.linear_model import LogisticRegression\nX, y = load_iris(return_X_y=True)\nclf = LogisticRegression(random_state=0).fit(X, y)\nclf.predict(X[:2, :])"
+  },
+  {
+    "version": "1.5",
+    "function_name": "sklearn.linear_model.LogisticRegressionCV",
+    "function_description": "A logistic regression classifier that uses cross-validation to select the optimal regularization parameter C and other hyperparameters.",
+    "parameters": [
+      "Cs",
+      "fit_intercept",
+      "cv",
+      "dual",
+      "penalty",
+      "scoring",
+      "solver",
+      "tol",
+      "max_iter",
+      "class_weight",
+      "n_jobs",
+      "verbose",
+      "refit",
+      "intercept_scaling",
+      "multi_class",
+      "random_state",
+      "l1_ratios"
+    ],
+    "note": "The 'multi_class' parameter was deprecated in version 1.5 and will be removed in 1.7. The default changed from 'ovr' to 'auto' in 0.22, and 'multinomial' is now always used for n_classes >= 3.",
+    "update_type": "deprecated parameter",
+    "has_alternative": "Yes",
+    "update_info": "Parameter 'multi_class' deprecated",
+    "update_description": "The 'multi_class' parameter in sklearn.linear_model.LogisticRegressionCV is deprecated. It will be removed in version 1.7, and internally, for 3 or more classes, it will always use the multinomial approach. Use OneVsRestClassifier for one-vs-rest schemes.",
+    "code_example": "from sklearn.datasets import load_iris\nfrom sklearn.linear_model import LogisticRegressionCV\nX, y = load_iris(return_X_y=True)\nclf = LogisticRegressionCV(cv=5, random_state=0).fit(X, y)"
+  },
+  {
+    "version": "1.5",
+    "function_name": "sklearn.linear_model.RidgeCV",
+    "function_description": "Ridge regression with built-in cross-validation.",
+    "parameters": [
+      "alphas",
+      "fit_intercept",
+      "scoring",
+      "cv",
+      "gcv_mode",
+      "store_cv_results",
+      "alpha_per_target",
+      "store_cv_values"
+    ],
+    "return type": "object",
+    "update_type": "deprecated attribute",
+    "note": "When sample_weight is provided, the selected hyperparameter may depend on whether we use leave-one-out cross-validation or another form of cross-validation. The store_cv_values parameter is deprecated in favor of store_cv_results.",
+    "update_info": "Deprecated in favor of 'store_cv_results'",
+    "update_description": "The 'store_cv_values' and 'cv_values_' parameters in sklearn.linear_model.RidgeCV are deprecated in favor of 'store_cv_results' and 'cv_results_'. This change aligns with the new API for storing cross-validation results.",
+    "code_example": "from sklearn.datasets import load_diabetes\nfrom sklearn.linear_model import RidgeCV\nX, y = load_diabetes(return_X_y=True)\nclf = RidgeCV(alphas=[1e-3, 1e-2, 1e-1, 1]).fit(X, y)\nclf.score(X, y)"
+  },
+  {
+    "version": "1.5",
+    "function_name": "sklearn.linear_model.RidgeClassifierCV",
+    "function_description": "A Ridge classifier with built-in cross-validation for optimal regularization parameter selection.",
+    "parameters": [
+      "alphas",
+      "fit_intercept",
+      "scoring",
+      "cv",
+      "class_weight",
+      "store_cv_results"
+    ],
+    "update_type": "deprecated attribute",
+    "note": "For multi-class classification, n_class classifiers are trained in a one-versus-all approach. When using Leave-One-Out cross-validation, alphas must be strictly positive.",
+    "update_info": "Deprecated in favor of 'store_cv_results'",
+    "update_description": "The 'store_cv_values' and 'cv_values_' parameters in sklearn.linear_model.RidgeClassifierCV are deprecated in favor of 'store_cv_results' and 'cv_results_'. This change aligns with the new API for storing cross-validation results.",
+    "code_example": "from sklearn.datasets import load_breast_cancer\nfrom sklearn.linear_model import RidgeClassifierCV\nX, y = load_breast_cancer(return_X_y=True)\nclf = RidgeClassifierCV(alphas=[1e-3, 1e-2, 1e-1, 1]).fit(X, y)\nclf.score(X, y)"
+  },
+  {
+    "version": "1.5",
+    "function_name": "sklearn.linear_model.PassiveAggressiveClassifier",
+    "function_description": "A classifier that uses the Passive Aggressive algorithm for training, suitable for large-scale and online learning tasks.",
+    "parameters": [
+      {
+        "name": "C",
+        "description": "float, default=1.0. Maximum step size (regularization). Defaults to 1.0."
+      },
+      {
+        "name": "fit_intercept",
+        "description": "bool, default=True. Whether the intercept should be estimated or not."
+      },
+      {
+        "name": "max_iter",
+        "description": "int, default=1000. The maximum number of passes over the training data."
+      },
+      {
+        "name": "tol",
+        "description": "float or None, default=1e-3. The stopping criterion."
+      },
+      {
+        "name": "early_stopping",
+        "description": "bool, default=False. Whether to use early stopping to terminate training."
+      },
+      {
+        "name": "validation_fraction",
+        "description": "float, default=0.1. The proportion of training data to set aside as validation set."
+      },
+      {
+        "name": "n_iter_no_change",
+        "description": "int, default=5. Number of iterations with no improvement to wait before early stopping."
+      },
+      {
+        "name": "shuffle",
+        "description": "bool, default=True. Whether the training data should be shuffled after each epoch."
+      },
+      {
+        "name": "verbose",
+        "description": "int, default=0. The verbosity level."
+      },
+      {
+        "name": "loss",
+        "description": "str, default=\"hinge\". The loss function to be used."
+      },
+      {
+        "name": "n_jobs",
+        "description": "int or None, default=None. The number of CPUs to use for multi-class problems."
+      },
+      {
+        "name": "random_state",
+        "description": "int or RandomState instance, default=None. Used to shuffle the training data."
+      },
+      {
+        "name": "warm_start",
+        "description": "bool, default=False. When set to True, reuse the solution of the previous call."
+      },
+      {
+        "name": "class_weight",
+        "description": "dict or None, default=None. Weights associated with classes."
+      },
+      {
+        "name": "average",
+        "description": "bool or int, default=False. When set to True, computes the averaged SGD weights."
+      }
+    ],
+    "return type": "PassiveAggressiveClassifier",
+    "update_type": "deprecated parameter",
+    "has_alternative": "Yes",
+    "note": "For non-sparse models, sparsify may increase memory usage. Use with care, as the number of zero elements must be more than 50% for significant benefits.",
+    "update_info": "Deprecated parameter",
+    "update_description": "Passing average=0 to disable averaging is deprecated in sklearn.linear_model.PassiveAggressiveClassifier. Pass average=False instead.",
+    "code_example": "from sklearn.linear_model import PassiveAggressiveClassifier\nfrom sklearn.datasets import make_classification\nX, y = make_classification(n_features=4, random_state=0)\nclf = PassiveAggressiveClassifier(max_iter=1000, random_state=0, tol=1e-3)\nclf.fit(X, y)\nprint(clf.coef_)\nprint(clf.intercept_)\nprint(clf.predict([[0, 0, 0, 0]]))"
+  },
+  {
+    "version": "1.5",
+    "function_name": "sklearn.linear_model.PassiveAggressiveRegressor",
+    "function_description": "A linear regression model that uses the Passive Aggressive algorithm to minimize the regularized empirical loss with stochastic gradient descent.",
+    "parameters": [
+      "C=1.0",
+      "fit_intercept=True",
+      "max_iter=1000",
+      "tol=0.001",
+      "early_stopping=False",
+      "validation_fraction=0.1",
+      "n_iter_no_change=5",
+      "shuffle=True",
+      "verbose=0",
+      "loss='epsilon_insensitive'",
+      "epsilon=0.1",
+      "random_state=None",
+      "warm_start=False",
+      "average=False"
+    ],
+    "update_type": "deprecated parameter",
+    "has_alternative": "Yes",
+    "note": "The R\u00b2 score uses multioutput='uniform_average' from version 0.23 to maintain consistency with the default value of r2_score.",
+    "update_info": "Deprecated parameter",
+    "update_description": "Passing average=0 to disable averaging is deprecated in sklearn.linear_model.PassiveAggressiveRegressor. Pass average=False instead.",
+    "code_example": "from sklearn.linear_model import PassiveAggressiveRegressor\nfrom sklearn.datasets import make_regression\nX, y = make_regression(n_features=4, random_state=0)\nregr = PassiveAggressiveRegressor(max_iter=100, random_state=0, tol=1e-3)\nregr.fit(X, y)\nprint(regr.coef_)\nprint(regr.intercept_)\nprint(regr.predict([[0, 0, 0, 0]]))"
+  },
+  {
+    "version": "1.5",
+    "function_name": "sklearn.linear_model.SGDClassifier",
+    "function_description": "Implements regularized linear models with stochastic gradient descent (SGD) for classification tasks.",
+    "parameters": [
+      "loss",
+      "penalty",
+      "alpha",
+      "l1_ratio",
+      "fit_intercept",
+      "max_iter",
+      "tol",
+      "shuffle",
+      "verbose",
+      "epsilon",
+      "n_jobs",
+      "random_state",
+      "learning_rate",
+      "eta0",
+      "power_t",
+      "early_stopping",
+      "validation_fraction",
+      "n_iter_no_change",
+      "class_weight",
+      "warm_start",
+      "average"
+    ],
+    "return type": "An instance of SGDClassifier",
+    "update_type": "deprecated parameter",
+    "has_alternative": "Yes",
+    "note": "For best results using the default learning rate schedule, the data should have zero mean and unit variance. The SGD allows minibatch (online/out-of-core) learning via the partial_fit method.",
+    "update_info": "Deprecated parameter",
+    "update_description": "Passing average=0 to disable averaging is deprecated in sklearn.linear_model.SGDClassifier. Pass average=False instead.",
+    "code_example": "from sklearn.linear_model import SGDClassifier\nfrom sklearn.preprocessing import StandardScaler\nfrom sklearn.pipeline import make_pipeline\n\nX = [[-1, -1], [-2, -1], [1, 1], [2, 1]]\ny = [1, 1, 2, 2]\nclf = make_pipeline(StandardScaler(), SGDClassifier(max_iter=1000, tol=1e-3))\nclf.fit(X, y)\nprint(clf.predict([[-0.8, -1]]))"
+  },
+  {
+    "version": "1.5",
+    "function_name": "sklearn.linear_model.SGDRegressor",
+    "function_description": "Fits a linear regression model using Stochastic Gradient Descent with regularization.",
+    "parameters": [
+      "loss",
+      "penalty",
+      "alpha",
+      "l1_ratio",
+      "fit_intercept",
+      "max_iter",
+      "tol",
+      "shuffle",
+      "verbose",
+      "epsilon",
+      "random_state",
+      "learning_rate",
+      "eta0",
+      "power_t",
+      "early_stopping",
+      "validation_fraction",
+      "n_iter_no_change",
+      "warm_start",
+      "average"
+    ],
+    "update_type": "deprecated parameter",
+    "has_alternative": "Yes",
+    "update_info": "Deprecated parameter",
+    "update_description": "Passing average=0 to disable averaging is deprecated in sklearn.linear_model.SGDRegressor. Pass average=False instead.",
+    "code_example": "from sklearn.linear_model import SGDRegressor\nX = [[1, 2], [3, 4]]\ny = [0, 1]\nreg = SGDRegressor().fit(X, y)"
+  },
+  {
+    "version": "1.5",
+    "function_name": "sklearn.linear_model.SGDOneClassSVM",
+    "function_description": "Solves linear One-Class SVM using Stochastic Gradient Descent.",
+    "parameters": [
+      "nu",
+      "fit_intercept",
+      "max_iter",
+      "tol",
+      "shuffle",
+      "verbose",
+      "random_state",
+      "learning_rate",
+      "eta0",
+      "power_t",
+      "warm_start",
+      "average"
+    ],
+    "update_type": "deprecated parameter",
+    "has_alternative": "Yes",
+    "note": "This estimator has a linear complexity in the number of training samples and is thus better suited than the sklearn.svm.OneClassSVM implementation for datasets with a large number of training samples (say > 10,000).",
+    "update_info": "Deprecated parameter",
+    "update_description": "Passing average=0 to disable averaging is deprecated in sklearn.linear_model.SGDOneClassSVM. Pass average=False instead.",
+    "code_example": "import numpy as np\nfrom sklearn import linear_model\nX = np.array([[-1, -1], [-2, -1], [1, 1], [2, 1]])\nclf = linear_model.SGDOneClassSVM(random_state=42)\nclf.fit(X)\nprint(clf.predict([[4, 4]]))"
+  },
+  {
+    "version": "1.5",
+    "function_name": "sklearn.metrics.precision_recall_curve",
+    "function_description": "Computes precision-recall pairs for different probability thresholds in binary classification tasks.",
+    "parameters": [
+      {
+        "name": "y_true",
+        "type": "array-like of shape (n_samples,)",
+        "default": "None",
+        "description": "True binary labels. If labels are not either {-1, 1} or {0, 1}, then pos_label should be explicitly given."
+      },
+      {
+        "name": "y_score",
+        "type": "array-like of shape (n_samples,)",
+        "default": "None",
+        "description": "Target scores, can either be probability estimates of the positive class, or non-thresholded measure of decisions."
+      },
+      {
+        "name": "pos_label",
+        "type": "int, float, bool or str",
+        "default": "None",
+        "description": "The label of the positive class. When pos_label=None, if y_true is in {-1, 1} or {0, 1}, pos_label is set to 1."
+      },
+      {
+        "name": "sample_weight",
+        "type": "array-like of shape (n_samples,)",
+        "default": "None",
+        "description": "Sample weights."
+      },
+      {
+        "name": "drop_intermediate",
+        "type": "bool",
+        "default": "False",
+        "description": "Whether to drop some suboptimal thresholds which would not appear on a plotted precision-recall curve."
+      }
+    ],
+    "return_type": "tuple of three numpy ndarrays: (precision, recall, thresholds)",
+    "note": "The last precision and recall values are 1. and 0. respectively and do not have a corresponding threshold. The first precision and recall values are precision=class balance and recall=1.0, corresponding to a classifier that always predicts the positive class.",
+    "update_type": "deprecated parameter",
+    "has_alternative": "Yes",
+    "update_info": "deprecated keyword argument",
+    "update_description": "sklearn.metrics.precision_recall_curve deprecated the keyword argument probas_pred in favor of y_score. probas_pred will be removed in version 1.7.",
+    "code_example": "import numpy as np\nfrom sklearn.metrics import precision_recall_curve\n\ny_true = np.array([0, 0, 1, 1])\ny_scores = np.array([0.1, 0.4, 0.35, 0.8])\nprecision, recall, thresholds = precision_recall_curve(y_true, y_scores)"
+  },
+  {
+    "version": "1.5",
+    "function_name": "sklearn.metrics.brier_score_loss",
+    "function_description": "Computes the Brier score loss, which measures the mean squared difference between predicted probabilities and actual outcomes. A lower score indicates better performance.",
+    "parameters": [
+      "y_true",
+      "y_proba",
+      "sample_weight",
+      "pos_label",
+      "labels",
+      "scale_by_half"
+    ],
+    "return type": "float",
+    "note": "The Brier score ranges between [0, 2] for multiclass and [0, 1] for binary classification when scaled by half. The scale_by_half parameter controls this behavior.",
+    "update_type": "deprecated parameter",
+    "has_alternative": "Yes",
+    "update_info": "deprecated keyword argument",
+    "update_description": "sklearn.metrics.brier_score_loss deprecated the keyword argument y_prob in favor of y_proba. y_prob will be removed in version 1.7.",
+    "code_example": "import numpy as np\nfrom sklearn.metrics import brier_score_loss\ny_true = np.array([0, 1, 1, 0])\ny_prob = np.array([0.1, 0.9, 0.8, 0.3])\nloss = brier_score_loss(y_true, y_proba)"
+  },
+  {
+    "version": "1.4",
+    "function_name": "sklearn.model_selection.cross_validate",
+    "function_description": "Evaluate metric(s) by cross-validation and also record fit/score times.",
+    "parameters": [
+      "estimator",
+      "X",
+      "y",
+      "groups",
+      "scoring",
+      "cv",
+      "n_jobs",
+      "verbose",
+      "params",
+      "pre_dispatch",
+      "return_train_score",
+      "return_estimator",
+      "return_indices",
+      "error_score"
+    ],
+    "return type": "dict of float arrays",
+    "update_type": "added parameter",
+    "note": "When metadata routing is enabled, pass groups via params argument.",
+    "update_info": "Added params parameter to support metadata routing.",
+    "update_description": "sklearn.model_selection.cross_validate has the new params parameter. The function now supports metadata routing via the new params parameter.",
+    "code_example": "from sklearn.model_selection import cross_validate\nfrom sklearn.linear_model import Lasso\nfrom sklearn.datasets import load_diabetes\n\nX, y = load_diabetes(return_X_y=True)\ncross_validate(Lasso(), X, y, cv=3)"
+  },
+  {
+    "version": "1.4",
+    "function_name": "sklearn.model_selection.cross_val_predict",
+    "function_description": "Generate cross-validated estimates for each input data point.",
+    "parameters": [
+      "estimator",
+      "X",
+      "y",
+      "groups",
+      "cv",
+      "n_jobs",
+      "verbose",
+      "params",
+      "pre_dispatch",
+      "method"
+    ],
+    "return_type": "ndarray",
+    "update_type": "added parameter",
+    "note": "Passing these predictions into an evaluation metric may not be a valid way to measure generalization performance. Results can differ from cross_validate and cross_val_score unless all tests sets have equal size and the metric decomposes over samples. In the case that one or more classes are absent in a training portion, a default score needs to be assigned to all instances for that class if method produces columns per class, as in {'decision_function', 'predict_proba', 'predict_log_proba'}. For predict_proba this value is 0. In order to ensure finite output, we approximate negative infinity by the minimum finite float value for the dtype in other cases.",
+    "update_info": "Added params parameter to support metadata routing.",
+    "update_description": "sklearn.model_selection.cross_val_predict has the new params parameter. The function now supports metadata routing via the new params parameter.",
+    "code_example": "from sklearn import datasets, linear_model\nfrom sklearn.model_selection import cross_val_predict\ndiabetes = datasets.load_diabetes()\nX = diabetes.data[:150]\ny = diabetes.target[:150]\nlasso = linear_model.Lasso()\ny_pred = cross_val_predict(lasso, X, y, cv=3)"
+  },
+  {
+    "version": "1.4",
+    "function_name": "sklearn.model_selection.cross_val_score",
+    "function_description": "Evaluates the performance of an estimator using cross-validation to compute a score.",
+    "parameters": [
+      "estimator",
+      "X",
+      "y",
+      "groups",
+      "scoring",
+      "cv",
+      "n_jobs",
+      "verbose",
+      "params",
+      "pre_dispatch",
+      "error_score"
+    ],
+    "return type": "ndarray of float",
+    "update_type": "added parameter",
+    "update_info": "Added params parameter to support metadata routing.",
+    "update_description": "sklearn.model_selection.cross_val_score has the new params parameter. The function now supports metadata routing via the new params parameter.",
+    "code_example": "from sklearn import datasets, linear_model\nfrom sklearn.model_selection import cross_val_score\ndiabetes = datasets.load_diabetes()\nX = diabetes.data[:150]\ny = diabetes.target[:150]\nlasso = linear_model.Lasso()\nprint(cross_val_score(lasso, X, y, cv=3))"
+  },
+  {
+    "version": "1.6",
+    "function_name": "sklearn.calibration.CalibratedClassifierCV",
+    "function_description": "Calibrates classifier probabilities using isotonic regression or logistic regression.",
+    "parameters": [
+      {
+        "name": "estimator",
+        "description": "The classifier whose output needs to be calibrated to provide more accurate predict_proba outputs. The default classifier is a LinearSVC."
+      },
+      {
+        "name": "method",
+        "description": "The method to use for calibration. Can be 'sigmoid' (Platt\u2019s method) or 'isotonic' (non-parametric approach)."
+      },
+      {
+        "name": "cv",
+        "description": "Determines the cross-validation splitting strategy. Default is 5-fold cross-validation."
+      },
+      {
+        "name": "n_jobs",
+        "description": "Number of jobs to run in parallel. None means 1 unless in a joblib.parallel_backend context."
+      },
+      {
+        "name": "ensemble",
+        "description": "Determines how the calibrator is fitted. 'auto' uses True unless the estimator is a FrozenEstimator."
+      }
+    ],
+    "return_type": "CalibratedClassifierCV instance",
+    "update_type": "deprecated parameter",
+    "has_alternative": "Yes",
+    "note": "1. Use 'isotonic' method with caution if calibration samples are fewer than 1000. 2. For pre-trained models, wrap them in FrozenEstimator to avoid data leakage. 3. The 'ensemble' parameter controls whether cross-validation is used to train multiple classifiers.",
+    "update_info": "Deprecated cv=\"prefit\", replaced with FrozenEstimator",
+    "update_description": "The cv=\"prefit\" parameter is deprecated for sklearn.calibration.CalibratedClassifierCV. Use FrozenEstimator instead, as CalibratedClassifierCV(FrozenEstimator(estimator)).",
+    "code_example": "from sklearn.calibration import CalibratedClassifierCV\nfrom sklearn.naive_bayes import GaussianNB\n\nbase_clf = GaussianNB()\ncalibrated_clf = CalibratedClassifierCV(base_clf, cv=3)\ncalibrated_clf.fit(X, y)\nprint(calibrated_clf.predict_proba(X))"
+  },
+  {
+    "version": "1.6",
+    "function_name": "sklearn.cluster.Birch",
+    "function_description": "Implements the BIRCH clustering algorithm, a memory-efficient, online-learning algorithm as an alternative to MiniBatchKMeans.",
+    "parameters": [
+      {
+        "name": "threshold",
+        "default": 0.5
+      },
+      {
+        "name": "branching_factor",
+        "default": 50
+      },
+      {
+        "name": "n_clusters",
+        "default": 3
+      },
+      {
+        "name": "compute_labels",
+        "default": true
+      },
+      {
+        "name": "copy",
+        "default": true
+      }
+    ],
+    "return type": "Birch instance",
+    "update_type": "deprecated parameter",
+    "has_alternative": "No",
+    "note": "The 'copy' parameter is deprecated since version 1.6 and will be removed in 1.8. It has no effect as the estimator does not perform in-place operations on the input data.",
+    "update_info": "Deprecated copy parameter",
+    "update_description": "The copy parameter of sklearn.cluster.Birch was deprecated in 1.6 and will be removed in 1.8. It has no effect as the estimator does not perform in-place operations on the input data.",
+    "code_example": "from sklearn.cluster import Birch\nX = [[0, 1], [0.3, 1], [-0.3, 1], [0, -1], [0.3, -1], [-0.3, -1]]\nbrc = Birch(n_clusters=None)\nbrc.fit(X)\nbrc.predict(X)"
+  },
+  {
+    "version": "1.6",
+    "function_name": "sklearn.compose.ColumnTransformer",
+    "function_description": "Applies transformers to columns of an array or pandas DataFrame, allowing different columns to be transformed separately and concatenated into a single feature space.",
+    "parameters": [
+      "transformers",
+      "remainder",
+      "sparse_threshold",
+      "n_jobs",
+      "transformer_weights",
+      "verbose",
+      "verbose_feature_names_out",
+      "force_int_remainder_cols"
+    ],
+    "note": "Using remainder requires identical column order in fit and transform. force_int_remainder_cols is deprecated and will be removed in version 1.9.",
+    "update_type": "modified parameter",
+    "update_info": "Added verbose_feature_names_out parameter",
+    "update_description": "In sklearn.compose.ColumnTransformer, verbose_feature_names_out now accepts string format or callable to generate feature names.",
+    "code_example": "from sklearn.compose import ColumnTransformer\nfrom sklearn.preprocessing import Normalizer\nct = ColumnTransformer([\n    ('norm1', Normalizer(norm='l1'), [0, 1]),\n    ('norm2', Normalizer(norm='l1'), slice(2, 4))])\nX = np.array([[0., 1., 2., 2.], [1., 1., 0., 1.]])\nct.fit_transform(X)"
+  },
+  {
+    "version": "1.6",
+    "function_name": "sklearn.metrics.pairwise_distances",
+    "function_description": "Computes the pairwise distance matrix between samples in X and optionally Y using the specified metric.",
+    "parameters": [
+      "X",
+      "Y",
+      "metric",
+      "n_jobs",
+      "force_all_finite",
+      "ensure_all_finite",
+      "**kwds"
+    ],
+    "return type": "ndarray",
+    "update_type": "modified parameter",
+    "note": "Valid metrics include 'euclidean', 'cosine', 'manhattan', etc. 'kulsinski' is deprecated. 'matching' has been removed. The 'euclidean', 'cosine' metrics use scikit-learn's implementation, which supports sparse matrices. The 'force_all_finite' parameter is deprecated and renamed to 'ensure_all_finite'.",
+    "update_info": "Renamed assert_all_finite to ensure_all_finite",
+    "update_description": "The assert_all_finite parameter of sklearn.metrics.pairwise_distances is renamed into ensure_all_finite. force_all_finite will be removed in 1.8.",
+    "code_example": "from sklearn.metrics.pairwise import pairwise_distances\nX = [[0, 0, 0], [1, 1, 1]]\nY = [[1, 0, 0], [1, 1, 0]]\npairwise_distances(X, Y, metric='sqeuclidean')"
+  },
+  {
+    "version": "1.6",
+    "function_name": "sklearn.neighbors.KNeighborsClassifier",
+    "function_description": "Classifies data points based on the majority vote of their k nearest neighbors.",
+    "parameters": [
+      "n_neighbors: int, default=5",
+      "weights: {\u2018uniform\u2019, \u2018distance\u2019}, callable or None, default=\u2019uniform\u2019",
+      "algorithm: {\u2018auto\u2019, \u2018ball_tree\u2019, \u2018kd_tree\u2019, \u2018brute\u2019}, default=\u2019auto\u2019",
+      "leaf_size: int, default=30",
+      "p: float, default=2",
+      "metric: str or callable, default=\u2019minkowski\u2019",
+      "metric_params: dict, default=None",
+      "n_jobs: int, default=None"
+    ],
+    "return type": "KNeighborsClassifier",
+    "update_type": "modified parameter",
+    "note": "Warning: If two neighbors have identical distances but different labels, results depend on the training data ordering.",
+    "update_info": "Added metric=\"nan_euclidean\" support",
+    "update_description": "sklearn.neighbors.KNeighborsClassifier and related classifiers now support metric=\"nan_euclidean\" for handling nan inputs.",
+    "code_example": "from sklearn.neighbors import KNeighborsClassifier\nX = [[0], [1], [2], [3]]\ny = [0, 0, 1, 1]\nneigh = KNeighborsClassifier(n_neighbors=3)\nneigh.fit(X, y)\nprint(neigh.predict([[1.1]])"
+  },
+  {
+    "version": "1.6",
+    "function_name": "sklearn.pipeline.Pipeline",
+    "function_description": "A sequence of data transformers with an optional final predictor for sequential processing.",
+    "parameters": [
+      {
+        "name": "steps",
+        "type": "list of tuples",
+        "description": "List of (name of step, estimator) tuples that are to be chained in sequential order."
+      },
+      {
+        "name": "transform_input",
+        "type": "list of str",
+        "description": "The names of the metadata parameters that should be transformed by the pipeline."
+      },
+      {
+        "name": "memory",
+        "type": "str or object with joblib.Memory interface",
+        "description": "Used to cache the fitted transformers of the pipeline."
+      },
+      {
+        "name": "verbose",
+        "type": "bool",
+        "description": "If True, the time elapsed while fitting each step will be printed."
+      }
+    ],
+    "return type": "Pipeline",
+    "note": "Can be used with GridSearchCV. Parameters can be set using '__' syntax. Caching can be enabled with the memory argument.",
+    "update_type": "added parameter",
+    "update_info": "Added transform_input parameter",
+    "update_description": "sklearn.pipeline.Pipeline can now transform metadata up to the step requiring the metadata, using the transform_input parameter.",
+    "code_example": "from sklearn.svm import SVC\nfrom sklearn.preprocessing import StandardScaler\nfrom sklearn.pipeline import Pipeline\n\npipe = Pipeline([\n    ('scaler', StandardScaler()),\n    ('svc', SVC())\n])\npipe.fit(X_train, y_train).score(X_test, y_test)"
+  },
+  {
+    "version": "1.6",
+    "function_name": "sklearn.semi_supervised.SelfTrainingClassifier",
+    "function_description": "A metaestimator that allows a supervised classifier to function as a semi-supervised classifier by iteratively predicting pseudo-labels for unlabeled data and adding them to the training set.",
+    "parameters": [
+      {
+        "name": "estimator",
+        "type": "estimator object",
+        "description": "An estimator object implementing fit and predict_proba."
+      },
+      {
+        "name": "threshold",
+        "type": "float",
+        "description": "The decision threshold for use with criterion='threshold'. Should be in [0, 1)."
+      },
+      {
+        "name": "criterion",
+        "type": "{\u2018threshold\u2019, \u2018k_best\u2019}",
+        "description": "The selection criterion used to select which labels to add to the training set."
+      },
+      {
+        "name": "k_best",
+        "type": "int",
+        "description": "The amount of samples to add in each iteration. Only used when criterion='k_best'."
+      },
+      {
+        "name": "max_iter",
+        "type": "int or None",
+        "description": "Maximum number of iterations allowed. If None, the classifier continues until no new pseudo-labels are added."
+      },
+      {
+        "name": "verbose",
+        "type": "bool",
+        "description": "Enable verbose output."
+      }
+    ],
+    "return_type": "SelfTrainingClassifier instance",
+    "note": "The 'base_estimator' parameter is deprecated since version 1.6. Use 'estimator' instead. When using 'threshold' criterion, a well-calibrated classifier is recommended.",
+    "update_type": "deprecated parameter",
+    "has_alternative": "Yes",
+    "update_info": "Deprecated base_estimator, now estimator",
+    "update_description": "The base_estimator parameter of sklearn.semi_supervised.SelfTrainingClassifier is deprecated in favor of estimator.",
+    "code_example": "import numpy as np\nfrom sklearn import datasets\nfrom sklearn.semi_supervised import SelfTrainingClassifier\nfrom sklearn.svm import SVC\n\nrng = np.random.RandomState(42)\niris = datasets.load_iris()\nrandom_unlabeled_points = rng.rand(iris.target.shape[0]) < 0.3\niris.target[random_unlabeled_points] = -1\nsvc = SVC(probability=True, gamma=\"auto\")\nself_training_model = SelfTrainingClassifier(svc)\nself_training_model.fit(iris.data, iris.target)"
+  }
+]

@@ -1,0 +1,29 @@
+[
+  {
+    "version": "2.7.0",
+    "old_name": "torch.onnx.dynamo_export",
+    "new_name": "torch.onnx.export",
+    "has_alternative": "Yes",
+    "update_info": "deprecated in favor of torch.onnx.export with dynamo=True",
+    "update_description": "Users should use the dynamo=True option on torch.onnx.export. The torch.onnx.dynamo_export API is now deprecated.",
+    "code_example": "torch.onnx.export(model, args, kwargs=kwargs, dynamo=True)"
+  },
+  {
+    "version": "2.7.0",
+    "old_name": "XNNPACKQuantizer",
+    "new_name": "executorch.backends.xnnpack.quantizer.xnnpack_quantizer",
+    "has_alternative": "Yes",
+    "update_info": "deprecated and moved to ExecuTorch",
+    "update_description": "XNNPACKQuantizer is deprecated in PyTorch and moved to ExecuTorch. Please use it from executorch.backends.xnnpack.quantizer.xnnpack_quantizer instead of torch.ao.quantization.quantizer.xnnpack_quantizer.",
+    "code_example": "from executorch.backends.xnnpack.quantizer.xnnpack_quantizer import XNNPACKQuantizer"
+  },
+  {
+    "version": "2.7.0",
+    "old_name": "LRScheduler.print_lr()",
+    "new_name": "",
+    "has_alternative": "Yes",
+    "update_info": "deprecated and removed",
+    "update_description": "LRScheduler.print_lr() have been deprecated since 2.2. Please use LRScheduler.get_last_lr() to access the learning rate instead.",
+    "code_example": "print(lrsched.get_last_lr())"
+  }
+]

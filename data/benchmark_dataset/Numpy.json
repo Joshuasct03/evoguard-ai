@@ -1,0 +1,279 @@
+[
+  {
+    "version": "2.0.0",
+    "function_name": "numpy.unique_inverse",
+    "function_description": "Finds the unique elements of an array and indices to reconstruct the original array.",
+    "code_example": "import numpy as np\nx = [1, 1, 2]\nuniq = np.unique_inverse(x)",
+    "parameters": [
+      "x: array_like"
+    ],
+    "return type": "namedtuple",
+    "note": "This function currently always returns a sorted result, however, this could change in any NumPy minor release."
+  },
+  {
+    "version": "2.0.0",
+    "function_name": "numpy.linalg.cross",
+    "function_description": "Returns the cross product of 3-element vectors.",
+    "code_example": "import numpy as np\nx = np.array([1,2,3])\ny = np.array([4,5,6])\nnp.linalg.cross(x, y)",
+    "parameters": [
+      "x1",
+      "x2",
+      "axis"
+    ],
+    "return type": "ndarray",
+    "note": "This function is Array API compatible, contrary to numpy.cross."
+  },
+  {
+    "version": "2.0.0",
+    "function_name": "numpy.isdtype",
+    "function_description": "Determine if a provided dtype is of a specified data type kind.",
+    "code_example": "import numpy as np\nprint(np.isdtype(np.float32, \"real floating\"))",
+    "parameters": [
+      "dtype",
+      "kind"
+    ],
+    "return type": "bool",
+    "note": "Only supports built-in NumPy data types. Third-party dtypes are not supported."
+  },
+  {
+    "version": "2.0.0",
+    "function_name": "numpy.unique_values",
+    "function_description": "Returns the unique elements of an input array.",
+    "code_example": "import numpy as np\nnp.unique_values([1, 1, 2])",
+    "parameters": [
+      "x: array_like - Input array. It will be flattened if it is not already 1-D."
+    ],
+    "return type": "ndarray",
+    "note": "The algorithm was changed in version 2.3 to a faster one that does not rely on sorting, hence results are no longer implicitly sorted. This function is an Array API compatible alternative to np.unique with equal_nan=False and sorted=False."
+  },
+  {
+    "version": "2.0.0",
+    "function_name": "numpy.bitwise_count",
+    "function_description": "Counts the number of 1-bits in a number, working on all numpy integer types and integer-like objects.",
+    "code_example": "a = np.array([2**i - 1 for i in range(16)])\nnp.bitwise_count(a)",
+    "parameters": [
+      "x",
+      "out",
+      "where",
+      "casting",
+      "order",
+      "dtype",
+      "subok",
+      "signature"
+    ],
+    "return type": "ndarray",
+    "note": "Returns uint8 for all integer types. This is a scalar if x is a scalar. Note that if an uninitialized out array is created via the default out=None, locations within it where the condition is False will remain uninitialized."
+  },
+  {
+    "version": "2.0.0",
+    "function_name": "numpy.linalg.svdvals",
+    "function_description": "Returns the singular values of a matrix or a stack of matrices.",
+    "code_example": "np.linalg.svdvals([[1,2,3,4,5], [1,4,9,16,25], [1,8,27,64,125]])",
+    "parameters": [
+      {
+        "name": "x",
+        "description": "Input array with shape (..., M, N) and floating-point data type."
+      }
+    ],
+    "return type": "ndarray",
+    "note": "This function is Array API compatible. Calling np.svdvals(x) is equivalent to np.svd(x, compute_uv=False, hermitian=False)."
+  },
+  {
+    "version": "2.0.0",
+    "function_name": "numpy.unique_all",
+    "function_description": "Finds the unique elements of an array and returns counts, inverse indices, and original indices in a namedtuple.",
+    "code_example": "import numpy as np\nx = [1, 1, 2]\nuniq = np.unique_all(x)\nprint(uniq.values)\nprint(uniq.indices)\nprint(uniq.inverse_indices)\nprint(uniq.counts)",
+    "parameters": [
+      {
+        "name": "x",
+        "type": "array_like",
+        "description": "Input array. It will be flattened if it is not already 1-D."
+      }
+    ],
+    "return_type": "namedtuple with fields: values (unique elements), indices (first occurrence indices), inverse_indices (reconstruction indices), counts (element counts)",
+    "note": "This function currently always returns a sorted result, however, this could change in any NumPy minor release."
+  },
+  {
+    "version": "2.0.0",
+    "function_name": "numpy.linalg.outer",
+    "function_description": "Compute the outer product of two vectors.",
+    "code_example": "import numpy as np\nresult = np.linalg.outer(np.ones((5,)), np.linspace(-2, 2, 5))",
+    "parameters": [
+      {
+        "name": "x1",
+        "description": "One-dimensional input array of size N. Must have a numeric data type."
+      },
+      {
+        "name": "x2",
+        "description": "One-dimensional input array of size M. Must have a numeric data type."
+      }
+    ],
+    "return_type": "ndarray",
+    "note": "This function is Array API compatible. Compared to np.outer it accepts 1-dimensional inputs only."
+  },
+  {
+    "version": "2.0.0",
+    "function_name": "numpy.linalg.trace",
+    "function_description": "Returns the sum along the specified diagonals of a matrix or a stack of matrices.",
+    "code_example": "import numpy as np\nnp.linalg.trace(np.eye(3))",
+    "parameters": [
+      {
+        "name": "x",
+        "description": "Input array having shape (..., M, N) and whose innermost two dimensions form MxN matrices."
+      },
+      {
+        "name": "offset",
+        "description": "Offset specifying the off-diagonal relative to the main diagonal."
+      },
+      {
+        "name": "dtype",
+        "description": "Data type of the returned array."
+      }
+    ],
+    "return type": "ndarray",
+    "note": "This function is Array API compatible, contrary to numpy.trace. Trace is computed with the last two axes as the 2-d sub-arrays, differing from numpy.trace which uses the first two axes by default."
+  },
+  {
+    "version": "2.0.0",
+    "function_name": "numpy.unique_counts",
+    "function_description": "Find the unique elements and counts of an input array",
+    "code_example": "import numpy as np\nx = [1, 1, 2]\nuniq = np.unique_counts(x)\nprint(uniq.values)\nprint(uniq.counts)",
+    "parameters": [
+      "x (array_like)"
+    ],
+    "return type": "namedtuple with 'values' and 'counts' attributes",
+    "note": "The function always returns a sorted result, however, this could change in any NumPy minor release"
+  },
+  {
+    "version": "2.0.0",
+    "function_name": "numpy.linalg.matrix_norm",
+    "function_description": "Calculates the matrix norm of a matrix or a stack of matrices.",
+    "code_example": "import numpy as np\nfrom numpy.linalg import matrix_norm\na = np.arange(9) - 4\nb = a.reshape((3, 3))\nmatrix_norm(b)",
+    "parameters": [
+      {
+        "name": "x",
+        "description": "Input array having shape (\u2026, M, N) and whose two innermost dimensions form MxN matrices."
+      },
+      {
+        "name": "keepdims",
+        "description": "If True, the axes which are normed over are left in the result as dimensions with size one. Default: False."
+      },
+      {
+        "name": "ord",
+        "description": "{1, -1, 2, -2, inf, -inf, 'fro', 'nuc'}, optional. The order of the norm."
+      }
+    ],
+    "note": "Array API compatible. The ord parameter follows the same rules as in numpy.linalg.norm."
+  },
+  {
+    "version": "2.0.0",
+    "function_name": "numpy.linalg.vector_norm",
+    "function_description": "Computes the vector norm of a vector (or batch of vectors)",
+    "code_example": "import numpy as np\nfrom numpy.linalg import vector_norm\na = np.arange(9) + 1\nb = a.reshape((3, 3))\nvector_norm(b)",
+    "parameters": [
+      {
+        "name": "x",
+        "description": "Input array."
+      },
+      {
+        "name": "axis",
+        "description": "If an integer, axis specifies the axis (dimension) along which to compute vector norms. If an n-tuple, axis specifies the axes (dimensions) along which to compute batched vector norms. If None, the vector norm must be computed over all array values (i.e., equivalent to computing the vector norm of a flattened array). Default: None."
+      },
+      {
+        "name": "keepdims",
+        "description": "If this is set to True, the axes which are normed over are left in the result as dimensions with size one. Default: False."
+      },
+      {
+        "name": "ord",
+        "description": "{int, float, inf, -inf}, optional. The order of the norm. For details see the table under Notes in numpy.linalg.norm."
+      }
+    ],
+    "note": "This function is Array API compatible. The ord parameter details are in the notes of numpy.linalg.norm."
+  },
+  {
+    "version": "2.0.0",
+    "function_name": "numpy.linalg.matrix_transpose",
+    "function_description": "Transposes a matrix (or a stack of matrices) by swapping their rows and columns.",
+    "code_example": "import numpy as np\nresult = np.matrix_transpose([[1, 2], [3, 4]])",
+    "parameters": [
+      {
+        "name": "x",
+        "description": "array_like, input array with shape (..., M, N)"
+      }
+    ],
+    "return type": "ndarray",
+    "note": "This function is an alias of numpy.matrix_transpose."
+  },
+  {
+    "version": "2.0.0",
+    "function_name": "numpy.linalg.diagonal",
+    "function_description": "Returns the specified diagonals of a matrix or stack of matrices, with an optional offset parameter to select off-diagonals.",
+    "code_example": "import numpy as np\na = np.arange(4).reshape(2, 2)\nprint(np.linalg.diagonal(a))",
+    "parameters": [
+      "x",
+      "offset"
+    ],
+    "return type": "ndarray",
+    "note": "This function is Array API compatible. The anti-diagonal can be obtained by reversing the order of elements using either numpy.flipud or numpy.fliplr. The order in which the diagonal is retrieved varies depending on the flip function."
+  },
+  {
+    "version": "2.0.0",
+    "function_name": "numpy.vecdot",
+    "function_description": "Computes the vector dot product of two arrays, summing the product of corresponding elements after taking the complex conjugate of the first array's elements if they are complex.",
+    "code_example": "import numpy as np; v = np.array([[0., 5., 0.], [0., 0., 10.], [0., 6., 8.]]); n = np.array([0., 0.6, 0.8]); np.vecdot(v, n)",
+    "parameters": [
+      "x1",
+      "x2",
+      "out",
+      "casting",
+      "order",
+      "dtype",
+      "subok",
+      "signature",
+      "axes",
+      "axis"
+    ],
+    "return type": "ndarray",
+    "note": "New in version 2.0.0. Scalars not allowed as inputs."
+  },
+  {
+    "version": "2.0.0",
+    "function_name": "numpy.astype",
+    "function_description": "Copies an array to a specified data type.",
+    "code_example": "import numpy as np\narr = np.array([1, 2, 3])\nnp.astype(arr, np.float64)",
+    "parameters": [
+      "x: Input NumPy array to cast.",
+      "dtype: Data type of the result.",
+      "copy: bool, optional. Specifies whether to copy an array when the specified dtype matches the data type of the input array x. Defaults to True.",
+      "device: str, optional. The device on which to place the returned array. Default: None. For Array-API interoperability only, so must be 'cpu' if passed."
+    ],
+    "return_type": "ndarray",
+    "note": "array_likes are explicitly not supported here. The device parameter is for Array-API interoperability and must be 'cpu' if passed. New in version 2.1.0."
+  },
+  {
+    "version": "2.2.0",
+    "function_name": "numpy.matvec",
+    "function_description": "Computes the matrix-vector dot product of two arrays, summing over the last dimensions unless specified otherwise.",
+    "code_example": "import numpy as np\na = np.array([[0., 1., 0.], [-1., 0., 0.], [0., 0., 1.]])\nv = np.array([[1., 0., 0.], [0., 1., 0.], [0., 0., 1.]])\nnp.matvec(a, v)",
+    "parameters": [
+      "x1",
+      "x2",
+      "out"
+    ],
+    "return_type": "ndarray",
+    "note": "New in version 2.2.0. For a matrix-vector product with the vector conjugated, use np.vecmat(x2, x1.mT)."
+  },
+  {
+    "version": "2.2.0",
+    "function_name": "numpy.vecmat",
+    "function_description": "Computes the vector-matrix dot product of two arrays.",
+    "code_example": "import numpy as np\nv = np.array([0., 4., 2.])\na = np.array([[1., 0., 0.], [0., 1., 0.], [0., 0., 0.]])\nresult = np.vecmat(v, a)",
+    "parameters": [
+      "x1",
+      "x2",
+      "out"
+    ],
+    "return type": "ndarray",
+    "note": "If a scalar value is passed in."
+  }
+]

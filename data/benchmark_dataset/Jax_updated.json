@@ -1,0 +1,91 @@
+[
+  {
+    "version": "0.4.28",
+    "function_name": "jax.numpy.sort",
+    "function_description": "Returns a sorted copy of an array.",
+    "parameters": [
+      "a",
+      "axis",
+      "stable",
+      "descending"
+    ],
+    "return type": "Array",
+    "update_type": "removed parameter",
+    "has_alternative": "Yes",
+    "update_info": "deprecated kind argument",
+    "update_description": "The kind argument to jax.numpy.sort() and jax.numpy.argsort() is now removed. Use stable=True or stable=False instead.",
+    "code_example": "jax.numpy.sort(x, stable=True)"
+  },
+  {
+    "version": "0.4.28",
+    "function_name": "jax.numpy.reshape",
+    "function_description": "Returns a reshaped copy of an array with the specified shape.",
+    "parameters": [
+      "a (ArrayLike) \u2013 input array to reshape",
+      "shape (DimSize | Shape) \u2013 integer or sequence of integers giving the new shape, which must match the size of the input array. If any single dimension is given size -1, it will be replaced with a value such that the output has the correct size.",
+      "order (str) \u2013 'F' or 'C', specifies whether the reshape should apply column-major (fortran-style, \"F\") or row-major (C-style, \"C\") order; default is \"C\".",
+      "copy (bool | None) \u2013 unused by JAX; JAX always returns a copy, though under JIT the compiler may optimize such copies away.",
+      "out_sharding (None) \u2013 "
+    ],
+    "return type": "Array",
+    "note": "Unlike numpy.reshape, jax.numpy.reshape will return a copy rather than a view of the input array. However, under JIT, the compiler will optimize-away such copies when possible, so this doesn\u2019t have performance impacts in practice.",
+    "update_type": "deprecated parameter",
+    "has_alternative": "Yes",
+    "update_info": "deprecated newshape argument",
+    "update_description": "The newshape argument to jax.numpy.reshape() is being deprecated and will soon be removed. Use shape instead.",
+    "code_example": "jax.numpy.reshape(x, shape=(...))"
+  },
+  {
+    "version": "0.4.35",
+    "function_name": "jax.numpy.isscalar",
+    "function_description": "Returns True if the input is a scalar or a zero-dimensional array.",
+    "parameters": [
+      {
+        "name": "element",
+        "type": "Any",
+        "description": "input object to check; any type is valid input"
+      }
+    ],
+    "return type": "bool",
+    "note": "JAX considers zero-dimensional arrays as scalars, differing from NumPy's behavior. This ensures JIT-invariance by treating zero-dimensional arrays as scalars.",
+    "update_type": "changed behavior",
+    "update_info": "changed behavior",
+    "update_description": "jax.numpy.isscalar() now returns True for any array-like object with zero dimensions. Previously, it only returned True for zero-dimensional array-like objects with a weak dtype.",
+    "code_example": "import jax.numpy as jnp\nprint(jnp.isscalar(1.0))"
+  },
+  {
+    "version": "0.4.29",
+    "function_name": "jax.numpy.linalg.matrix_rank",
+    "function_description": "Computes the rank of a matrix using the Singular Value Decomposition (SVD), determining the number of singular values greater than a specified tolerance.",
+    "parameters": [
+      "M",
+      "rtol",
+      "tol"
+    ],
+    "return type": "Array",
+    "update_type": "deprecated parameter",
+    "has_alternative": "Yes",
+    "note": "The rank calculation may be inaccurate for matrices with very small singular values or those that are numerically ill-conditioned. Consider adjusting the rtol parameter or using a more specialized rank computation method in such cases.",
+    "update_info": "deprecated tol argument",
+    "update_description": "The tol argument of jax.numpy.linalg.matrix_rank() is being deprecated and will soon be removed. Use rtol instead.",
+    "code_example": "jax.numpy.linalg.matrix_rank(x, rtol=1e-6)"
+  },
+  {
+    "version": "0.4.29",
+    "function_name": "jax.numpy.linalg.pinv",
+    "function_description": "Compute the (Moore-Penrose) pseudo-inverse of a matrix.",
+    "parameters": [
+      "a (ArrayLike): array of shape (... M, N) containing matrices to pseudo-invert.",
+      "rtol (ArrayLike | None): float or array_like of shape a.shape[:-2]. Specifies the cutoff for small singular values. Default determined based on dtype.",
+      "hermitian (bool): if True, input is assumed Hermitian, uses efficient algorithm (default: False).",
+      "rcond (ArrayLike | DeprecatedArg | None): deprecated alias for rtol. Will result in DeprecationWarning if used."
+    ],
+    "return type": "Array",
+    "note": "jax.numpy.linalg.pinv differs from numpy.linalg.pinv in the default value of rcond: in NumPy, the default is 1e-15. In JAX, the default is 10 * max(num_rows, num_cols) * jnp.finfo(dtype).eps.",
+    "update_type": "deprecated parameter",
+    "has_alternative": "Yes",
+    "update_info": "deprecated rcond argument",
+    "update_description": "The rcond argument of jax.numpy.linalg.pinv() is being deprecated and will soon be removed. Use rtol instead.",
+    "code_example": "jax.numpy.linalg.pinv(x, rtol=1e-6)"
+  }
+]

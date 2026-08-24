@@ -1,0 +1,70 @@
+[
+  {
+    "version": "3.9.0",
+    "function_name": "mpl_toolkits.mplot3d.axes3d.Axes3D.get_zmargin",
+    "function_description": "Retrieves the autoscaling margin of the z-axis.",
+    "code_example": "import matplotlib.pyplot as plt\nfrom mpl_toolkits.mplot3d import Axes3D\n\nfig = plt.figure()\nax = fig.add_subplot(111, projection='3d')\nprint(ax.get_zmargin())",
+    "return type": "float",
+    "note": "Added in version 3.9."
+  },
+  {
+    "version": "3.9.0",
+    "function_name": "matplotlib.axis.Axis.minorticks_off",
+    "function_description": "Removes minor ticks from the axis.",
+    "code_example": "import matplotlib.pyplot as plt\nfig, ax = plt.subplots()\nax.minorticks_off()"
+  },
+  {
+    "version": "3.9.0",
+    "function_name": "matplotlib.figure.Figure.align_titles",
+    "function_description": "Aligns the titles of subplots in the same row when title alignment is automatic.",
+    "code_example": "import matplotlib.pyplot as plt\nfig, axs = plt.subplots(1, 2)\naxs[0].set_title('Title 0')\naxs[1].set_title('Title 1')\nfig.align_titles()",
+    "parameters": [
+      "axs: list of Axes, optional. List of Axes to align the titles. Default is to align all Axes on the figure."
+    ],
+    "note": "This assumes that all Axes in axs are from the same GridSpec, so that their SubplotSpec positions correspond to figure positions."
+  },
+  {
+    "version": "3.9.0",
+    "function_name": "matplotlib.axes.Axes.get_ymargin",
+    "function_description": "Retrieves the autoscaling margin of the y-axis.",
+    "code_example": "import matplotlib.pyplot as plt\nfig, ax = plt.subplots()\nmargin = ax.get_ymargin()\nprint(margin)",
+    "return type": "float",
+    "note": "See also: matplotlib.axes.Axes.set_ymargin"
+  },
+  {
+    "version": "3.9.0",
+    "function_name": "matplotlib.axis.Axis.minorticks_on",
+    "function_description": "Enables minor ticks on the Axis based on the current scale.",
+    "code_example": "import matplotlib.pyplot as plt\nfig, ax = plt.subplots()\nax.minorticks_on()",
+    "note": "Displaying minor ticks may reduce performance; use minorticks_off() to disable them if needed."
+  },
+  {
+    "version": "3.9.0",
+    "function_name": "matplotlib.axes.Axes.get_xmargin",
+    "function_description": "Returns the autoscaling margin for the x-axis.",
+    "code_example": "import matplotlib.pyplot as plt\nfig, ax = plt.subplots()\nprint(ax.get_xmargin())",
+    "return type": "float",
+    "note": "Added in version 3.9."
+  },
+  {
+    "version": "3.10.0",
+    "function_name": "mpl_toolkits.mplot3d.axes3d.Axes3D.fill_between",
+    "function_description": "Fills the area between two 3D curves defined by their coordinates.",
+    "code_example": "import matplotlib.pyplot as plt\nfrom mpl_toolkits.mplot3d import Axes3D\n\nfig = plt.figure()\nax = Axes3D(fig)\nx1 = [0, 1, 2]\ny1 = [0, 1, 0]\nz1 = [0, 0, 0]\nx2 = [0, 1, 2]\ny2 = [0, 0, 0]\nz2 = [0, 0, 0]\nax.fill_between(x1, y1, z1, x2, y2, z2)",
+    "parameters": [
+      "x1",
+      "y1",
+      "z1",
+      "x2",
+      "y2",
+      "z2",
+      "where",
+      "mode",
+      "facecolors",
+      "shade",
+      "axlim_clip"
+    ],
+    "return_type": "Poly3DCollection",
+    "note": "axlim_clip was added in version 3.10."
+  }
+]

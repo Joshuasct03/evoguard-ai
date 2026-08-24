@@ -1,0 +1,316 @@
+[
+  {
+    "version": "2.2.0",
+    "function_name": "pandas.date_range",
+    "function_description": "Returns a fixed frequency DatetimeIndex with specified start, end, periods, and frequency parameters.",
+    "parameters": [
+      "start",
+      "end",
+      "periods",
+      "freq",
+      "tz",
+      "normalize",
+      "name",
+      "inclusive",
+      "unit",
+      "**kwargs"
+    ],
+    "return type": "DatetimeIndex",
+    "update_type": "deprecated parameter",
+    "has_alternative": "Yes",
+    "note": "Exactly three of the four parameters (start, end, periods, freq) must be specified. If freq is omitted, the resulting DatetimeIndex will have periods linearly spaced elements between start and end (closed on both sides). The inclusive parameter controls whether to include boundaries. The unit parameter was added in version 2.0.0.",
+    "update_info": "changed parameters (deprecated aliases for frequency)",
+    "update_description": "pandas.date_range has deprecated frequency aliases M, Q, Y, etc., in favor of ME, QE, YE, etc. for offsets.",
+    "code_example": "pd.date_range('2020-01-01', periods=3, freq='QE-NOV')"
+  },
+  {
+    "version": "2.2.0",
+    "function_name": "pandas.Series",
+    "function_description": "A one-dimensional labeled array (like a column in a spreadsheet) that supports both integer- and label-based indexing, with operations aligning based on indexes.",
+    "parameters": [
+      "data",
+      "index",
+      "dtype",
+      "name",
+      "copy"
+    ],
+    "return_type": "pandas.Series",
+    "update_type": "deprecated parameter",
+    "has_alternative": "No",
+    "note": "If data is a dictionary and index is None, keys are used as index. If index is provided, the Series is reindexed with the given index values, resulting in NaN if keys don't match.",
+    "update_info": "deprecated parameter",
+    "update_description": "In pandas.Series, the 'fastpath' keyword in the Series constructor is deprecated.",
+    "code_example": "pd.Series(data, fastpath=True)  # deprecated\npd.Series(data)  # new usage"
+  },
+  {
+    "version": "2.2.0",
+    "function_name": "pandas.to_numeric",
+    "function_description": "Converts an argument to a numeric type, supporting various data formats and error handling options.",
+    "parameters": [
+      "arg",
+      "errors",
+      "downcast",
+      "dtype_backend"
+    ],
+    "return type": "Series or ndarray",
+    "update_info": "deprecated parameter",
+    "update_type": "deprecated parameter",
+    "has_alternative": "No",
+    "update_description": "In pandas.to_numeric, the 'errors='ignore'' option is deprecated. Use explicit exception handling instead.",
+    "code_example": "pd.to_numeric(..., errors='ignore')  # deprecated\npd.to_numeric(..., errors='coerce')  # new usage"
+  },
+  {
+    "version": "2.2.0",
+    "function_name": "pandas.read_csv()",
+    "function_description": "Read a comma-separated values (csv) file into DataFrame.",
+    "parameters": [
+      "filepath_or_buffer",
+      "sep",
+      "delimiter",
+      "header",
+      "names",
+      "index_col",
+      "usecols",
+      "dtype",
+      "engine",
+      "converters",
+      "true_values",
+      "false_values",
+      "skipinitialspace",
+      "skiprows",
+      "skipfooter",
+      "nrows",
+      "na_values",
+      "keep_default_na",
+      "na_filter",
+      "verbose",
+      "skip_blank_lines",
+      "parse_dates",
+      "infer_datetime_format",
+      "keep_date_col",
+      "date_parser",
+      "date_format",
+      "dayfirst",
+      "cache_dates",
+      "iterator",
+      "chunksize",
+      "compression",
+      "thousands",
+      "decimal",
+      "lineterminator",
+      "quotechar",
+      "quoting",
+      "doublequote",
+      "escapechar",
+      "comment",
+      "encoding",
+      "encoding_errors",
+      "dialect",
+      "on_bad_lines",
+      "delim_whitespace",
+      "low_memory",
+      "memory_map",
+      "float_precision",
+      "storage_options",
+      "dtype_backend"
+    ],
+    "return type": "DataFrame or TextFileReader",
+    "update_type": "deprecated parameter",
+    "has_alternative": "Yes",
+    "update_info": "deprecated in favor of sep=\"\\s+\"",
+    "update_description": "The Pandas library has deprecated delim_whitespace keyword in read_csv(); use sep=\"\\s+\" instead.",
+    "code_example": "pd.read_csv(..., sep=\"\\s+\")"
+  },
+  {
+    "version": "2.2.0",
+    "function_name": "read_table()",
+    "function_description": "Reads a delimited text file into a DataFrame.",
+    "parameters": [
+      "filepath_or_buffer",
+      "sep",
+      "delimiter",
+      "header",
+      "names",
+      "index_col",
+      "usecols",
+      "dtype",
+      "engine",
+      "converters",
+      "true_values",
+      "false_values",
+      "skipinitialspace",
+      "skiprows",
+      "skipfooter",
+      "nrows",
+      "na_values",
+      "keep_default_na",
+      "na_filter",
+      "verbose",
+      "skip_blank_lines",
+      "parse_dates",
+      "infer_datetime_format",
+      "keep_date_col",
+      "date_parser",
+      "date_format",
+      "dayfirst",
+      "cache_dates",
+      "iterator",
+      "chunksize",
+      "compression",
+      "thousands",
+      "decimal",
+      "lineterminator",
+      "quotechar",
+      "quoting",
+      "doublequote",
+      "escapechar",
+      "comment",
+      "encoding",
+      "encoding_errors",
+      "dialect",
+      "on_bad_lines",
+      "delim_whitespace",
+      "low_memory",
+      "memory_map",
+      "float_precision",
+      "storage_options",
+      "dtype_backend"
+    ],
+    "return_type": "DataFrame or TextFileReader",
+    "update_type": "deprecated parameter",
+    "has_alternative": "Yes",
+    "update_info": "deprecated in favor of sep=\"\\s+\"",
+    "update_description": "The Pandas library has deprecated delim_whitespace keyword in read_table(); use sep=\"\\s+\" instead.",
+    "code_example": "pd.read_table(..., sep=\"\\s+\")"
+  },
+  {
+    "version": "2.2.0",
+    "function_name": "DataFrame.pivot_table()",
+    "function_description": "Create a spreadsheet-style pivot table as a DataFrame.",
+    "parameters": [
+      "values",
+      "index",
+      "columns",
+      "aggfunc",
+      "fill_value",
+      "margins",
+      "dropna",
+      "margins_name",
+      "observed",
+      "sort"
+    ],
+    "return_type": "DataFrame",
+    "update_type": "modified parameter",
+    "update_info": "deprecated the default observed=False in favor of True",
+    "update_description": "The Pandas library has deprecated the default observed=False in DataFrame.pivot_table(); will be True in a future version.",
+    "code_example": "df.pivot_table(..., observed=True)"
+  },
+  {
+    "version": "2.2.1",
+    "function_name": "DataFrameGroupBy.first",
+    "function_description": "Computes the first entry of each column within each group, skipping NA values by default.",
+    "parameters": [
+      {
+        "name": "numeric_only",
+        "type": "bool",
+        "default": "False"
+      },
+      {
+        "name": "min_count",
+        "type": "int",
+        "default": "-1"
+      },
+      {
+        "name": "skipna",
+        "type": "bool",
+        "default": "True"
+      }
+    ],
+    "return type": "Series or DataFrame",
+    "update_type": "added parameter",
+    "update_info": "added parameter 'skipna'",
+    "update_description": "The Pandas library has added the argument skipna to DataFrameGroupBy.first(); achieving skipna=False used to be available via DataFrameGroupBy.nth(), but the behavior was changed in pandas 2.0.0",
+    "code_example": "import pandas as pd\n\ndf = pd.DataFrame({'A': [1,1,3], 'B': [None,5,6], 'C': [1,2,3], 'D': ['3/11/2000', '3/12/2000', '3/13/2000']})\ndf['D'] = pd.to_datetime(df['D'])\nresult = df.groupby(\"A\").first()"
+  },
+  {
+    "version": "2.2.1",
+    "function_name": "DataFrameGroupBy.last",
+    "function_description": "Computes the last entry of each column within each group, skipping NA values by default.",
+    "parameters": [
+      {
+        "name": "numeric_only",
+        "type": "bool",
+        "default": "False"
+      },
+      {
+        "name": "min_count",
+        "type": "int",
+        "default": "-1"
+      },
+      {
+        "name": "skipna",
+        "type": "bool",
+        "default": "True"
+      }
+    ],
+    "return type": "Series or DataFrame",
+    "update_type": "added parameter",
+    "update_info": "added parameter 'skipna'",
+    "update_description": "The Pandas library has added the argument skipna to DataFrameGroupBy.last(); achieving skipna=False used to be available via DataFrameGroupBy.nth(), but the behavior was changed in pandas 2.0.0",
+    "code_example": "import pandas as pd\ndf = pd.DataFrame({'A': [1,1,3], 'B': [5, None, 6], 'C': [1,2,3]})\nresult = df.groupby('A').last()"
+  },
+  {
+    "version": "2.2.1",
+    "function_name": "SeriesGroupBy.first",
+    "function_description": "Computes the first entry of each column within each group, skipping NA values by default.",
+    "parameters": [
+      {
+        "name": "numeric_only",
+        "type": "bool",
+        "default": "False"
+      },
+      {
+        "name": "min_count",
+        "type": "int",
+        "default": "-1"
+      },
+      {
+        "name": "skipna",
+        "type": "bool",
+        "default": "True"
+      }
+    ],
+    "return type": "Series or DataFrame",
+    "update_type": "added parameter",
+    "update_info": "added parameter 'skipna'",
+    "update_description": "The Pandas library has added the argument skipna to SeriesGroupBy.first(); achieving skipna=False used to be available via DataFrameGroupBy.nth(), but the behavior was changed in pandas 2.0.0",
+    "code_example": "import pandas as pd\n\ndf = pd.DataFrame({'A': [1,1,3], 'B': [None,5,6], 'C': [1,2,3], 'D': ['3/11/2000', '3/12/2000', '3/13/2000']})\ndf['D'] = pd.to_datetime(df['D'])\nresult = df.groupby(\"A\").first()"
+  },
+  {
+    "version": "2.2.1",
+    "function_name": "SeriesGroupBy.last",
+    "function_description": "Computes the last entry of each column within each group, skipping NA values by default.",
+    "parameters": [
+      {
+        "name": "numeric_only",
+        "type": "bool",
+        "default": "False"
+      },
+      {
+        "name": "min_count",
+        "type": "int",
+        "default": "-1"
+      },
+      {
+        "name": "skipna",
+        "type": "bool",
+        "default": "True"
+      }
+    ],
+    "return type": "Series or DataFrame",
+    "update_type": "added parameter",
+    "update_info": "added parameter 'skipna'",
+    "update_description": "The Pandas library has added the argument skipna to SeriesGroupBy.last(); achieving skipna=False used to be available via DataFrameGroupBy.nth(), but the behavior was changed in pandas 2.0.0",
+    "code_example": "import pandas as pd\ndf = pd.DataFrame({'A': [1,1,3], 'B': [5, None, 6], 'C': [1,2,3]})\nresult = df.groupby('A').last()"
+  }
+]

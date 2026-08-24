@@ -1,0 +1,110 @@
+[
+  {
+    "version": "3.10.0",
+    "function_name": "keras.optimizers.Muon",
+    "update_type": "added",
+    "change_info": "added optimizer",
+    "update_description": "The Keras library has added a new optimizer keras.optimizers.Muon",
+    "code_example": "",
+    "note": ""
+  },
+  {
+    "version": "3.10.0",
+    "function_name": "keras.layers.RandomElasticTransform",
+    "update_type": "added",
+    "change_info": "added image preprocessing layer",
+    "update_description": "The Keras library has added a new image preprocessing layer keras.layers.RandomElasticTransform",
+    "code_example": "",
+    "note": ""
+  },
+  {
+    "version": "3.10.0",
+    "function_name": "keras.losses.CategoricalGeneralizedCrossEntropy",
+    "update_type": "added",
+    "change_info": "added loss function",
+    "update_description": "The Keras library has added a new loss function keras.losses.CategoricalGeneralizedCrossEntropy",
+    "code_example": "",
+    "note": ""
+  },
+  {
+    "version": "3.10.0",
+    "function_name": "keras.losses.SparseCategoricalCrossentropy",
+    "update_type": "signature_changed",
+    "change_info": "added axis argument",
+    "update_description": "The Keras library has added axis argument to keras.losses.SparseCategoricalCrossentropy",
+    "code_example": "",
+    "note": ""
+  },
+  {
+    "version": "3.10.0",
+    "function_name": "keras.activations.sparse_sigmoid",
+    "update_type": "added",
+    "change_info": "added activation function",
+    "update_description": "The Keras library has added a new activation function keras.activations.sparse_sigmoid",
+    "code_example": "",
+    "note": ""
+  },
+  {
+    "version": "3.10.0",
+    "function_name": "keras.ops.image.elastic_transform",
+    "update_type": "added",
+    "change_info": "added op",
+    "update_description": "The Keras library has added a new op, keras.ops.image.elastic_transform",
+    "code_example": "",
+    "note": ""
+  },
+  {
+    "version": "3.10.0",
+    "function_name": "keras.ops.angle",
+    "update_type": "added",
+    "change_info": "added op",
+    "update_description": "The Keras library has added a new op, keras.ops.angle",
+    "code_example": "",
+    "note": ""
+  },
+  {
+    "version": "3.10.0",
+    "function_name": "keras.ops.bartlett",
+    "update_type": "added",
+    "change_info": "added op",
+    "update_description": "The Keras library has added a new op, keras.ops.bartlett",
+    "code_example": "",
+    "note": ""
+  },
+  {
+    "version": "3.10.0",
+    "function_name": "keras.ops.blackman",
+    "update_type": "added",
+    "change_info": "added op",
+    "update_description": "The Keras library has added a new op, keras.ops.blackman",
+    "code_example": "",
+    "note": ""
+  },
+  {
+    "version": "3.10.0",
+    "function_name": "keras.ops.hamming",
+    "update_type": "added",
+    "change_info": "added op",
+    "update_description": "The Keras library has added a new op, keras.ops.hamming",
+    "code_example": "",
+    "note": ""
+  },
+  {
+    "version": "3.10.0",
+    "function_name": "keras.ops.view_as_complex",
+    "update_type": "added",
+    "change_info": "added op",
+    "update_description": "The Keras library has added a new op, keras.ops.view_as_complex",
+    "code_example": "",
+    "note": ""
+  },
+  {
+    "version": "3.10.0",
+    "function_name": "keras.ops.view_as_real",
+    "update_type": "added",
+    "change_info": "added op",
+    "update_description": "The Keras library has added a new op, keras.ops.view_as_real",
+    "code_example": "",
+    "note": ""
+  }
+]
