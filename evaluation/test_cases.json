@@ -1,0 +1,26 @@
+[
+  {
+    "query": "Can I use torch.lstsq to solve linear equations?",
+    "target_version": "2.0.0",
+    "target_library": "torch",
+    "expected_status": "DANGER"
+  },
+  {
+    "query": "Can I use torch.lstsq to solve linear equations?",
+    "target_version": "1.8.0",
+    "target_library": "torch",
+    "expected_status": "SAFE"
+  },
+  {
+    "query": "Is numpy.float deprecated?",
+    "target_version": "1.20.0",
+    "target_library": "numpy",
+    "expected_status": "WARNING"
+  },
+  {
+    "query": "How do I append to a dataframe?",
+    "target_version": "2.0.0",
+    "target_library": "pandas",
+    "expected_status": "DANGER"
+  }
+]
