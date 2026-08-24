@@ -3,59 +3,91 @@ from dotenv import load_dotenv
 from langchain_google_genai import GoogleGenerativeAIEmbeddings
 from langchain_community.vectorstores import FAISS
 
-# Import our custom modules
 from extraction import extract_api_info
 from version_logic import evaluate_api_safety
 
 load_dotenv()
 
-def run_evoguard(query: str, target_version: str):
-    print(f"\n[1] User Query: {query}")
-    print(f"[1] Target Environment Version: {target_version}")
+def run_evoguard(query: str, target_version: str, target_library: str = None) -> dict:
+    """
+    Executes the EvoGuard version-aware pipeline:
+    1. Version-aware retrieval of evidence
+    2. LLM-based structured lifecycle extraction
+    3. Deterministic Python version comparison
+    4. Evidence-backed migration recommendation
+    """
+    print(f"\n[Query]: {query}")
+    print(f"[Target Version]: {target_version} | [Library]: {target_library or 'Any'}")
     
-    # Phase 1: Retrieval
-    print("\n[2] Retrieving evidence from vector store...")
+    # 1. Load Vector Store
     embeddings = GoogleGenerativeAIEmbeddings(model="models/gemini-embedding-001")
     try:
-        vector_store = FAISS.load_local("faiss_index", embeddings, allow_dangerous_deserialization=True)
+        vector_store = FAISS.load_local(os.path.join(os.path.dirname(__file__), "faiss_index"), embeddings, allow_dangerous_deserialization=True)
     except Exception as e:
-        print("Error: Could not load vector store. Run ingestion.py first!")
-        return
+        print("Error: Vector store not found. Please run ingestion.py first.")
+        return {"status": "error", "message": str(e)}
 
-    # We fetch the top document. (In a full production app, you might filter by library name here)
-    docs = vector_store.similarity_search(query, k=1)
-    
-    # The Abstention Rule: If no evidence is found, do not guess.
-    if not docs:
-        print("\n--- EvoGuard Final Answer ---")
-        print("Insufficient evidence to determine the API status for the requested version.")
-        return
+    # 2. Retrieve Relevant Evidence
+    search_kwargs = {}
+    if target_library:
+        search_kwargs["filter"] = {"library": target_library.lower()}
         
-    context_text = docs[0].page_content
-    print(f"    -> Evidence found: {context_text[:50]}...")
+    # FIX 1: Increase k=3 to fetch both deprecation and removal documents
+    docs = vector_store.similarity_search(query, k=3, **search_kwargs)
     
-    # Phase 2: Structured Extraction
-    print("\n[3] LLM extracting structured API lifecycle data...")
+    if not docs:
+        result = {
+            "status": "abstained",
+            "guidance": "Insufficient evidence to determine the API status for the requested version.",
+            "evidence": None,
+            "structured_data": None
+        }
+        _print_result(result)
+        return result
+        
+    # FIX 2: Combine all retrieved chunks so Gemini sees the complete timeline
+    # FIX 2: Inject metadata into the context text so Gemini knows the timeline
+    context_text = "\n".join([f"- [Library: {d.metadata.get('library')} v{d.metadata.get('version')}]: {d.page_content}" for d in docs])
+    print(f"[Retrieved Context]: Pulled {len(docs)} documents to build lifecycle timeline.")
+    
+    # 3. Structured Extraction using Gemini
+    # 3. Structured Extraction using Gemini
     try:
         extracted_data = extract_api_info(context_text)
     except Exception as e:
-        print("\n--- EvoGuard Final Answer ---")
-        print("Insufficient evidence to determine the API status for the requested version.")
-        return
+        error_msg = f"Extraction Failed: {str(e)}"
+        print(f"\n[DEBUG ERROR] {error_msg}")
+        result = {
+            "status": "extraction_error",
+            "guidance": error_msg,
+            "evidence": context_text,
+            "structured_data": None
+        }
+        _print_result(result)
+        return result
+        
+    # 4. Deterministic Version Evaluation
+    guidance = evaluate_api_safety(extracted_data, target_version)
     
-    # Phase 3: Deterministic Version Reasoning
-    print("\n[4] Python reasoning engine applying deterministic version math...")
-    final_guidance = evaluate_api_safety(extracted_data, target_version)
-    
-    # Final Evidence-Backed Output
+    result = {
+        "status": "success",
+        "guidance": guidance,
+        "evidence": context_text,
+        "structured_data": extracted_data
+    }
+    _print_result(result)
+    return result
+
+def _print_result(res: dict):
     print("\n=============================================")
-    print("           EVOGUARD FINAL ANSWER             ")
+    print("           EVOGUARD ANALYSIS RESULT          ")
     print("=============================================")
-    print(f"Guidance: {final_guidance}")
-    print(f"\nEvidence: \"{context_text}\"")
+    print(f"Guidance: {res['guidance']}")
+    if res["evidence"]:
+        print(f"\nEvidence:\n{res['evidence']}")
     print("=============================================\n")
 
 if __name__ == "__main__":
-    # Simulating a developer asking about the old API while working in version 1.9
-    test_query = "What is the status of old_function?"
-    run_evoguard(test_query, target_version="1.9")
+    # Testing the exact query that just failed
+    print("\n--- TEST: torch.lstsq on PyTorch 1.8.0 ---")
+    run_evoguard(query="Can I use torch.lstsq to solve linear equations?", target_version="1.8.0", target_library="torch")
