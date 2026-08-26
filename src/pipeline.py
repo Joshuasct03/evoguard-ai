@@ -48,7 +48,6 @@ def run_evoguard(query: str, target_version: str, target_library: str = None, us
     context_text = "\n".join([f"- [Library: {d.metadata.get('library')} v{d.metadata.get('version')}]: {d.page_content}" for d in docs])
     
     # 3. Structured Extraction using Gemini
-    # 3. Structured Extraction using Gemini
     try:
         extracted_data = extract_api_info(context_text)
         

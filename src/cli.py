@@ -33,7 +33,6 @@ def main():
     danger_found = False
     
     for api in apis:
-        # We temporarily suppress standard print statements from the pipeline for a cleaner CLI output
         sys.stdout = open(os.devnull, 'w')
         result = run_evoguard(f"Is {api} safe?", args.version, args.library, None)
         sys.stdout = sys.__stdout__
@@ -52,7 +51,7 @@ def main():
     print("\n--- Scan Complete ---")
     if danger_found:
         print("🚨 DANGER level conflicts found! Breaking the build (exit code 1).")
-        sys.exit(1)  # This tells CI/CD pipelines to fail the build!
+        sys.exit(1)  
     else:
         print("✅ All APIs pass version checks. Code is safe to deploy.")
         sys.exit(0)

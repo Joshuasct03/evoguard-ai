@@ -3,7 +3,6 @@ import sys
 import os
 import asyncio
 
-# --- Streamlit Threading Asyncio Patch ---
 try:
     asyncio.get_running_loop()
 except RuntimeError:
@@ -25,7 +24,6 @@ with col1:
 with col2:
     target_version = st.text_input("Your Environment Version", value="2.7.0")
 
-# Create tabs for Single Query vs. File Scan
 tab1, tab2 = st.tabs(["🔍 Single API Query", "📁 Batch File Scan"])
 
 with tab1:
@@ -51,7 +49,6 @@ with tab1:
                 else:
                     st.info(guidance)
                     
-                # Display the auto-fix if it was generated
                 if result.get("fix"):
                     st.subheader("🛠️ Automated Code Migration")
                     st.markdown(result["fix"])
@@ -79,7 +76,6 @@ with tab2:
             
             for api in extracted_apis:
                 st.markdown(f"### Analyzing: `{api}`")
-                # Run the engine for each extracted API (skip user_code auto-fix in batch mode)
                 result = run_evoguard(f"Is {api} safe to use?", target_version, target_library, None)
                 
                 if result["status"] == "abstained":

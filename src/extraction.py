@@ -41,7 +41,6 @@ def extract_api_info(context_text: str):
         parsed = parser.parse(raw_response.content)
         return parsed.dict() if hasattr(parsed, "dict") else parsed.model_dump()
     except Exception as e:
-        # BULLETPROOF FALLBACK: If the LLM returned a list anyway, catch it manually
         try:
             clean_json = raw_response.content.replace('```json', '').replace('```', '').strip()
             data = json.loads(clean_json)

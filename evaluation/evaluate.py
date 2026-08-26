@@ -2,7 +2,6 @@ import json
 import sys
 import os
 
-# Add src to Python path so we can import the pipeline
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'src')))
 from pipeline import run_evoguard
 
@@ -19,7 +18,6 @@ def run_benchmark():
     for idx, tc in enumerate(test_cases):
         print(f"\n--- Test {idx+1}/{total}: [{tc['target_library']} v{tc['target_version']}] ---")
         
-        # Suppress pipeline prints for a clean test output
         old_stdout = sys.stdout
         sys.stdout = open(os.devnull, 'w')
         try:

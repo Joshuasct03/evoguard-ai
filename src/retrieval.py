@@ -15,7 +15,6 @@ def retrieve_and_answer(query, target_version):
     vector_store = FAISS.load_local("faiss_index", embeddings, allow_dangerous_deserialization=True)
     
     # 2. Version-Aware Retrieval (The Brain of EvoGuard)
-    # We pass a metadata filter to FAISS. It will ONLY return chunks matching this version.
     print("Searching vector store with strict version filtering...")
     docs = vector_store.similarity_search(
         query, 
@@ -39,7 +38,6 @@ def retrieve_and_answer(query, target_version):
     print(response["output_text"].strip())
 
 if __name__ == "__main__":
-    # We ask the exact same question, but explicitly filter for different versions
     test_query = "Is the old_function API safe to use?"
     
     print("\n=============================================")
